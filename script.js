@@ -4,7 +4,7 @@
 const SUPABASE_URL = 'https://uqfaqhphzomnxpnqrpls.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVxZmFxaHBoem9tbnhwbnFycGxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MDQ0MjAsImV4cCI6MjA5NzM4MDQyMH0.KEfbxJB_GMTqUjeRATAdzpCWfdYeYXNhCb2Nb_pUBZs';
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-const API_URL = 'http://localhost:5000';
+const API_URL = 'https://unfollowfinder.com';
 
 // Auth state & pending file storage
 let authState = {
