@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog – Instagram Growth Tips & Guides | Unfollow Finder</title>
+ 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../image/UNFOLLOW FINDER-5.png" />
+  <link rel="shortcut icon" href="../image/UNFOLLOW FINDER-5.png" />
+  <link rel="apple-touch-icon" href="../image/UNFOLLOW FINDER-5.png" />
+ 
+  <!-- SEO -->
+  <meta name="description" content="Learn how to track unfollowers, understand the Instagram algorithm, and grow your audience safely. Practical guides from the Unfollow Finder team." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.unfollowfinder.com/blogs/index1.html" />
+ 
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Blog – Instagram Growth Tips & Guides | Unfollow Finder" />
+  <meta property="og:description" content="Practical guides on Instagram growth, privacy, and understanding your audience." />
+  <meta property="og:url" content="https://www.unfollowfinder.com/blogs/index1.html" />
+  <meta property="og:site_name" content="Unfollow Finder" />
+ 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+ 
+  <!-- CSS -->
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="blog.css" />
+ 
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+<a href="../index.html" class="logo">
+  <img src="../image/unfollow-finder-logo.png" alt="Unfollow Finder Logo" class="logo-img" />
+</a>
+      <nav class="nav-links">
+        <a href="../index.html#features">Features</a>
+        <a href="../index.html#how">How it works</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="index1.html">Blogs</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#" class="btn-ghost" onclick="openAuth('login');return false;">Log in</a>
+        <a href="#" class="btn-primary" onclick="openAuth('signup');return false;">Get started free</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="index1.html">Blogs</a>
+      <a href="#" class="btn-primary mobile-cta" onclick="openAuth('signup');return false;">Get started free</a>
+    </div>
+  </header>
+
+  <!-- ── BLOG HERO ──────────────────────────────── -->
+  <section class="blog-hero">
+    <div class="container">
+      <span class="eyebrow"><span class="dot"></span> The Unfollow Finder Blog</span>
+      <h1>Grow with intention,<br><em>not guesswork</em></h1>
+      <p class="blog-hero-sub">Practical guides on Instagram growth, privacy, and understanding your audience — written for creators, not algorithms.</p>
+    </div>
+  </section>
+
+  <!-- ── FEATURED POST ──────────────────────────── -->
+  <section class="featured-post-section">
+    <div class="container">
+      <a href="how-to-see-who-unfollowed-you-on-instagram.html" class="featured-post">
+        <div class="featured-post-tag">Latest guide</div>
+        <h2>How to See Who Unfollowed You on Instagram (2026 Guide)</h2>
+        <p>Instagram doesn't tell you who left — here's exactly how to find out safely, without handing over your password to a sketchy app.</p>
+        <span class="featured-post-meta">8 min read · Privacy &amp; Tools</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── POST GRID ──────────────────────────────── -->
+  <section class="post-grid-section">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:40px">
+        <span class="section-eyebrow">All articles</span>
+        <h2>Recent posts</h2>
+      </div>
+
+      <div class="post-grid">
+
+        <a href="how-to-see-who-unfollowed-you-on-instagram.html" class="post-card">
+          <span class="post-card-tag">Tools</span>
+          <h3>How to See Who Unfollowed You on Instagram (2026 Guide)</h3>
+          <p>Instagram doesn't tell you who left — here's exactly how to find out safely.</p>
+          <span class="post-card-meta">8 min read</span>
+        </a>
+
+        <a href="how-to-see-who-doesnt-follow-you-back-on-instagram.html" class="post-card">
+          <span class="post-card-tag">Tools</span>
+          <h3>How to See Who Doesn't Follow You Back on Instagram</h3>
+          <p>Find every account that doesn't follow you back, without sharing your password.</p>
+          <span class="post-card-meta">6 min read</span>
+        </a>
+
+        <a href="is-it-safe-to-use-instagram-unfollower-apps.html" class="post-card">
+          <span class="post-card-tag">Privacy</span>
+          <h3>Is It Safe to Use Instagram Unfollower Apps?</h3>
+          <p>What to check before giving any third-party tool access to your account.</p>
+          <span class="post-card-meta">7 min read</span>
+        </a>
+
+        <a href="does-instagram-notify-unfollow.html" class="post-card">
+          <span class="post-card-tag">Basics</span>
+          <h3>Does Instagram Notify You When You Unfollow Someone?</h3>
+          <p>A clear answer, plus what the other person can and can't actually see.</p>
+          <span class="post-card-meta">4 min read</span>
+        </a>
+
+        <a href="#" class="post-card post-card-soon">
+          <span class="post-card-tag">Comparison</span>
+          <h3>GrowFlow vs FollowBuddy: Which Should You Use?</h3>
+          <p>A fair, feature-by-feature breakdown of two popular unfollow trackers.</p>
+          <span class="post-card-meta">Coming soon</span>
+        </a>
+
+        <a href="#" class="post-card post-card-soon">
+          <span class="post-card-tag">Growth</span>
+          <h3>Mutual Followers: Why They're Worth More Than Numbers</h3>
+          <p>How to spot your real community inside a list of thousands of accounts.</p>
+          <span class="post-card-meta">Coming soon</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER (reused style) ──────────────── -->
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <h2>Ready to see who unfollowed you?</h2>
+      <p>Join 25,000+ creators. No account needed to start.</p>
+      <a href="../index.html" class="btn-primary btn-lg">Try Unfoll0w Finder free →</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER (reused from main site) ─────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="../index.html" class="a-logo">
+            <img src="../image/UNFOLLOW FINDER-2.png" alt="Unfollow Finder" class="f-logo-img" />
+
+        </a>
+        
+        <p>The safest Instagram unfollow checker. Built for creators who care about privacy.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../index.html#features">Features</a>
+          <a href="../index.html#pricing">Pricing</a>
+          <a href="#">Changelog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="index1.html">Blog</a>
+          <a href="#">Help center</a>
+          <a href="../index.html#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Privacy policy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Unfollow Finder. All rights reserved.</p>
+      <p>Not affiliated with Instagram or Meta.</p>
+    </div>
+  </footer>
+    <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+
+    <div class="auth-modal" id="auth-modal">
+
+      <!-- Close -->
+      <button class="auth-close" id="auth-close" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+
+      <!-- Logo -->
+<div class="auth-logo">
+  <img src="../image/unfollow-finder-logo.png" alt="Unfollow Finder" class="auth-logo-img" />
+</div>
+      <!-- Tab switcher -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Create account</button>
+        <button class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Log in</button>
+      </div>
+
+      <!-- Social buttons -->
+      <div class="auth-socials">
+        <button class="social-btn google" onclick="authWithProvider('google')">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Continue with Google
+        </button>
+
+        <button class="social-btn apple" onclick="authWithProvider('apple')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Continue with Apple
+        </button>
+      </div>
+
+      <!-- Divider -->
+      <div class="auth-divider"><span>or</span></div>
+
+      <!-- Email form — Signup -->
+      <div class="auth-form" id="form-signup">
+        <div class="auth-field">
+          <label for="su-name">Full name</label>
+          <input type="text" id="su-name" placeholder="Your name" autocomplete="name">
+        </div>
+        <div class="auth-field">
+          <label for="su-email">Email address</label>
+          <input type="email" id="su-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="su-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="su-pass" placeholder="Create a password" autocomplete="new-password">
+            <button class="pass-toggle" onclick="togglePass('su-pass',this)" type="button" aria-label="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('signup')">Create free account</button>
+        <p class="auth-terms">By signing up you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+
+      <!-- Email form — Login -->
+      <div class="auth-form" id="form-login" style="display:none">
+        <div class="auth-field">
+          <label for="li-email">Email address</label>
+          <input type="email" id="li-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="li-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="li-pass" placeholder="Your password" autocomplete="current-password">
+            <button class="pass-toggle" onclick="togglePass('li-pass',this)" type="button" aria-label="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('login')">Log in to Unfollw Finder</button>
+      </div>
+
+      <!-- Switch text -->
+      <p class="auth-switch" id="auth-switch-text">
+        Already have an account? <button onclick="switchAuthTab('login')">Log in</button>
+      </p>
+
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analysis Dashboard</title>
+<link rel="stylesheet" href="dashboard.css" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="image/UNFOLLOW FINDER-5.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="image/UNFOLLOW FINDER-5.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="image/UNFOLLOW FINDER-5.png" />
+<link rel="shortcut icon" href="image/UNFOLLOW FINDER-5.png" />
+</head>
+<body>
+
+<div class="page-shell">
+
+  <!-- ── LOCK SCREEN: shown to FREE users ── -->
+  <div id="lock-screen">
+    <div class="lock-icon">🔒</div>
+    <div class="lock-title">Dashboard is a Pro feature</div>
+    <div class="lock-sub">Upgrade to Pro to unlock the full analytics dashboard — charts, scan history, and unfollower insights.</div>
+    <button class="lock-btn" onclick="window.location.href='payment.html?plan=pro'">Upgrade to Pro →</button>
+  </div>
+
+  <!-- ── LOADER ── -->
+  <div id="loader-screen">
+    <div class="loader-ring"></div>
+    <p class="loader-text" id="loader-msg">Checking your plan…</p>
+    <div class="loader-steps">
+      <div class="loader-dot" id="dot-0"></div>
+      <div class="loader-dot" id="dot-1"></div>
+      <div class="loader-dot" id="dot-2"></div>
+      <div class="loader-dot" id="dot-3"></div>
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD: shown to PRO users only ── -->
+  <div id="dashboard">
+    <div class="dash-header">
+      <div class="dash-title">Unfollow <span>Finder</span> — Dashboard</div>
+      <div class="dash-badge">Pro · Analysis complete</div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num" id="s-following">0</div><div class="stat-lbl">Following</div></div>
+      <div class="stat-card"><div class="stat-num" id="s-followers">0</div><div class="stat-lbl">Followers</div></div>
+      <div class="stat-card pink"><div class="stat-num" id="s-unf">0</div><div class="stat-lbl">Unfollowed you</div></div>
+      <div class="stat-card purple"><div class="stat-num" id="s-notback">0</div><div class="stat-lbl">Not following back</div></div>
+      <div class="stat-card green"><div class="stat-num" id="s-mutual">0</div><div class="stat-lbl">Mutuals</div></div>
+    </div>
+
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-card-title">Audience breakdown</div>
+        <div class="donut-wrap">
+          <canvas id="donut-chart" width="100" height="100"></canvas>
+          <div class="donut-legend" id="donut-legend"></div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Follow ratio</div>
+        <div class="bar-chart" id="bar-chart"></div>
+      </div>
+    </div>
+
+    <div class="recent-section">
+      <div class="recent-header">
+        <div class="recent-title">Recent unfollowers</div>
+        <div class="recent-count" id="recent-count"></div>
+      </div>
+      <div class="user-list" id="user-list"></div>
+    </div>
+
+    <div class="bottom-row">
+      <div class="insight-card">
+        <div class="insight-label">Engagement ratio</div>
+        <div class="insight-val" id="insight-ratio">—</div>
+        <div class="insight-sub">followers / following</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">Ghost followers</div>
+        <div class="insight-val" id="insight-ghost">—</div>
+        <div class="insight-sub">following you but you don't follow back</div>
+      </div>
+    </div>
+
+    <button class="reset-btn" onclick="window.location.href='index.html#tool'">
+      ↻ Analyse another file
+    </button>
+  </div>
+
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upgrade to Pro – Unfollow Finder</title>
+  <link rel="icon" type="image/png" href="image/UNFOLLOW FINDER-5.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <script src="https://js.stripe.com/v3/"></script>
+  <link rel="stylesheet" href="payment.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="image/unfollow-finder-logo.png" alt="Unfollow Finder" />
+      </a>
+      <a href="index.html#pricing" class="back-link">
+         Back to pricing
+      </a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="page-head">
+      <h1>Upgrade your plan</h1>
+      <p>Unlock unlimited analyses, CSV export & priority support</p>
+    </div>
+
+    <div id="auth-warning" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:12px;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#856404;">
+      ⚠️ Aap logged in nahi hain. <a href="index.html" style="color:var(--pink);font-weight:600;">Pehle login karo</a> phir wapas aao.
+    </div>
+
+    <div class="plan-grid" id="plan-grid">
+      <div class="plan-card selected" onclick="selectPlan('pro', this)">
+        <div class="badge">Most Popular</div>
+        <div class="plan-radio"></div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">$9 <span>/month</span></div>
+        <ul class="plan-features">
+          <li>Everything in Free</li>
+          <li>Unlimited analyses</li>
+          <li>Export to CSV</li>
+          <li>History tracking</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
+
+      <div class="plan-card" onclick="selectPlan('team', this)">
+        <div class="plan-radio"></div>
+        <div class="plan-name">Team</div>
+        <div class="plan-price">$29 <span>/month</span></div>
+        <ul class="plan-features">
+          <li>Everything in Pro</li>
+          <li>Up to 10 accounts</li>
+          <li>Team dashboard</li>
+          <li>Analytics reports</li>
+          <li>Dedicated support</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pay-box" id="pay-box">
+      <div class="pay-box-head">
+        <h2>Payment details</h2>
+
+        <div class="card-brands" aria-label="Accepted cards: Visa, Mastercard, American Express, Discover">
+          <svg viewBox="0 0 48 32" width="38"><rect width="48" height="32" rx="5" fill="#fff" stroke="#e5e5ea"/><path d="M19.5 21.5h-2.6l1.6-10h2.6l-1.6 10zm11.7-9.7c-.5-.2-1.4-.4-2.4-.4-2.6 0-4.5 1.4-4.5 3.3 0 1.5 1.3 2.2 2.3 2.7 1 .5 1.4.8 1.4 1.3 0 .7-.8 1-1.6 1-1.1 0-1.6-.2-2.5-.5l-.3-.2-.4 2.2c.6.3 1.8.5 3 .5 2.7 0 4.6-1.4 4.6-3.4 0-1.1-.7-2-2.3-2.7-1-.4-1.6-.7-1.6-1.2 0-.4.5-.9 1.5-.9.9 0 1.5.2 2 .4l.2.1.4-2.2zm6.3-.3h-2c-.6 0-1.1.2-1.4.9l-3.9 9.1h2.7l.5-1.5h3.3l.3 1.5h2.4l-2-10zm-3.2 6.4l1-2.7c0 0 .2-.6.3-1l.2.9.6 2.8h-2.1zM15 11.5l-2.5 6.8-.3-1.4c-.5-1.6-1.9-3.4-3.5-4.3l2.3 8.9h2.7l4.1-10H15z" fill="#1434CB"/></svg>
+          <svg viewBox="0 0 48 32" width="38"><rect width="48" height="32" rx="5" fill="#fff" stroke="#e5e5ea"/><circle cx="19" cy="16" r="9" fill="#EB001B"/><circle cx="29" cy="16" r="9" fill="#F79E1B"/><path d="M24 9.5a9 9 0 0 1 0 13 9 9 0 0 1 0-13z" fill="#FF5F00"/></svg>
+          <svg viewBox="0 0 48 32" width="38"><rect width="48" height="32" rx="5" fill="#1F72CD"/><text x="24" y="20" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">AMEX</text></svg>
+          <svg viewBox="0 0 48 32" width="38"><rect width="48" height="32" rx="5" fill="#fff" stroke="#e5e5ea"/><text x="22" y="20" font-family="Arial, sans-serif" font-size="7.5" font-weight="700" fill="#FF6000" text-anchor="middle">DISCOVER</text></svg>
+        </div>
+      </div>
+
+      <div class="order-summary" id="order-summary">
+        <div class="order-row">
+          <span id="summary-plan">Pro Plan</span>
+          <span id="summary-price">$9.00/mo</span>
+        </div>
+        <div class="order-row">
+          <span>Billing</span>
+          <span>Monthly</span>
+        </div>
+        <div class="order-row total">
+          <span>Total today</span>
+          <span class="price" id="summary-total">$9.00</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+
+        <div class="field">
+          <label>Card information</label>
+          <div class="card-row" id="card-row">
+            <div class="card-number-wrap">
+              <div class="brand-icon-wrap" id="brand-icon-wrap">
+                <svg viewBox="0 0 24 16" fill="none"><rect x="0.5" y="0.5" width="23" height="15" rx="2" stroke="#c4c4d4"/><rect x="0.5" y="4" width="23" height="2.5" fill="#c4c4d4"/></svg>
+              </div>
+              <div id="card-number-element"></div>
+            </div>
+            <div class="card-split-row">
+              <div>
+                <div class="split-label">Expiry</div>
+                <div id="card-expiry-element"></div>
+              </div>
+              <div>
+                <div class="split-label">CVC</div>
+                <div id="card-cvc-element"></div>
+              </div>
+            </div>
+          </div>
+          <div id="card-error"></div>
+        </div>
+
+        <div class="field">
+          <label>Name on card</label>
+          <input type="text" id="card-name" placeholder="Your full name" />
+        </div>
+      </div>
+
+      <button class="pay-btn" id="pay-btn" onclick="handlePayment()">
+        Pay $9.00 → Start Pro
+      </button>
+
+      <div class="secure-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Secured by Stripe · SSL encrypted · Cancel anytime
+      </div>
+    </div>
+
+    <div class="success-box" id="success-box">
+      <div class="success-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#059669" stroke-width="1.5"/>
+          <path d="M7 12l3.5 3.5L17 8.5" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>Payment successful! 🎉</h2>
+      <p id="success-msg">Welcome to Pro. You now have unlimited access.</p>
+      <a href="index.html#tool" class="success-btn">Start checking unfollowers →</a>
+    </div>
+  </div>
+
+  <script src="payment.js"></script>
+
+</body>
+</html>
