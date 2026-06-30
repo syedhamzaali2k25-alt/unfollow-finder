@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node backend/server.js",
-    "install": "cd backend && npm install"
+    "postinstall": "npm install --prefix backend"
   },
   "dependencies": {
     "cors": "^2.8.6"
