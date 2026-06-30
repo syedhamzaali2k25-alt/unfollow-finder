@@ -1,4 +1,10 @@
 {
+  "name": "unfollow-finder",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node backend/server.js",
+    "install": "cd backend && npm install"
+  },
   "dependencies": {
     "cors": "^2.8.6"
   }
