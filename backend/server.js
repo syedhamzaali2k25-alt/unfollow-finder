@@ -1,4 +1,13 @@
 /* ── GrowFlow Backend - Main Server ─────────────────────── */
+const path = require('path');
+
+// ✅ Frontend static files serve karo
+app.use(express.static(path.join(__dirname, '..')));
+
+// ✅ Root pe index.html bhejo
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
 
 const express = require('express');
 const cors = require('cors');
