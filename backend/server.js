@@ -4,6 +4,7 @@ const path = require('path');
 require('dotenv').config();
 
 const app = express();
+const ROOT = path.join(__dirname, '..');
 
 app.use(cors({
   origin: '*',
@@ -24,36 +25,32 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'GrowFlow API is running' });
 });
 
+// ✅ Static files - process.cwd() use karo
+app.use(express.static(process.cwd()));
+
 // ✅ Page routes
 app.get('/blogs', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'blogs', 'index1.html'));
+  res.sendFile(path.join(process.cwd(), 'blogs', 'index1.html'));
 });
 app.get('/blogs/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'blogs', 'index1.html'));
+  res.sendFile(path.join(process.cwd(), 'blogs', 'index1.html'));
 });
-
-// ✅ Blog post pages (wildcard)
 app.get('/blogs/:page', (req, res) => {
-  const file = path.join(__dirname, '..', 'blogs', req.params.page + '.html');
+  const file = path.join(process.cwd(), 'blogs', req.params.page + '.html');
   res.sendFile(file, (err) => {
-    if (err) res.sendFile(path.join(__dirname, '..', 'blogs', 'index1.html'));
+    if (err) res.sendFile(path.join(process.cwd(), 'blogs', 'index1.html'));
   });
 });
-
 app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'dashboard.html'));
+  res.sendFile(path.join(process.cwd(), 'dashboard.html'));
 });
-
 app.get('/payment', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'payment.html'));
+  res.sendFile(path.join(process.cwd(), 'payment.html'));
 });
 
-// ✅ Static files
-app.use(express.static(path.join(__dirname, '..')));
-
-// ✅ Wildcard SABSE AKHIR MEIN
+// ✅ Wildcard
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'index.html'));
+  res.sendFile(path.join(process.cwd(), 'index.html'));
 });
 
 // Error handling
