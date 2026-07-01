@@ -871,9 +871,13 @@ function goToPayment(plan) {
     openAuth('signup');
     return;
   }
-  window.location.href = `payment.html?plan=${plan}`;
+  
+  const urls = {
+    pro: 'https://unfollowfinder.lemonsqueezy.com/checkout/buy/66027bc6-5b0c-401a-b2ae-ff9ff8fb4e20',
+    team: 'https://unfollowfinder.lemonsqueezy.com/checkout/buy/21f47766-ca22-49eb-974d-59f87c4de5c8'
+  };
+  window.open(urls[plan], '_blank');
 }
-
 function isValidEmail(v) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 }
