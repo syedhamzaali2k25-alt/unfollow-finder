@@ -32,6 +32,17 @@ app.use(express.static(path.join(__dirname, '..')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
+app.get('/blogs', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'blogs', 'index1.html'));
+});
+
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'dashboard.html'));
+});
+
+app.get('/payment', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'payment.html'));
+});
 
 // Error handling
 app.use((err, req, res, next) => {
