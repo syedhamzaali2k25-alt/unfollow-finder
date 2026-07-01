@@ -1,11 +1,12 @@
 {
   "name": "unfollow-finder",
   "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node backend/server.js",
     "postinstall": "npm install --prefix backend"
-  },
-  "dependencies": {
-    "cors": "^2.8.6"
   }
 }
