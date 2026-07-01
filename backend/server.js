@@ -5,7 +5,6 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -13,27 +12,32 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Routes
+// ✅ API Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/usage', require('./routes/usage'));
 app.use('/api/payments', require('./routes/payments'));
 app.use('/api/scans', require('./routes/scans'));
 
-// Health check
+// ✅ Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'GrowFlow API is running' });
 });
 
-// ✅ Frontend static files serve karo (routes ke BAAD)
-app.use(express.static(path.join(__dirname, '..')));
-
-// ✅ Baaki sab requests index.html pe bhejo
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'index.html'));
-});
+// ✅ Page routes
 app.get('/blogs', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'blogs', 'index1.html'));
+});
+app.get('/blogs/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'blogs', 'index1.html'));
+});
+
+// ✅ Blog post pages (wildcard)
+app.get('/blogs/:page', (req, res) => {
+  const file = path.join(__dirname, '..', 'blogs', req.params.page + '.html');
+  res.sendFile(file, (err) => {
+    if (err) res.sendFile(path.join(__dirname, '..', 'blogs', 'index1.html'));
+  });
 });
 
 app.get('/dashboard', (req, res) => {
@@ -42,6 +46,14 @@ app.get('/dashboard', (req, res) => {
 
 app.get('/payment', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'payment.html'));
+});
+
+// ✅ Static files
+app.use(express.static(path.join(__dirname, '..')));
+
+// ✅ Wildcard SABSE AKHIR MEIN
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 // Error handling
