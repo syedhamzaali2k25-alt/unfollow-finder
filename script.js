@@ -876,7 +876,9 @@ function goToPayment(plan) {
     pro: 'https://unfollowfinder.lemonsqueezy.com/checkout/buy/66027bc6-5b0c-401a-b2ae-ff9ff8fb4e20',
     team: 'https://unfollowfinder.lemonsqueezy.com/checkout/buy/21f47766-ca22-49eb-974d-59f87c4de5c8'
   };
-  window.open(urls[plan], '_blank');
+  
+  const redirectUrl = encodeURIComponent('https://unfollowfinder.com/?payment=success');
+  window.open(urls[plan] + `&redirect_url=${redirectUrl}`, '_blank');
 }
 function isValidEmail(v) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
