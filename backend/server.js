@@ -44,6 +44,15 @@ app.get('/blogs/:page', (req, res) => {
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'dashboard.html'));
 });
+
+app.get('/privacy', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'privacy.html'));
+});
+
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'about-us.html'));
+});
+
 app.get('/payment', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'payment.html'));
 });
