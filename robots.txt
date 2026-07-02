@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Private pages block karo
+Disallow: /dashboard
+Disallow: /payment
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://unfollowfinder.com/sitemap.xml
