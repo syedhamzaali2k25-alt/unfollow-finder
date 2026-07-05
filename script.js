@@ -927,3 +927,71 @@ function demoStep(n) {
   });
 }
 
+
+
+(function() {
+  const btn = document.getElementById('feedbackBtn');
+  const modal = document.getElementById('feedbackModal');
+  const closeBtn = document.getElementById('feedbackClose');
+  const step1 = document.getElementById('feedbackStep1');
+  const step2 = document.getElementById('feedbackStep2');
+  const step3 = document.getElementById('feedbackStep3');
+  const prompt = document.getElementById('feedbackPrompt');
+  const submitBtn = document.getElementById('feedbackSubmit');
+ 
+  let selectedRating = 0;
+ 
+  btn.onclick = () => { modal.classList.add('active'); resetSteps(); };
+  closeBtn.onclick = () => modal.classList.remove('active');
+  modal.onclick = (e) => { if (e.target === modal) modal.classList.remove('active'); };
+ 
+  function resetSteps() {
+    step1.style.display = 'block';
+    step2.style.display = 'none';
+    step3.style.display = 'none';
+    selectedRating = 0;
+    document.getElementById('feedbackText').value = '';
+    document.getElementById('feedbackEmail').value = '';
+  }
+ 
+  document.querySelectorAll('.emoji-btn').forEach(b => {
+    b.onclick = () => {
+      selectedRating = parseInt(b.dataset.rating);
+      step1.style.display = 'none';
+      step2.style.display = 'block';
+      prompt.textContent = selectedRating >= 3
+        ? 'What did you like most?'
+        : 'What can we improve?';
+    };
+  });
+ 
+  submitBtn.onclick = async () => {
+    const text = document.getElementById('feedbackText').value.trim();
+    const email = document.getElementById('feedbackEmail').value.trim();
+ 
+    const feedback = {
+      rating: selectedRating,
+      comment: text,
+      email: email,
+      page: window.location.pathname,
+      timestamp: new Date().toISOString()
+    };
+ 
+    // Try to send to backend (optional — works even without it)
+    try {
+      await fetch(API_URL + '/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(feedback)
+      });
+    } catch (err) {
+      // Fallback: log to console if no backend
+      console.log('Feedback:', feedback);
+    }
+ 
+    step2.style.display = 'none';
+    step3.style.display = 'block';
+ 
+    setTimeout(() => modal.classList.remove('active'), 2500);
+  };
+})();

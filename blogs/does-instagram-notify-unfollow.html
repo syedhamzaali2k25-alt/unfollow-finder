@@ -271,6 +271,50 @@
     </div>
   </div>
 
+  <button id="feedbackBtn" class="feedback-btn" aria-label="Give feedback">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>Feedback</span>
+</button>
+ 
+<!-- Feedback Modal -->
+<div id="feedbackModal" class="feedback-overlay">
+  <div class="feedback-modal">
+    <button id="feedbackClose" class="feedback-close" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+ 
+    <!-- Step 1: Rating -->
+    <div id="feedbackStep1" class="feedback-step">
+      <h3>How's your experience?</h3>
+      <p>Your feedback helps us improve 🙏</p>
+      <div class="emoji-row">
+        <button class="emoji-btn" data-rating="1">😞<span>Bad</span></button>
+        <button class="emoji-btn" data-rating="2">😐<span>Okay</span></button>
+        <button class="emoji-btn" data-rating="3">🙂<span>Good</span></button>
+        <button class="emoji-btn" data-rating="4">😍<span>Love it</span></button>
+      </div>
+    </div>
+ 
+    <!-- Step 2: Comment -->
+    <div id="feedbackStep2" class="feedback-step" style="display:none">
+      <h3>Tell us more</h3>
+      <p id="feedbackPrompt">What can we improve?</p>
+      <textarea id="feedbackText" placeholder="Type your feedback here..." rows="4"></textarea>
+      <input type="email" id="feedbackEmail" placeholder="Your email (optional)" />
+      <button id="feedbackSubmit" class="feedback-submit">Send feedback</button>
+    </div>
+ 
+    <!-- Step 3: Thank you -->
+    <div id="feedbackStep3" class="feedback-step" style="display:none">
+      <div class="feedback-success">🎉</div>
+      <h3>Thank you!</h3>
+      <p>We really appreciate your feedback.</p>
+    </div>
+  </div>
+</div>
+
   <script>
 
     document.querySelector('article-inline-cta').outerHTML = `
