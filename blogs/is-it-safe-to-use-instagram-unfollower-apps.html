@@ -194,6 +194,7 @@
       <p>Not affiliated with Instagram or Meta.</p>
     </div>
   </footer>
+    
     <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title">
 
     <div class="auth-modal" id="auth-modal">
@@ -204,15 +205,13 @@
       </button>
 
       <!-- Logo -->
-      <div class="auth-logo">
+<div class="auth-logo">
   <img src="../image/unfollow-finder-logo.png" alt="Unfollow Finder" class="auth-logo-img" />
 </div>
-
-
       <!-- Tab switcher -->
       <div class="auth-tabs">
         <button class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Create account</button>
-        <button class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Log in</button>
+        <button class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Login</button>
       </div>
 
       <!-- Social buttons -->
@@ -270,12 +269,12 @@
           </div>
           <a href="#" class="forgot-link">Forgot password?</a>
         </div>
-        <button class="auth-submit" onclick="submitAuth('login')">Log in to Unfollw Finder</button>
+        <button class="auth-submit" onclick="submitAuth('login')">Login to Unfollw Finder</button>
       </div>
 
       <!-- Switch text -->
       <p class="auth-switch" id="auth-switch-text">
-        Already have an account? <button onclick="switchAuthTab('login')">Log in</button>
+        Already have an account? <button onclick="switchAuthTab('login')">Login</button>
       </p>
 
     </div>
@@ -323,7 +322,7 @@
     </div>
   </div>
 </div>
-
+  
   <script>
 
     document.querySelector('article-inline-cta').outerHTML = `
