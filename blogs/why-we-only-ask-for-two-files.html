@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Unfollow Finder Only Needs 2 Files (Not Your Whole Export)</title>
+  <link rel="icon" href="../image/UNFOLLOW FINDER-5.png" />
+
+  <meta name="description" content="Some Instagram unfollower tools ask you to upload your entire data export. Here's why that's unnecessary, and what Unfollow Finder asks for instead." />
+  <meta name="keywords" content="instagram unfollow tracker data privacy, instagram data export privacy, how much data does an unfollower tracker need" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://unfollowfinder.com/blogs/why-we-only-ask-for-two-files.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Why Unfollow Finder Only Needs 2 Files (Not Your Whole Export)" />
+  <meta property="og:description" content="Why some unfollower tools ask for your entire Instagram export — and why that's unnecessary." />
+  <meta property="og:url" content="https://unfollowfinder.com/blogs/why-we-only-ask-for-two-files.html" />
+  <meta property="og:site_name" content="Unfollow Finder" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Why Unfollow Finder Only Needs 2 Files" />
+  <meta name="twitter:description" content="Why some unfollower tools ask for your entire Instagram export — and why that's unnecessary." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="blog.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Why Unfollow Finder Only Ever Asks for 2 Files",
+    "description": "Why some Instagram unfollower tools ask for your entire data export, and why that's unnecessary.",
+    "author": { "@type": "Organization", "name": "Unfollow Finder" },
+    "publisher": { "@type": "Organization", "name": "Unfollow Finder" },
+    "datePublished": "2026-07-11",
+    "dateModified": "2026-07-11",
+    "mainEntityOfPage": "https://unfollowfinder.com/blogs/why-we-only-ask-for-two-files.html"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Why would an app need my entire Instagram data export just to check unfollowers?", "acceptedAnswer": { "@type": "Answer", "text": "It wouldn't, functionally. Checking unfollowers only requires comparing your followers and following lists. Any tool asking for more is requesting data beyond what the task needs." } },
+      { "@type": "Question", "name": "Is it risky to upload my entire Instagram data export to a third-party tool?", "acceptedAnswer": { "@type": "Answer", "text": "It's worth being cautious about, in the same way you'd be cautious about giving any app more access than it needs. The more data you hand over, the more exposure you have if it's ever mishandled." } },
+      { "@type": "Question", "name": "Does Unfollow Finder store my uploaded files?", "acceptedAnswer": { "@type": "Answer", "text": "No. The files are processed locally in your browser and are never uploaded to a server." } },
+      { "@type": "Question", "name": "How do I request just my followers and following data from Instagram?", "acceptedAnswer": { "@type": "Answer", "text": "In Instagram's Download Your Information tool, choose 'Select types of information' instead of 'All available information,' and select only the Followers and Following categories." } }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="../index.html" class="logo">
+        <img src="../image/unfollow-finder-logo.png" alt="Unfollow Finder Logo" class="logo-img" />
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html#features">Features</a>
+        <a href="../index.html#how">How it works</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="/blogs/">Blogs</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#" class="btn-ghost" onclick="openAuth('login');return false;">Log in</a>
+        <a href="#" class="btn-primary" onclick="openAuth('signup');return false;">Get started free</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#how">How it works</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="/blogs/">Blogs</a>
+      <a href="#" class="btn-primary mobile-cta" onclick="openAuth('signup');return false;">Get started free</a>
+    </div>
+  </header>
+
+  <section class="article-hero">
+    <div class="container">
+      <a href="/blogs/" class="article-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to blog
+      </a>
+      <span class="article-tag">Privacy</span>
+      <h1>Why Unfollow Finder Only Ever Asks for 2 Files</h1>
+      <div class="article-meta">
+        <span>Unfollow Finder Team</span>
+        <span class="dot-sep"></span>
+        <span>5 min read</span>
+        <span class="dot-sep"></span>
+        <span>Updated July 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+      <div class="article-content">
+
+        <p>Finding out who unfollowed you on Instagram requires exactly one piece of information: a list of your followers, and a list of who you follow, at two different points in time. Compare them, and you have your answer. That's it — that's the whole problem.</p>
+
+        <p>So it's worth asking: why do some unfollower tracker tools ask you to upload your entire Instagram data export to do this?</p>
+
+        <h2>What Instagram's full export actually contains</h2>
+        <p>When you request your data from Instagram through Settings → Your Activity → Download Your Information, you're given a choice. You can select specific categories — like just your followers and following lists — or you can request everything: your messages, your photos and videos, your comments, your search history, your login activity, and more, all bundled into one archive.</p>
+        <p>For the specific task of finding unfollowers, only one of those categories is relevant. The rest has nothing to do with the question being asked.</p>
+
+        <h2>What we noticed</h2>
+        <p>We looked at how a few other unfollow-tracking tools handle this, including FollowBuddy. Their upload page asks users to submit their full Instagram ZIP export, with a stated maximum file size of 15GB — consistent with uploading the complete data archive, not just the followers and following lists.</p>
+        <p>Unfollow Finder's upload page, by contrast, asks for exactly two files: <code>followers_1.json</code> and <code>following.json</code>. Nothing else is requested, because nothing else is needed for the tool to do its job.</p>
+        <p>To be clear about what we can and can't say here: we don't have visibility into what happens on another company's servers after a file is uploaded, and we're not claiming anyone is misusing that data. What we can point to is simply what each tool asks for upfront — and asking for a full data export, messages and photos included, when the task only requires a follower list, is worth noticing regardless of what happens next.</p>
+
+        <h2>Why this matters: the principle of least privilege</h2>
+        <p>There's a well-established idea in data privacy and security called the principle of least privilege: a tool should only ever have access to the minimum data it needs to do its job, and nothing more. It's the same reason a flashlight app on your phone shouldn't need access to your contacts — needing more access than the task requires is a red flag, independent of whether that access is ever actually misused.</p>
+        <p>Applied here: a tool that only needs your followers and following lists to compare them shouldn't need your DMs, your photos, or your full activity history. The more data a tool asks for beyond what's functionally necessary, the more there is to worry about if that data is ever breached, sold, or mishandled down the line — even by accident.</p>
+
+        <h2>What this means for you, practically</h2>
+        <p>If you're choosing between unfollow-tracking tools, it's worth checking exactly what each one asks you to upload before you do it:</p>
+        <ul>
+          <li><strong>Ask what specific files or data categories the tool needs.</strong> If a tool can explain exactly which files it uses and why, that's a good sign.</li>
+          <li><strong>Be cautious of tools that ask for "everything."</strong> If a tool asks for your complete data export without explaining why it needs more than a follower list, that's worth questioning.</li>
+          <li><strong>Smaller uploads are also just simpler.</strong> Instagram's full data export for an active account can be several gigabytes; the two files needed to check unfollowers are typically just a few hundred kilobytes to a few megabytes, even for large accounts.</li>
+        </ul>
+
+        <h2>How Unfollow Finder handles this</h2>
+        <p>Everything happens in your browser. When you upload <code>followers_1.json</code> and <code>following.json</code> to <a href="../index.html">Unfollow Finder</a>, the comparison runs locally on your device — the files are never sent to a server for processing. You get your list of unfollowers, non-followers, and mutuals in seconds, without needing to hand over anything beyond the two files the task actually requires.</p>
+        <p>If you haven't requested your data from Instagram yet, <a href="how-to-download-instagram-data.html">here's the step-by-step guide</a> for getting just the followers and following files instead of the full export.</p>
+
+        <article-inline-cta></article-inline-cta>
+
+        <h2>Frequently asked questions</h2>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Why would an app need my entire Instagram data export just to check unfollowers?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">It wouldn't, functionally. Checking unfollowers only requires comparing your followers and following lists. Any tool asking for more than that is requesting data beyond what the task needs.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Is it risky to upload my entire Instagram data export to a third-party tool?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">It's worth being cautious about, in the same way you'd be cautious about giving any app more access than it needs. The more data you hand over, the more exposure you have if that data is ever mishandled, regardless of the specific tool.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Does Unfollow Finder store my uploaded files?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">No. The files are processed locally in your browser and are never uploaded to a server.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              How do I request just my followers and following data from Instagram, instead of my full export?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">In Instagram's Download Your Information tool, choose "Select types of information" instead of "All available information," and select only the Followers and Following categories.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="../index.html" class="a-logo">
+          <img src="../image/UNFOLLOW FINDER-2.png" alt="Unfollow Finder" class="f-logo-img" />
+        </a>
+        <p>The safest Instagram unfollow checker. Built for creators who care about privacy.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="/blogs/">Blog</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/about-us.html">About</a>
+          <a href="/privacy.html">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 Unfollow Finder. All rights reserved.</p>
+      <p>Not affiliated with Instagram or Meta.</p>
+    </div>
+  </footer>
+
+  <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true">
+    <div class="auth-modal" id="auth-modal">
+      <button class="auth-close" id="auth-close" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <div class="auth-logo">
+        <img src="../image/unfollow-finder-logo.png" alt="Unfollow Finder" class="auth-logo-img" />
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Create account</button>
+        <button class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Log in</button>
+      </div>
+      <div class="auth-socials">
+        <button class="social-btn google" onclick="authWithProvider('google')">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Continue with Google
+        </button>
+      </div>
+      <div class="auth-divider"><span>or</span></div>
+      <div class="auth-form" id="form-signup">
+        <div class="auth-field">
+          <label for="su-name">Full name</label>
+          <input type="text" id="su-name" placeholder="Your name" autocomplete="name">
+        </div>
+        <div class="auth-field">
+          <label for="su-email">Email address</label>
+          <input type="email" id="su-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="su-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="su-pass" placeholder="Create a password" autocomplete="new-password">
+            <button class="pass-toggle" onclick="togglePass('su-pass',this)" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('signup')">Create free account</button>
+      </div>
+      <div class="auth-form" id="form-login" style="display:none">
+        <div class="auth-field">
+          <label for="li-email">Email address</label>
+          <input type="email" id="li-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="li-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="li-pass" placeholder="Your password" autocomplete="current-password">
+            <button class="pass-toggle" onclick="togglePass('li-pass',this)" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('login')">Log in to Unfollow Finder</button>
+      </div>
+      <p class="auth-switch" id="auth-switch-text">
+        Already have an account? <button onclick="switchAuthTab('login')">Log in</button>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const ctaEl = document.querySelector('article-inline-cta');
+    if (ctaEl) {
+      ctaEl.outerHTML = `
+        <div class="article-inline-cta">
+          <div>
+            <h3>Check your unfollowers, nothing else required</h3>
+            <p>Two files, processed in your browser, no full export needed. See exactly who unfollowed you.</p>
+          </div>
+          <a href="../index.html#tool" class="btn-primary">Try Unfollow Finder free →</a>
+        </div>
+      `;
+    }
+  </script>
+  <script src="../script.js"></script>
+</body>
+</html>

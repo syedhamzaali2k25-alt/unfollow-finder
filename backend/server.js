@@ -24,7 +24,7 @@ app.use('/api/feedback', require('./routes/feedback'));
 
 // ✅ Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'GrowFlow API is running' });
+  res.json({ status: 'ok', message: 'Unfollow Finder API is running' });
 });
 
 // ✅ Static files - process.cwd() use karo
@@ -74,7 +74,7 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 GrowFlow API running on http://localhost:${PORT}`);
+  console.log(`🚀 Unfollow Finder API running on http://localhost:${PORT}`);
 });
 
 module.exports = app;

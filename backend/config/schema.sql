@@ -1,4 +1,4 @@
--- ── GrowFlow Database Schema ──────────────────────────────
+-- ── Unfollow Finder Database Schema ──────────────────────────────
 
 -- Users Table
 CREATE TABLE IF NOT EXISTS users (

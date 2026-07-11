@@ -1,4 +1,4 @@
-/* ── GrowFlow – script.js ─────────────────────── */
+/* ── Unfollow Finder – script.js ─────────────────────── */
 
 // ✅ Backend API URL
 const SUPABASE_URL = 'https://uqfaqhphzomnxpnqrpls.supabase.co';
@@ -672,7 +672,7 @@ async function submitAuth(type) {
       const data = await res.json();
 
       if (!res.ok) {
-        btn.textContent = 'Log in to GrowFlow';
+        btn.textContent = 'Log in to Unfollow Finder';
         btn.classList.remove('loading');
         btn.disabled = false;
         alert('❌ ' + data.error);
@@ -684,7 +684,7 @@ async function submitAuth(type) {
       showAuthSuccess(data.user.email);
 
     } catch (err) {
-      btn.textContent = 'Log in to GrowFlow';
+      btn.textContent = 'Log in to Unfollow Finder';
       btn.classList.remove('loading');
       btn.disabled = false;
       alert('❌ Server se connect nahi ho saka. Backend chal raha hai?');
@@ -710,7 +710,7 @@ function showAuthSuccess(identifier) {
         You're in! 🎉
       </div>
       <p style="font-size:15px;color:#6b6b85;line-height:1.6;margin-bottom:28px">
-        Welcome to GrowFlow. Start checking your<br>unfollowers right now.
+        Welcome to Unfollow Finder. Start checking your<br>unfollowers right now.
       </p>
       <button onclick="handlePostAuthSuccess()"
         style="background:#E1005E;color:#fff;border:none;border-radius:100px;padding:13px 32px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s"
@@ -899,7 +899,7 @@ function shakeModal() {
 function resetAuthForms() {
   document.querySelectorAll('.auth-field input').forEach(i => { i.value = ''; i.classList.remove('error'); });
   document.querySelectorAll('.auth-submit').forEach(b => {
-    b.textContent = b.closest('#form-signup') ? 'Create free account' : 'Log in to GrowFlow';
+    b.textContent = b.closest('#form-signup') ? 'Create free account' : 'Log in to Unfollow Finder';
     b.classList.remove('loading');
     b.disabled = false;
   });
@@ -995,3 +995,31 @@ function demoStep(n) {
     setTimeout(() => modal.classList.remove('active'), 2500);
   };
 })();
+
+
+function closeOnboard() {
+  const banner = document.getElementById('onboardBanner');
+  if (banner) banner.style.display = 'none';
+  localStorage.setItem('onboardDismissed', 'true');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const banner = document.getElementById('onboardBanner');
+  const closeBtn = document.getElementById('onboardClose');
+  if (!banner) return;
+
+  const token = localStorage.getItem('token');
+  const dismissed = localStorage.getItem('onboardDismissed');
+
+  if (token && !dismissed) {
+    banner.style.display = 'flex';
+  }
+
+  if (closeBtn) {
+    closeBtn.onclick = closeOnboard;
+  }
+
+  banner.onclick = (e) => {
+    if (e.target === banner) closeOnboard();
+  };
+});
