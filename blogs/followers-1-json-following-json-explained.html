@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>followers_1.json &amp; following.json: What They Are &amp; How to Use Them</title>
+  <link rel="icon" href="../image/UNFOLLOW FINDER-5.png" />
+
+  <meta name="description" content="Confused by followers_1.json and following.json in your Instagram data export? Here's exactly what's inside each file and how to use them." />
+  <meta name="keywords" content="followers_1.json following.json instagram, followers_1.json instagram export, following.json instagram, instagram export file names" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://unfollowfinder.com/blogs/followers-1-json-following-json-explained" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="followers_1.json & following.json: What They Are & How to Use Them" />
+  <meta property="og:description" content="Exactly what's inside followers_1.json and following.json in your Instagram data export." />
+  <meta property="og:url" content="https://unfollowfinder.com/blogs/followers-1-json-following-json-explained" />
+  <meta property="og:site_name" content="Unfollow Finder" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="followers_1.json & following.json Explained" />
+  <meta name="twitter:description" content="Exactly what's inside these two Instagram export files and how to use them." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="blog.css" />
+  <style>
+    .code-block {
+      background: #1a1a24;
+      color: #e4e4ef;
+      padding: 16px 20px;
+      border-radius: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "followers_1.json and following.json: What These Files Actually Are",
+    "description": "What's inside followers_1.json and following.json in your Instagram data export, and how to use them.",
+    "author": { "@type": "Organization", "name": "Unfollow Finder" },
+    "publisher": { "@type": "Organization", "name": "Unfollow Finder" },
+    "datePublished": "2026-07-13",
+    "dateModified": "2026-07-13",
+    "mainEntityOfPage": "https://unfollowfinder.com/blogs/followers-1-json-following-json-explained"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Why do I only have followers_1.json and no followers_2.json?", "acceptedAnswer": { "@type": "Answer", "text": "Instagram splits your followers list into numbered files once you pass a certain threshold. If you only see followers_1.json, your full followers list fits within that single file — nothing is missing." } },
+      { "@type": "Question", "name": "Is following.json ever split into multiple files too?", "acceptedAnswer": { "@type": "Answer", "text": "It's less common, since most accounts follow far fewer people than they have followers, but if you follow a very large number of accounts, you may see following_1.json, following_2.json, and so on." } },
+      { "@type": "Question", "name": "Can I edit these files to remove someone before uploading them?", "acceptedAnswer": { "@type": "Answer", "text": "You can, since they're plain text, but there's no reason to. A comparison tool just reads the current state of both files. Editing them manually would only make your results less accurate." } },
+      { "@type": "Question", "name": "Do these files contain anything other than usernames and dates?", "acceptedAnswer": { "@type": "Answer", "text": "Generally just usernames and the timestamp of when the follow relationship began. They don't include profile pictures, bios, or engagement data." } },
+      { "@type": "Question", "name": "What's the difference between these files and the full export?", "acceptedAnswer": { "@type": "Answer", "text": "These two files are part of the narrower Followers and following category. The full export includes much more — messages, photos, comments — most of which isn't needed if you're just checking unfollowers." } }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="../index.html" class="logo">
+        <img src="../image/unfollow-finder-logo.png" alt="Unfollow Finder Logo" class="logo-img" />
+      </a>
+      <nav class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#how">How it works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/blogs/">Blogs</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#" class="btn-ghost" onclick="openAuth('login');return false;">Log in</a>
+        <a href="#" class="btn-primary" onclick="openAuth('signup');return false;">Get started free</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/blogs/">Blogs</a>
+      <a href="#" class="btn-primary mobile-cta" onclick="openAuth('signup');return false;">Get started free</a>
+    </div>
+  </header>
+
+  <section class="article-hero">
+    <div class="container">
+      <a href="/blogs/" class="article-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to blog
+      </a>
+      <span class="article-tag">Guide</span>
+      <h1>followers_1.json and following.json: What These Files Actually Are</h1>
+      <div class="article-meta">
+        <span>Unfollow Finder Team</span>
+        <span class="dot-sep"></span>
+        <span>5 min read</span>
+        <span class="dot-sep"></span>
+        <span>Updated July 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+      <div class="article-content">
+
+        <p>If you've requested your Instagram data export and started digging through the unzipped folder, you've probably landed on two files with slightly odd names: <code>followers_1.json</code> and <code>following.json</code>. They're not labeled in a way that immediately explains what they contain, so here's exactly what's inside each one, why they're named the way they are, and what you can actually do with them.</p>
+
+        <h2>What's inside followers_1.json</h2>
+        <p>This file contains the complete list of accounts that currently follow you. Each entry includes the username of a follower and a timestamp of when they started following you. It's a straightforward list — no extra commentary, no engagement metrics, just who's following your account right now, according to Instagram's own records.</p>
+
+        <h2>What's inside following.json</h2>
+        <p>This one is the mirror opposite: every account that you follow. Same structure — usernames and timestamps, this time reflecting when you followed each account.</p>
+
+        <h2>Why is it "followers_1" and not just "followers"?</h2>
+        <p>This confuses almost everyone the first time they see it. Instagram splits your followers list across multiple numbered files once you pass a certain follower count — so a larger account might have <code>followers_1.json</code>, <code>followers_2.json</code>, <code>followers_3.json</code>, and so on, each containing a portion of the full list. If your account is smaller, you'll typically only see <code>followers_1.json</code>, which is why it looks like there's a "missing" followers file — there isn't, that's just the full list in one part.</p>
+        <p>Following, by contrast, isn't split the same way in most cases, which is why you'll usually just see one <code>following.json</code> regardless of account size — most people follow far fewer accounts than they have followers, so it fits in a single file.</p>
+
+        <h2>Where to find these files</h2>
+        <p>After you request your data through Instagram → Settings → Your Activity → Download Your Information, you'll get a ZIP file by email. Once unzipped, navigate to:</p>
+        <div class="code-block">connections → followers_and_following</div>
+        <p>That folder is where both files live, along with a few related ones (like <code>pending_follow_requests.json</code> or <code>restricted_profiles.json</code>, depending on what you selected during export). Need help getting the export? Here's the <a href="/blogs/how-to-download-instagram-data">step-by-step guide to downloading your Instagram data</a>.</p>
+
+        <h2>What you can actually do with these files</h2>
+        <p>On their own, these are just structured text files — not something you'd normally want to open and read line by line, especially if you have thousands of followers. What they're actually useful for is comparison: uploading both files to a tool that checks them against each other tells you three things instantly:</p>
+        <ul>
+          <li>Who follows you but you don't follow back (from <code>followers_1.json</code> not matched in <code>following.json</code>)</li>
+          <li>Who you follow but doesn't follow you back (from <code>following.json</code> not matched in <code>followers_1.json</code>)</li>
+          <li>Your mutual follows (accounts appearing in both)</li>
+        </ul>
+        <p><a href="../index.html">Unfollow Finder</a> is built specifically to read these two files and generate that comparison instantly, directly in your browser — you don't need to open or edit the files yourself at any point. And it only ever needs these two files — <a href="/blogs/why-we-only-ask-for-two-files">here's why we don't ask for your whole export</a>.</p>
+
+        <h2>Can you open these files manually?</h2>
+        <p>Yes, technically — they're plain JSON text files, so any text editor will open them. But for anything beyond casual curiosity, this isn't practical. A moderately active account can have thousands of entries in <code>followers_1.json</code> alone, and manually comparing two large lists by eye isn't realistic. This is exactly the kind of task a comparison tool handles in seconds that would take considerable manual effort otherwise.</p>
+
+        <article-inline-cta></article-inline-cta>
+
+        <h2>Frequently asked questions</h2>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Why do I only have followers_1.json and no followers_2.json?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Instagram splits your followers list into numbered files once you pass a certain threshold. If you only see followers_1.json, your full followers list fits within that single file — nothing is missing.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Is following.json ever split into multiple files too?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">It's less common, since most accounts follow far fewer people than they have followers, but if you follow a very large number of accounts, you may see following_1.json, following_2.json, and so on, following the same pattern.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Can I edit these files to remove someone before uploading them?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">You can, since they're plain text, but there's no reason to — a comparison tool just reads the current state of both files. Editing them manually would only make your own results less accurate.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Do these files contain anything other than usernames and dates?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Generally just usernames and the timestamp of when the follow relationship began. They don't include profile pictures, bios, or engagement data.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What's the difference between these files and the full "All available information" export?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">These two files are part of the narrower "Followers and following" category. The full export includes much more — messages, photos, comments, and more — most of which isn't needed if you're just checking unfollowers.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="../index.html" class="a-logo">
+          <img src="../image/UNFOLLOW FINDER-2.png" alt="Unfollow Finder" class="f-logo-img" />
+        </a>
+        <p>The safest Instagram unfollow checker. Built for creators who care about privacy.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="/blogs/">Instagram unfollow guides</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/about-us">About</a>
+          <a href="/privacy">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 Unfollow Finder. All rights reserved.</p>
+      <p>Not affiliated with Instagram or Meta.</p>
+    </div>
+  </footer>
+
+  <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+
+    <div class="auth-modal" id="auth-modal">
+
+      <!-- Close -->
+      <button class="auth-close" id="auth-close" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+
+      <!-- Logo -->
+<div class="auth-logo">
+  <img src="../image/unfollow-finder-logo.png" alt="Unfollow Finder" class="auth-logo-img" />
+</div>
+      <!-- Tab switcher -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Create account</button>
+        <button class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Login</button>
+      </div>
+
+      <!-- Social buttons -->
+      <div class="auth-socials">
+        <button class="social-btn google" onclick="authWithProvider('google')">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Continue with Google
+        </button>
+
+        <button class="social-btn apple" onclick="authWithProvider('apple')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Continue with Apple
+        </button>
+      </div>
+
+      <!-- Divider -->
+      <div class="auth-divider"><span>or</span></div>
+
+      <!-- Email form — Signup -->
+      <div class="auth-form" id="form-signup">
+        <div class="auth-field">
+          <label for="su-name">Full name</label>
+          <input type="text" id="su-name" placeholder="Your name" autocomplete="name">
+        </div>
+        <div class="auth-field">
+          <label for="su-email">Email address</label>
+          <input type="email" id="su-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="su-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="su-pass" placeholder="Create a password" autocomplete="new-password">
+            <button class="pass-toggle" onclick="togglePass('su-pass',this)" type="button" aria-label="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('signup')">Create free account</button>
+        <p class="auth-terms">By signing up you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+
+      <!-- Email form — Login -->
+      <div class="auth-form" id="form-login" style="display:none">
+        <div class="auth-field">
+          <label for="li-email">Email address</label>
+          <input type="email" id="li-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="li-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="li-pass" placeholder="Your password" autocomplete="current-password">
+            <button class="pass-toggle" onclick="togglePass('li-pass',this)" type="button" aria-label="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('login')">Login to Unfollow Finder</button>
+      </div>
+
+      <!-- Switch text -->
+      <p class="auth-switch" id="auth-switch-text">
+        Already have an account? <button onclick="switchAuthTab('login')">Login</button>
+      </p>
+
+    </div>
+  </div>
+  <button id="feedbackBtn" class="feedback-btn" aria-label="Give feedback">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>Feedback</span>
+</button>
+ 
+<!-- Feedback Modal -->
+<div id="feedbackModal" class="feedback-overlay">
+  <div class="feedback-modal">
+    <button id="feedbackClose" class="feedback-close" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+ 
+    <!-- Step 1: Rating -->
+    <div id="feedbackStep1" class="feedback-step">
+      <h3>How's your experience?</h3>
+      <p>Your feedback helps us improve 🙏</p>
+      <div class="emoji-row">
+        <button class="emoji-btn" data-rating="1">😞<span>Bad</span></button>
+        <button class="emoji-btn" data-rating="2">😐<span>Okay</span></button>
+        <button class="emoji-btn" data-rating="3">🙂<span>Good</span></button>
+        <button class="emoji-btn" data-rating="4">😍<span>Love it</span></button>
+      </div>
+    </div>
+ 
+    <!-- Step 2: Comment -->
+    <div id="feedbackStep2" class="feedback-step" style="display:none">
+      <h3>Tell us more</h3>
+      <p id="feedbackPrompt">What can we improve?</p>
+      <textarea id="feedbackText" placeholder="Type your feedback here..." rows="4"></textarea>
+      <input type="email" id="feedbackEmail" placeholder="Your email (optional)" />
+      <button id="feedbackSubmit" class="feedback-submit">Send feedback</button>
+    </div>
+ 
+    <!-- Step 3: Thank you -->
+    <div id="feedbackStep3" class="feedback-step" style="display:none">
+      <div class="feedback-success">🎉</div>
+      <h3>Thank you!</h3>
+      <p>We really appreciate your feedback.</p>
+    </div>
+  </div>
+</div>
+  <script>
+    const ctaEl = document.querySelector('article-inline-cta');
+    if (ctaEl) {
+      ctaEl.outerHTML = `
+        <div class="article-inline-cta">
+          <div>
+            <h3>Already have your files? Check them instantly</h3>
+            <p>Upload followers_1.json and following.json and see your unfollowers, non-followers, and mutuals in seconds — free, no login.</p>
+          </div>
+          <a href="../index.html#tool" class="btn-primary">Try Unfollow Finder free →</a>
+        </div>
+      `;
+    }
+  </script>
+  <script src="../script.js"></script>
+</body>
+</html>
