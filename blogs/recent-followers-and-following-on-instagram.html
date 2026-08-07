@@ -49,7 +49,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Does Instagram notify me immediately when someone new follows me?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, generally — new follows appear in your Activity tab close to real time, assuming notifications are enabled." } },
+      { "@type": "Question", "name": "Does Instagram notify me immediately when someone new follows me?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, generally new follows appear in your Activity tab close to real time, assuming notifications are enabled." } },
       { "@type": "Question", "name": "Can I see exactly when I followed someone, not just that I follow them?", "acceptedAnswer": { "@type": "Answer", "text": "If your app version supports the sort-by-date feature on your following list, yes. Otherwise, your official Instagram data export includes a timestamp for every account you follow." } },
       { "@type": "Question", "name": "Why don't I see a sort option on my followers or following list?", "acceptedAnswer": { "@type": "Answer", "text": "This feature hasn't rolled out identically across all app versions and regions. If it's missing for you, the Activity tab and the data export are reliable alternatives." } },
       { "@type": "Question", "name": "Is there a way to see a complete history of everyone who's ever followed and unfollowed me?", "acceptedAnswer": { "@type": "Answer", "text": "Instagram's in-app views only show current followers and recent activity, not historical unfollows. To track this over time, you need to periodically export your data and compare snapshots." } },
@@ -110,34 +110,34 @@
     <div class="container">
       <div class="article-content">
 
-        <p>Instagram's default followers and following lists don't make it obvious who's new. There's no big banner saying "these three people followed you this week" — you have to know where to look. Here's every actual way to see recent follow activity, both people who recently followed you and accounts you recently followed.</p>
+        <p>Instagram's default followers and following lists don't make it obvious who's new. There's no big banner saying "these three people followed you this week" you have to know where to look. Here's every actual way to see recent follow activity, both people who recently followed you and accounts you recently followed.</p>
 
         <h2>Seeing recent followers (people who just followed you)</h2>
 
         <h3>Method 1: Your Activity tab</h3>
-        <p>The most direct way to see new followers is the Activity tab (the heart icon). Instagram lists "started following you" notifications here in reverse chronological order — most recent at the top. This is the closest thing Instagram has to a dedicated "new followers" feed, and it updates in real time as people follow you.</p>
+        <p>The most direct way to see new followers is the Activity tab (the heart icon). Instagram lists "started following you" notifications here in reverse chronological order most recent at the top. This is the closest thing Instagram has to a dedicated "new followers" feed, and it updates in real time as people follow you.</p>
         <p>The limitation: this tab shows a rolling window of recent activity, not a permanent, searchable log going back indefinitely. If you want to know who followed you last month, scrolling back that far in Activity isn't reliable.</p>
 
         <h3>Method 2: Sorting your followers list by date</h3>
         <p>Open your followers list from your profile, and check for a sort or filter option (usually a small icon near the search bar within the list). On many versions of the app, this lets you sort by "Date followed: Latest first" instead of the default order. This gives you a chronological view of your followers list itself, rather than just a temporary notification feed.</p>
-        <p>If you don't see a sort option on your version of the app, this feature has rolled out inconsistently across regions and app versions — in that case, the Activity tab or the data export method below are your reliable fallbacks.</p>
+        <p>If you don't see a sort option on your version of the app, this feature has rolled out inconsistently across regions and app versions in that case, the Activity tab or the data export method below are your reliable fallbacks.</p>
 
         <h2>Seeing recent following (accounts you recently followed)</h2>
         <p>This one is trickier, since Instagram doesn't surface "accounts you recently followed" as prominently as new-follower notifications.</p>
 
         <h3>Method 1: Sorting your following list</h3>
-        <p>Same as above — open your following list and check for a sort option to view by most recently followed. Where available, this is the fastest way to see your own recent follow activity.</p>
+        <p>Same as above open your following list and check for a sort option to view by most recently followed. Where available, this is the fastest way to see your own recent follow activity.</p>
 
         <h3>Method 2: Your account activity log</h3>
         <p>Instagram keeps a record of your own actions, including follows, under Settings → Your Activity → Recently deleted, likes, and other activity logs. Depending on your app version, following/unfollowing history may appear here as part of your broader activity record, though this section is more focused on content interactions than a clean following timeline.</p>
 
         <h2>Getting a permanent, reliable record</h2>
-        <p>Both in-app methods above have a real limitation: they show recent activity within a rolling window, and the sort features aren't consistently available on every account. If you want a dependable, exportable record of your followers and following — including timestamps for when each relationship started — Instagram's own data export is the most reliable source.</p>
-        <p>Requesting your data through Settings → Your Activity → Download Your Information (JSON format) gives you your complete followers and following lists, each with a timestamp showing when the relationship began. Unlike the in-app views, this is a complete snapshot you can save, compare against a later export, and use to track changes over time — rather than relying on a notification feed that only shows a limited recent window. Here's the <a href="/blogs/how-to-download-instagram-data">step-by-step guide to downloading your Instagram data</a>.</p>
-        <p><a href="../index.html">Unfollow Finder</a> reads this exported data directly in your browser and can show you exactly what's changed between two points in time — useful if you want to track new followers and unfollowers together, rather than checking each one separately in the app. Curious what's actually inside those files? Here's <a href="/blogs/followers-1-json-following-json-explained">what followers_1.json and following.json contain</a>.</p>
+        <p>Both in-app methods above have a real limitation: they show recent activity within a rolling window, and the sort features aren't consistently available on every account. If you want a dependable, exportable record of your followers and following including timestamps for when each relationship started Instagram's own data export is the most reliable source.</p>
+        <p>Requesting your data through Settings → Your Activity → Download Your Information (JSON format) gives you your complete followers and following lists, each with a timestamp showing when the relationship began. Unlike the in-app views, this is a complete snapshot you can save, compare against a later export, and use to track changes over time rather than relying on a notification feed that only shows a limited recent window. Here's the <a href="/blogs/how-to-download-instagram-data">step-by-step guide to downloading your Instagram data</a>.</p>
+        <p><a href="../index.html">Unfollow Finder</a> reads this exported data directly in your browser and can show you exactly what's changed between two points in time useful if you want to track new followers and unfollowers together, rather than checking each one separately in the app. Curious what's actually inside those files? Here's <a href="/blogs/followers-1-json-following-json-explained">what followers_1.json and following.json contain</a>.</p>
 
         <h2>Why "recent" isn't the same as "new since last time you checked"</h2>
-        <p>One distinction worth being clear on: Instagram's recent-activity views show recency in general — who followed you lately, in absolute terms. They don't specifically compare against a personal "last time I checked" baseline, the way a data-export comparison does. If you check your Activity tab every day, "recent" naturally aligns with "since I last looked." If you check less often, you may see a backlog of notifications rather than a clean list of exactly what changed since your last visit — which is where comparing two data exports becomes more precise than relying on the notification feed alone.</p>
+        <p>One distinction worth being clear on: Instagram's recent-activity views show recency in general who followed you lately, in absolute terms. They don't specifically compare against a personal "last time I checked" baseline, the way a data-export comparison does. If you check your Activity tab every day, "recent" naturally aligns with "since I last looked." If you check less often, you may see a backlog of notifications rather than a clean list of exactly what changed since your last visit which is where comparing two data exports becomes more precise than relying on the notification feed alone.</p>
 
         <article-inline-cta></article-inline-cta>
 
@@ -149,7 +149,7 @@
               Does Instagram notify me immediately when someone new follows me?
               <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             </button>
-            <div class="faq-a">Yes, generally — new follows appear in your Activity tab close to real time, assuming notifications are enabled.</div>
+            <div class="faq-a">Yes, generally new follows appear in your Activity tab close to real time, assuming notifications are enabled.</div>
           </div>
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
@@ -170,7 +170,7 @@
               Is there a way to see a complete history of everyone who's ever followed and unfollowed me?
               <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             </button>
-            <div class="faq-a">Instagram's in-app views only show current followers and recent activity, not historical unfollows. To track this over time, you need to periodically export your data and compare snapshots — a tool like Unfollow Finder can do this comparison for you.</div>
+            <div class="faq-a">Instagram's in-app views only show current followers and recent activity, not historical unfollows. To track this over time, you need to periodically export your data and compare snapshots a tool like Unfollow Finder can do this comparison for you.</div>
           </div>
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
@@ -353,9 +353,9 @@
         <div class="article-inline-cta">
           <div>
             <h3>Want a complete, comparable record?</h3>
-            <p>Instagram's built-in views only show a recent window. Compare your full data between two points in time — free, private, in your browser.</p>
+            <p>Instagram's built-in views only show a recent window. Compare your full data between two points in time free, private, in your browser.</p>
           </div>
-          <a href="../index.html#tool" class="btn-primary">Try Unfollow Finder free →</a>
+          <a href="../index.html#tool" class="btn-primary">Try Unfollow Finder free </a>
         </div>
       `;
     }
