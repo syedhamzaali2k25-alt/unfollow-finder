@@ -27,6 +27,25 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Unfollow Finder API is running' });
 });
 
+// ✅ Koi bhi .html URL ko clean URL pe redirect karo (poori site)
+app.get(/\.html$/, (req, res) => {
+  let cleanUrl = req.path.replace(/\.html$/, '');
+
+  // index ko root ya folder pe bhejo
+  if (cleanUrl === '/index') {
+    return res.redirect(301, '/');
+  }
+  if (cleanUrl === '/blogs/index1') {
+    return res.redirect(301, '/blogs/');
+  }
+  if (cleanUrl.endsWith('/index1')) {
+    cleanUrl = cleanUrl.replace(/\/index1$/, '/');
+  }
+
+  res.redirect(301, cleanUrl);
+});
+
+
 // ✅ Static files - process.cwd() use karo
 app.use(express.static(process.cwd()));
 
@@ -50,7 +69,7 @@ app.get('/privacy', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'privacy.html'));
 });
 
-app.get(['/about', '/about-us'], (req, res) => {
+app.get('/about-us', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'about-us.html'));
 });
 
