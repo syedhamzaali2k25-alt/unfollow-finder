@@ -310,6 +310,14 @@
   color: var(--gray-500);
   margin-top: 10px;
 }
+.post-card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  display: block;
+}
     .compare-table {
       width: 100%;
       border-collapse: separate;
