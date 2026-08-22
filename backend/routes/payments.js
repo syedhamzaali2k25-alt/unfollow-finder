@@ -18,6 +18,7 @@ router.post('/webhook', async (req, res) => {
   let webhook;
 
   try {
+    console.log('Headers:', JSON.stringify(req.headers, null, 2));
     // The validator expects a Fetch Request. req.body is the raw
     // Buffer because server.js mounts express.raw() on this path.
     const request = new Request('https://unfollowfinder.com/api/payments/webhook', {
