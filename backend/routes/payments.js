@@ -21,9 +21,17 @@ router.post('/webhook', async (req, res) => {
     console.log('Headers:', JSON.stringify(req.headers, null, 2));
     // The validator expects a Fetch Request. req.body is the raw
     // Buffer because server.js mounts express.raw() on this path.
+       // Pass only the webhook headers. req.headers also contains
+    // host, connection and content-length, which the Fetch spec
+    // forbids — undici drops the whole set when it sees them.
     const request = new Request('https://unfollowfinder.com/api/payments/webhook', {
       method: 'POST',
-      headers: req.headers,
+      headers: {
+        'webhook-id':        req.headers['webhook-id'],
+        'webhook-timestamp': req.headers['webhook-timestamp'],
+        'webhook-signature': req.headers['webhook-signature'],
+        'content-type':      'application/json'
+      },
       body: req.body
     });
 
