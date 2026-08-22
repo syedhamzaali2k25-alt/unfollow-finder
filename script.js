@@ -1,59 +1,28 @@
 /* ── Unfollow Finder – script.js ─────────────────────── */
 
-// ✅ Backend API URL
 const SUPABASE_URL = 'https://uqfaqhphzomnxpnqrpls.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVxZmFxaHBoem9tbnhwbnFycGxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MDQ0MjAsImV4cCI6MjA5NzM4MDQyMH0.KEfbxJB_GMTqUjeRATAdzpCWfdYeYXNhCb2Nb_pUBZs';
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-const API_URL = 'https://unfollowfinder.com';
 
-// Auth state & pending file storage
+// Same origin in production, local server in dev
+const API_URL = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000'
+  : '';
+
 let authState = {
   isLoggedIn: localStorage.getItem('userEmail') ? true : false,
   userEmail: localStorage.getItem('userEmail') || null,
-  pendingFile: null
+  pendingFile: null,
+  pendingPayment: null
 };
 
-// Usage tracking for freemium model
-let usageState = {
-  dailyUses: parseInt(localStorage.getItem('dailyUses') || '0'),
-  lastDate: localStorage.getItem('lastDate') || new Date().toDateString(),
-  maxFreeUses: 10,
-  isPaid: localStorage.getItem('isPaid') === 'true'
-};
-
-function resetDailyUsesIfNeeded() {
-  const today = new Date().toDateString();
-  if (usageState.lastDate !== today) {
-    usageState.dailyUses = 0;
-    usageState.lastDate = today;
-    localStorage.setItem('dailyUses', '0');
-    localStorage.setItem('lastDate', today);
-  }
-}
-
-function incrementUsage() {
-  resetDailyUsesIfNeeded();
-  usageState.dailyUses++;
-  localStorage.setItem('dailyUses', usageState.dailyUses);
-  return usageState.dailyUses;
-}
-
-function checkUsageLimit() {
-  resetDailyUsesIfNeeded();
-  if (!usageState.isPaid && usageState.dailyUses >= usageState.maxFreeUses) {
-    showPaywallModal();
-    return false;
-  }
-  return true;
-}
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-  // ✅ Google OAuth redirect handle karo
+  /* ── Google OAuth redirect ── */
   const { data: { session } } = await supabaseClient.auth.getSession();
 
   if (session && session.user) {
-    // Google se wapas aaye hain — token save karo
     const email = session.user.email;
     const token = session.access_token;
 
@@ -63,35 +32,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     authState.isLoggedIn = true;
     authState.userEmail = email;
 
-    console.log('✅ Google session found:', email);
-
-    // ✅ Backend mein bhi user save karo
     try {
       await fetch(`${API_URL}/api/auth/google-sync`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, fullName: session.user.user_metadata?.full_name || '' })
+        body: JSON.stringify({
+          email,
+          fullName: session.user.user_metadata?.full_name || ''
+        })
       });
     } catch (e) {
       console.log('Google sync failed:', e.message);
     }
   }
 
-  // ✅ Supabase auth change listener
   supabaseClient.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_IN' && session) {
-      const email = session.user.email;
-      const token = session.access_token;
-
-      localStorage.setItem('token', token);
-      localStorage.setItem('userEmail', email);
-
+      localStorage.setItem('token', session.access_token);
+      localStorage.setItem('userEmail', session.user.email);
       authState.isLoggedIn = true;
-      authState.userEmail = email;
-
+      authState.userEmail = session.user.email;
       updateAuthUI();
       closeAuth();
-      console.log('✅ Logged in:', email);
     }
 
     if (event === 'SIGNED_OUT') {
@@ -103,18 +65,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Update UI on load based on auth state
   updateAuthUI();
 
-  /* ── 1. NAVBAR: scroll shadow + active links ── */
-  const navbar = document.getElementById('navbar');
 
-  const onScroll = () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 10);
-    highlightNavLink();
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  /* ── 1. NAVBAR ── */
+  const navbar = document.getElementById('navbar');
+  if (navbar) {
+    const onScroll = () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+      highlightNavLink();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 
   function highlightNavLink() {
     const sections = document.querySelectorAll('section[id]');
@@ -124,66 +87,51 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
     });
     links.forEach(link => {
-      const href = link.getAttribute('href').replace('#', '');
-      link.style.color = href === current ? 'var(--pink)' : '';
+      const href = (link.getAttribute('href') || '').replace('#', '');
+      link.style.color = href && href === current ? 'var(--pink)' : '';
     });
   }
 
-  /* ── 2. HAMBURGER MENU ────────────────────── */
+
+  /* ── 2. HAMBURGER ── */
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
 
-  hamburger.addEventListener('click', () => {
-    const isOpen = hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-  });
-
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     });
-  });
 
-  /* ── 3. HERO CARD: reveal rows on load ────── */
-  const revealRows = () => {
-    document.querySelectorAll('.app-row.reveal').forEach(row => {
-      requestAnimationFrame(() => {
-        setTimeout(() => row.classList.add('visible'), 600);
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
       });
     });
-  };
-  revealRows();
+  }
 
-  document.querySelectorAll('.app-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.app-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
-  });
 
-  /* ── 4. SCROLL-TRIGGERED FADE-UPS ────────── */
+  /* ── 3. FADE-UPS ── */
   const fadeEls = document.querySelectorAll(
     '.feat-card, .step, .price-card, .testi-card, .section-head, .faq-item'
   );
-
   fadeEls.forEach(el => el.classList.add('fade-up'));
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
   fadeEls.forEach(el => observer.observe(el));
 
-  /* ── 5. FAQ ACCORDION ────────────────────── */
+
+  /* ── 4. FAQ ACCORDION ── */
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item   = btn.closest('.faq-item');
@@ -202,11 +150,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  /* ── 6. SMOOTH SCROLL for anchor links ───── */
+
+  /* ── 5. SMOOTH SCROLL ── */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
       const href = anchor.getAttribute('href');
-      if (href === '#' || href.length <= 1) return; // ✅ empty hash links ko ignore karo
+      if (href === '#' || href.length <= 1) return;
       const target = document.querySelector(href);
       if (!target) return;
       e.preventDefault();
@@ -215,76 +164,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  /* ── 7. HERO STATS: count-up animation ───── */
-  const stats = [
-    { el: null, target: 250000, suffix: 'K+', divisor: 1000 },
-    { el: null, target: 98,     suffix: '%',  divisor: 1 },
-    { el: null, target: 100,    suffix: '%',  divisor: 1 },
-  ];
-
-  const statEls = document.querySelectorAll('.stat strong');
-  statEls.forEach((el, i) => {
-    if (stats[i]) stats[i].el = el;
-  });
-
-  const countUp = (stat) => {
-    if (!stat.el) return;
-    const duration = 1200;
-    const start    = performance.now();
-    const step = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased    = 1 - Math.pow(1 - progress, 3);
-      const value    = Math.round(eased * stat.target / stat.divisor);
-      stat.el.textContent = value + stat.suffix;
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
-
-  const heroObserver = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      stats.forEach(countUp);
-      heroObserver.disconnect();
-    }
-  }, { threshold: 0.5 });
-
-  const heroStats = document.querySelector('.hero-stats');
-  if (heroStats) heroObserver.observe(heroStats);
-
-  /* ── 8. PRICING: hover lift effect ───────── */
-  document.querySelectorAll('.price-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      if (!card.classList.contains('featured')) {
-        card.style.transform = 'translateY(-4px)';
-        card.style.boxShadow = '0 12px 40px rgba(0,0,0,.12)';
-      }
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-      card.style.boxShadow = '';
-    });
-  });
-
-  /* ── 9. BACK TO TOP on logo click ────────── */
-  document.querySelectorAll('.logo').forEach(logo => {
-    logo.addEventListener('click', e => {
-      if (logo.getAttribute('href') === '#') {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    });
-  });
-
 });
 
-/* ─────────────────────────────────────────────────
+
+/* ═════════════════════════════════════════════════
    UPLOAD TOOL
-───────────────────────────────────────────────── */
+   ═════════════════════════════════════════════════ */
 const _tool = {
   followers: null,
   following: null,
-  lists: { unf: [], nf: [], mutual: [] },
-  activeTab: 'unf',
+  lists: { nf: [], fans: [], mutual: [] },
+  activeTab: 'nf',
 };
 
 function handleFile(input, type) {
@@ -302,18 +192,18 @@ function handleFile(input, type) {
 
 function processFile(file, type) {
   const reader = new FileReader();
+
   reader.onload = (e) => {
     try {
       const json = JSON.parse(e.target.result);
       _tool[type] = extractUsernames(json);
 
-      // ✅ DEBUG — yeh batayega kya extract hua
-      console.log(`DEBUG [${type}] file: ${file.name} → extracted ${_tool[type].length} usernames`);
-      console.log(`DEBUG [${type}] sample:`, _tool[type].slice(0, 3));
-      console.log(`DEBUG [${type}] raw json keys:`, Array.isArray(json) ? 'is array' : Object.keys(json));
+      if (_tool[type].length === 0) {
+        alert('No usernames found in this file. Make sure you picked the right one from the followers_and_following folder.');
+        return;
+      }
 
-      const slot = document.getElementById('slot-' + type);
-      slot.classList.add('loaded');
+      document.getElementById('slot-' + type).classList.add('loaded');
       document.getElementById('fn-' + type).textContent = '✓ ' + file.name;
 
       if (_tool.followers && _tool.following) {
@@ -324,14 +214,13 @@ function processFile(file, type) {
       alert('Could not read this file. Make sure it is a valid Instagram JSON export.');
     }
   };
+
   reader.readAsText(file);
 }
 
 function extractUsernames(json) {
   const users = new Set();
 
-  // ✅ Fully recursive — chahe structure jitna bhi nested ho,
-  // string_list_data jahan bhi mile, usko dhoond lega
   function walk(node) {
     if (Array.isArray(node)) {
       node.forEach(walk);
@@ -343,7 +232,6 @@ function extractUsernames(json) {
           if (u.value) users.add(u.value);
         });
       }
-      // ✅ Fallback — kuch following.json exports mein seedha "title" field hoti hai
       if (typeof node.title === 'string' && node.title.trim()) {
         users.add(node.title.trim());
       }
@@ -355,22 +243,40 @@ function extractUsernames(json) {
   return [...users];
 }
 
+
 async function runAnalysis() {
-  if (!checkUsageLimit()) return;
-  incrementUsage();
+  const btn = document.getElementById('tool-check-btn');
+
+  // Most common mistake: the same file picked for both slots.
+  // Identical lists mean 0 non-followers, which looks like a broken tool.
+  if (sameList(_tool.followers, _tool.following)) {
+    alert(
+      'Both slots have the same file.\n\n' +
+      'Pick followers_1.json for the first slot and following.json for the second.'
+    );
+    return;
+  }
+
+  btn.disabled = true;
 
   const follSet = new Set(_tool.followers);
   const folwSet = new Set(_tool.following);
 
-  _tool.lists.unf    = _tool.followers.filter(u => !folwSet.has(u));
+  // You follow them, they don't follow back
   _tool.lists.nf     = _tool.following.filter(u => !follSet.has(u));
+  // They follow you, you don't follow back
+  _tool.lists.fans   = _tool.followers.filter(u => !folwSet.has(u));
+  // Both ways
   _tool.lists.mutual = _tool.following.filter(u => follSet.has(u));
 
-  // ✅ Backend mein save karo
+  /* ── Save to backend. The server enforces the daily limit,
+        so we let it decide rather than trusting localStorage. ── */
   const token = localStorage.getItem('token');
+  let saveFailed = false;
+
   if (token) {
     try {
-      const res = await fetch('http://localhost:5000/api/scans/save', {
+      const res = await fetch(`${API_URL}/api/scans/save`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -382,46 +288,114 @@ async function runAnalysis() {
           following: _tool.following
         })
       });
-      const data = await res.json();
-      console.log('✅ Scan saved!', data.scanId);
+
+      if (res.status === 429) {
+        const data = await res.json();
+        btn.disabled = false;
+        showLimitReached(data.message);
+        return;
+      }
+
+      if (!res.ok) {
+        console.warn('Scan save failed:', res.status);
+        saveFailed = true;
+      }
     } catch (err) {
-      console.log('⚠️ Scan save failed:', err.message);
+      console.warn('Scan save failed:', err.message);
+      saveFailed = true;
     }
   }
 
   document.getElementById('r-following').textContent   = _tool.following.length;
   document.getElementById('r-followers').textContent   = _tool.followers.length;
-  document.getElementById('r-unfollowers').textContent = _tool.lists.unf.length;
+  document.getElementById('r-unfollowers').textContent = _tool.lists.fans.length;
   document.getElementById('r-notback').textContent     = _tool.lists.nf.length;
   document.getElementById('r-mutual').textContent      = _tool.lists.mutual.length;
 
-  document.getElementById('cnt-unf').textContent    = _tool.lists.unf.length;
   document.getElementById('cnt-nf').textContent     = _tool.lists.nf.length;
+  document.getElementById('cnt-unf').textContent    = _tool.lists.fans.length;
   document.getElementById('cnt-mutual').textContent = _tool.lists.mutual.length;
 
   document.getElementById('tool-upload').style.display  = 'none';
   document.getElementById('tool-results').style.display = 'block';
 
-  _tool.activeTab = 'unf';
-  renderList('unf', '');
+  // Start on the tab that actually has results
+  _tool.activeTab = 'nf';
+  document.querySelectorAll('.res-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.tab === 'nf');
+  });
+  renderList('nf', '');
 
-  document.getElementById('tool-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('tool-results')
+    .scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  // ✅ Dashboard link results ke neeche add karo
   addDashboardLink();
+
+  if (saveFailed) showSaveWarning();
 }
 
+
+function sameList(a, b) {
+  if (!a || !b || a.length !== b.length) return false;
+  const set = new Set(a);
+  return b.every(u => set.has(u));
+}
+
+
+function showSaveWarning() {
+  if (document.getElementById('save-warn')) return;
+
+  const box = document.createElement('div');
+  box.id = 'save-warn';
+  box.style.cssText =
+    'background:#FEF5E7;border-radius:12px;padding:13px 16px;margin-bottom:16px;' +
+    'font-size:13px;color:#8A4B00;line-height:1.55';
+  box.textContent =
+    "These results are correct, but we couldn't save this scan — " +
+    "so it won't count towards your unfollow tracking. Try again in a moment.";
+
+  const panel = document.getElementById('tool-results');
+  panel.insertBefore(box, panel.firstChild);
+}
+
+
+function showLimitReached(message) {
+  const panel = document.getElementById('tool-upload');
+
+  let box = document.getElementById('limit-box');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'limit-box';
+    box.style.cssText =
+      'background:#FFF0F6;border-radius:14px;padding:20px 22px;margin-top:18px;text-align:center';
+    panel.appendChild(box);
+  }
+
+  box.innerHTML = `
+    <p style="font-size:15px;font-weight:650;color:#15151E;margin-bottom:6px">
+      Daily limit reached
+    </p>
+    <p style="font-size:13.5px;color:#6C6C82;margin-bottom:16px">
+      ${message || 'Free accounts get 1 scan per day. Pro gets unlimited.'}
+    </p>
+    <a href="/pricing" class="btn-primary" style="text-decoration:none">See Pro plans</a>`;
+
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+
 function addDashboardLink() {
-  if (document.getElementById('dash-link-btn')) return; // duplicate na bane
+  if (document.getElementById('dash-link-btn')) return;
 
   const btn = document.createElement('a');
   btn.id = 'dash-link-btn';
-  btn.href = 'dashboard.html';
-  btn.className = 'res-export-btn';
-  btn.style.cssText = 'margin-top:12px;width:100%;justify-content:center;background:var(--pink);color:white;border:none;';
-  btn.innerHTML = '📊 View Full Dashboard →';
+  btn.href = '/dashboard';
+  btn.className = 'btn-primary';
+  btn.style.cssText = 'margin-top:12px;width:100%;justify-content:center;height:46px;text-decoration:none';
+  btn.textContent = 'View full dashboard →';
   document.getElementById('tool-results').appendChild(btn);
 }
+
 
 function switchResultTab(btn) {
   document.querySelectorAll('.res-tab').forEach(t => t.classList.remove('active'));
@@ -435,26 +409,20 @@ function filterResults(query) {
   renderList(_tool.activeTab, query);
 }
 
+
 function renderList(tab, query) {
   const q    = query.toLowerCase();
-  const list = _tool.lists[tab].filter(u => u.toLowerCase().includes(q));
+  const list = (_tool.lists[tab] || []).filter(u => u.toLowerCase().includes(q));
   const el   = document.getElementById('res-list');
 
   if (list.length === 0) {
-    el.innerHTML = `
-      <div class="res-empty">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M9 9l6 6M15 9l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        No users found
-      </div>`;
+    el.innerHTML = emptyResult(tab, query);
     return;
   }
 
   const badgeMap = {
-    unf:    { cls: 'unf',    label: 'Unfollowed you' },
-    nf:     { cls: 'nf',     label: 'Not following back' },
+    nf:     { cls: 'nf',     label: "Doesn't follow back" },
+    fans:   { cls: 'unf',    label: 'Fan' },
     mutual: { cls: 'mutual', label: 'Mutual' },
   };
   const badge = badgeMap[tab];
@@ -465,10 +433,10 @@ function renderList(tab, query) {
     const hue      = [...u].reduce((a, c) => a + c.charCodeAt(0), 0) % 360;
     return `
       <div class="res-row">
-        <div class="res-avatar" style="background:hsl(${hue},55%,42%)">${initials}</div>
-        <span class="res-uname">@${u}</span>
+        <div class="res-avatar" style="background:hsl(${hue},55%,42%)">${escapeHtml(initials)}</div>
+        <a class="res-uname" href="https://instagram.com/${encodeURIComponent(u)}"
+           target="_blank" rel="noopener noreferrer">@${escapeHtml(u)}</a>
         <span class="res-badge ${badge.cls}">${badge.label}</span>
-        <a href="https://instagram.com/${u}" target="_blank" class="res-link">View ↗</a>
       </div>`;
   }).join('');
 
@@ -479,33 +447,84 @@ function renderList(tab, query) {
   el.innerHTML = rows + overflow;
 }
 
+
+function emptyResult(tab, query) {
+  if (query) {
+    return `<div class="res-empty">Nothing matches “${escapeHtml(query)}”</div>`;
+  }
+
+  const msg = {
+    nf:     'Everyone you follow follows you back 🎉',
+    fans:   'Nobody follows you that you don\'t already follow back',
+    mutual: 'No mutual follows found'
+  }[tab];
+
+  return `<div class="res-empty">${msg}</div>`;
+}
+
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+
 function exportCSV() {
   const tab  = _tool.activeTab;
   const list = _tool.lists[tab];
-  if (!list.length) return;
+  if (!list || !list.length) return;
 
-  const labelMap = { unf: 'Unfollowed You', nf: 'Not Following Back', mutual: 'Mutual' };
-  const csv  = ['Username,Status', ...list.map(u => `${u},${labelMap[tab]}`)].join('\n');
-  const blob = new Blob([csv], { type: 'text/csv' });
+  const labelMap = {
+    nf: 'Not following back',
+    fans: 'Fan',
+    mutual: 'Mutual'
+  };
+
+  // Neutralise leading characters Excel treats as a formula
+  const cell = v => {
+    let s = String(v ?? '');
+    if (/^[=+\-@]/.test(s)) s = "'" + s;
+    return `"${s.replace(/"/g, '""')}"`;
+  };
+
+  const rows = [
+    ['Username', 'Profile URL', 'Status'],
+    ...list.map(u => [u, `https://instagram.com/${u}`, labelMap[tab]])
+  ];
+
+  const csv  = rows.map(r => r.map(cell).join(',')).join('\r\n');
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
-  a.href     = url;
-  a.download = `growflow-${tab}-${Date.now()}.csv`;
+
+  a.href = url;
+  a.download = `unfollow-finder-${tab}-${new Date().toISOString().split('T')[0]}.csv`;
+  document.body.appendChild(a);
   a.click();
+  a.remove();
   URL.revokeObjectURL(url);
 }
+
 
 function resetTool() {
   _tool.followers = null;
   _tool.following = null;
-  _tool.lists     = { unf: [], nf: [], mutual: [] };
-  _tool.activeTab = 'unf';
+  _tool.lists     = { nf: [], fans: [], mutual: [] };
+  _tool.activeTab = 'nf';
 
   ['followers', 'following'].forEach(type => {
-    document.getElementById('slot-' + type).classList.remove('loaded');
+    const slot = document.getElementById('slot-' + type);
+    if (!slot) return;
+    slot.classList.remove('loaded');
     document.getElementById('fn-' + type).textContent = '';
     document.getElementById('inp-' + type).value      = '';
   });
+
+  const limitBox = document.getElementById('limit-box');
+  if (limitBox) limitBox.remove();
 
   document.getElementById('tool-check-btn').disabled    = true;
   document.getElementById('tool-upload').style.display  = 'block';
@@ -516,12 +535,32 @@ function resetTool() {
   document.getElementById('tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-/* ── AUTH MODAL ───────────────────────────────── */
-const overlay   = document.getElementById('auth-overlay');
-const modal     = document.getElementById('auth-modal');
-const closeBtn  = document.getElementById('auth-close');
+
+/* ═════════════════════════════════════════════════
+   PAYMENT
+   ═════════════════════════════════════════════════ */
+function goToPayment(plan) {
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    authState.pendingPayment = plan;
+    openAuth('signup');
+    return;
+  }
+
+  window.location.href = `/payment?plan=${encodeURIComponent(plan)}`;
+}
+
+
+/* ═════════════════════════════════════════════════
+   AUTH MODAL
+   ═════════════════════════════════════════════════ */
+const overlay  = document.getElementById('auth-overlay');
+const modal    = document.getElementById('auth-modal');
+const closeBtn = document.getElementById('auth-close');
 
 function openAuth(tab = 'signup') {
+  if (!overlay) return;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
   switchAuthTab(tab);
@@ -532,20 +571,24 @@ function openAuth(tab = 'signup') {
 }
 
 function closeAuth() {
+  if (!overlay) return;
   overlay.classList.remove('open');
   document.body.style.overflow = '';
   resetAuthForms();
 }
 
-overlay.addEventListener('click', e => {
-  if (e.target === overlay) closeAuth();
-});
+if (overlay) {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeAuth();
+  });
+}
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && overlay.classList.contains('open')) closeAuth();
+  if (e.key === 'Escape' && overlay && overlay.classList.contains('open')) closeAuth();
 });
 
 if (closeBtn) closeBtn.addEventListener('click', closeAuth);
+
 
 function switchAuthTab(tab) {
   const tabs       = document.querySelectorAll('.auth-tab');
@@ -569,31 +612,28 @@ function switchAuthTab(tab) {
   clearErrors();
 }
 
+
 async function authWithProvider(provider) {
   const btn = event.currentTarget;
+
+  if (provider !== 'google') return;
+
   btn.textContent = 'Connecting…';
   btn.disabled = true;
 
-  if (provider !== 'google') {
-    btn.textContent = 'Continue with Apple';
-    btn.disabled = false;
-    return;
-  }
-
-  const { data, error } = await supabaseClient.auth.signInWithOAuth({
+  const { error } = await supabaseClient.auth.signInWithOAuth({
     provider: 'google',
-    options: {
-      redirectTo: window.location.origin + window.location.pathname
-    }
+    options: { redirectTo: window.location.origin + window.location.pathname }
   });
 
   if (error) {
     console.error('Google login error:', error.message);
-    alert('Google login fail ho gaya: ' + error.message);
+    alert('Google sign-in failed: ' + error.message);
     btn.textContent = 'Continue with Google';
     btn.disabled = false;
   }
 }
+
 
 async function submitAuth(type) {
   clearErrors();
@@ -604,9 +644,9 @@ async function submitAuth(type) {
     const email = document.getElementById('su-email');
     const pass  = document.getElementById('su-pass');
 
-    if (!name.value.trim())        { markError(name);  valid = false; }
+    if (!name.value.trim())         { markError(name);  valid = false; }
     if (!isValidEmail(email.value)) { markError(email); valid = false; }
-    if (pass.value.length < 8)     { markError(pass);  valid = false; }
+    if (pass.value.length < 8)      { markError(pass);  valid = false; }
     if (!valid) { shakeModal(); return; }
 
     const btn = document.querySelector('#form-signup .auth-submit');
@@ -631,7 +671,7 @@ async function submitAuth(type) {
         btn.textContent = 'Create free account';
         btn.classList.remove('loading');
         btn.disabled = false;
-        alert('❌ ' + data.error);
+        alert(data.error || 'Sign-up failed');
         return;
       }
 
@@ -643,7 +683,7 @@ async function submitAuth(type) {
       btn.textContent = 'Create free account';
       btn.classList.remove('loading');
       btn.disabled = false;
-      alert('❌ Server se connect nahi ho saka. Backend chal raha hai?');
+      alert('Could not reach the server. Please try again.');
     }
 
   } else {
@@ -675,7 +715,7 @@ async function submitAuth(type) {
         btn.textContent = 'Log in to Unfollow Finder';
         btn.classList.remove('loading');
         btn.disabled = false;
-        alert('❌ ' + data.error);
+        alert(data.error || 'Login failed');
         return;
       }
 
@@ -687,10 +727,11 @@ async function submitAuth(type) {
       btn.textContent = 'Log in to Unfollow Finder';
       btn.classList.remove('loading');
       btn.disabled = false;
-      alert('❌ Server se connect nahi ho saka. Backend chal raha hai?');
+      alert('Could not reach the server. Please try again.');
     }
   }
 }
+
 
 function showAuthSuccess(identifier) {
   authState.isLoggedIn = true;
@@ -700,51 +741,52 @@ function showAuthSuccess(identifier) {
 
   modal.innerHTML = `
     <div style="text-align:center;padding:32px 16px 16px">
-      <div style="width:72px;height:72px;background:#f0fdf4;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="10" stroke="#059669" stroke-width="1.5"/>
-          <path d="M7 12l3.5 3.5L17 8.5" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <div style="width:64px;height:64px;background:#E8F9F2;border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+          <path d="M4 12.5 9.5 18 20 7" stroke="#0E9F6E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#0f0f12;margin-bottom:10px">
-        You're in! 🎉
+      <div style="font-family:'Roboto',sans-serif;font-size:23px;font-weight:900;letter-spacing:-.03em;color:#15151E;margin-bottom:10px">
+        You're in
       </div>
-      <p style="font-size:15px;color:#6b6b85;line-height:1.6;margin-bottom:28px">
-        Welcome to Unfollow Finder. Start checking your<br>unfollowers right now.
+      <p style="font-size:14.5px;color:#6C6C82;line-height:1.6;margin-bottom:26px">
+        Upload your two files and see who's<br>not following you back.
       </p>
       <button onclick="handlePostAuthSuccess()"
-        style="background:#E1005E;color:#fff;border:none;border-radius:100px;padding:13px 32px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s"
-        onmouseover="this.style.background='#b8004c'" onmouseout="this.style.background='#E1005E'">
-        Check my unfollowers →
+        style="background:#E1005E;color:#fff;border:none;border-radius:10px;height:44px;padding:0 26px;font-size:14px;font-weight:650;cursor:pointer;font-family:'Inter',sans-serif">
+        Check my followers
       </button>
-      <p style="font-size:12px;color:#c4c4d4;margin-top:16px">${identifier}</p>
+      <p style="font-size:12px;color:#A2A2B6;margin-top:16px">${escapeHtml(identifier)}</p>
     </div>`;
+
   modal.style.maxWidth = '380px';
 
-  // ✅ Agar signup se pehle pricing button click kiya tha, payment pe redirect karo
   if (authState.pendingPayment) {
+    const plan = authState.pendingPayment;
+    authState.pendingPayment = null;
     setTimeout(() => {
-      window.location.href = `payment.html?plan=${authState.pendingPayment}`;
-      authState.pendingPayment = null;
-    }, 1500);
+      window.location.href = `/payment?plan=${encodeURIComponent(plan)}`;
+    }, 1400);
   }
 }
 
+
 function handlePostAuthSuccess() {
   closeAuth();
+
   if (authState.pendingFile) {
     const { file, type } = authState.pendingFile;
     processFile(file, type);
     authState.pendingFile = null;
   } else {
-    document.getElementById('tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const tool = document.getElementById('tool');
+    if (tool) tool.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
+
 function updateAuthUI() {
   if (!authState.isLoggedIn) return;
-
-  // ✅ Agar already replace ho chuka hai, kuch mat karo
   if (document.querySelector('.nav-user-wrap')) return;
 
   const loginBtns = document.querySelectorAll('.nav-actions a.btn-ghost, .nav-actions a.btn-primary');
@@ -754,21 +796,23 @@ function updateAuthUI() {
   const initials = email.substring(0, 2).toUpperCase();
   const hue = [...email].reduce((a, c) => a + c.charCodeAt(0), 0) % 360;
 
-  // ✅ Sirf PEHLA matching button avatar+logout banega, baaki sab hide
   let replaced = false;
   loginBtns.forEach((btn) => {
-    const isLoginOrSignup = btn.textContent.includes('Log in') || btn.textContent.includes('Get started');
-    if (isLoginOrSignup && !replaced) {
+    const isAuthBtn = btn.textContent.includes('Log in')
+                   || btn.textContent.includes('Login')
+                   || btn.textContent.includes('Get started');
+
+    if (isAuthBtn && !replaced) {
       btn.outerHTML = `
-        <div class="nav-user-wrap" style="display:flex;align-items:center;gap:10px;">
-          <div class="nav-avatar" style="
+        <div class="nav-user-wrap" style="display:flex;align-items:center;gap:10px">
+          <a href="/dashboard" class="nav-avatar" style="
             width:36px;height:36px;border-radius:50%;
             background:hsl(${hue},60%,45%);
             color:white;font-size:13px;font-weight:700;
             display:flex;align-items:center;justify-content:center;
-            cursor:pointer;" title="${email}">${initials}</div>
+            text-decoration:none" title="${escapeHtml(email)}">${escapeHtml(initials)}</a>
           <a href="#" onclick="event.preventDefault();logout();"
-            style="font-size:13px;font-weight:500;color:#333;text-decoration:none;">
+            style="font-size:13px;font-weight:500;color:#6C6C82;text-decoration:none">
             Log out
           </a>
         </div>`;
@@ -779,6 +823,7 @@ function updateAuthUI() {
   });
 }
 
+
 async function logout() {
   await supabaseClient.auth.signOut();
   authState.isLoggedIn = false;
@@ -786,123 +831,45 @@ async function logout() {
   authState.pendingFile = null;
   localStorage.removeItem('userEmail');
   localStorage.removeItem('token');
-  resetTool();
   location.reload();
 }
 
-function showPaywallModal() {
-  let paywall = document.getElementById('paywall-overlay');
-  if (!paywall) {
-    paywall = document.createElement('div');
-    paywall.id = 'paywall-overlay';
-    paywall.className = 'paywall-overlay';
-    document.body.appendChild(paywall);
-  }
 
-  paywall.innerHTML = `
-    <div class="paywall-modal">
-      <button class="paywall-close" onclick="closePaywall()">✕</button>
-      <div class="paywall-header">
-        <h2>You've used 10 free analyses today</h2>
-        <p>Upgrade to continue checking unfollowers</p>
-      </div>
-      <div class="paywall-plans">
-        <div class="plan-card popular">
-          <div class="plan-badge">Most Popular</div>
-          <h3>Pro</h3>
-          <div class="plan-price">
-            <span class="amount">$9</span>
-            <span class="period">/month</span>
-          </div>
-          <ul class="plan-features">
-            <li>✓ Unlimited analyses</li>
-            <li>✓ Advanced filters</li>
-            <li>✓ Export reports</li>
-            <li>✓ Priority support</li>
-          </ul>
-          <button class="paywall-btn primary" onclick="selectPlan('pro')">Get Pro Access →</button>
-        </div>
-        <div class="plan-card">
-          <div class="plan-badge">For Teams</div>
-          <h3>Team</h3>
-          <div class="plan-price">
-            <span class="amount">$29</span>
-            <span class="period">/month</span>
-          </div>
-          <ul class="plan-features">
-            <li>✓ Everything in Pro</li>
-            <li>✓ Up to 5 team members</li>
-            <li>✓ Shared workspaces</li>
-            <li>✓ Team analytics</li>
-          </ul>
-          <button class="paywall-btn secondary" onclick="selectPlan('team')">Get Team Access →</button>
-        </div>
-      </div>
-      <div class="paywall-footer">
-        <p>Free tier gives you <strong>10 analyses per day</strong></p>
-        <button class="paywall-link" onclick="closePaywall()">Continue as Free User</button>
-      </div>
-    </div>`;
-
-  paywall.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closePaywall() {
-  const paywall = document.getElementById('paywall-overlay');
-  if (paywall) {
-    paywall.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-}
-
-function selectPlan(plan) {
-  usageState.isPaid = true;
-  localStorage.setItem('isPaid', 'true');
-  alert(`✅ Thanks for upgrading to ${plan.toUpperCase()}!\n\nYou now have unlimited analyses.`);
-  closePaywall();
-}
-
-// ✅ Pricing section ke buttons ke liye — login check karke payment page pe le jaata hai
-function goToPayment(plan) {
-  const token = localStorage.getItem('token');
-  if (!token) {
-    authState.pendingPayment = plan;
-    openAuth('signup');
-    return;
-  }
-  
-  const urls = {
-    pro: 'https://unfollowfinder.lemonsqueezy.com/checkout/buy/66027bc6-5b0c-401a-b2ae-ff9ff8fb4e20',
-    team: 'https://unfollowfinder.lemonsqueezy.com/checkout/buy/21f47766-ca22-49eb-974d-59f87c4de5c8'
-  };
-  
-  const redirectUrl = encodeURIComponent('https://unfollowfinder.com/?payment=success');
-  window.open(urls[plan] + `&redirect_url=${redirectUrl}`, '_blank');
-}
+/* ═════════════════════════════════════════════════
+   HELPERS
+   ═════════════════════════════════════════════════ */
 function isValidEmail(v) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 }
+
 function markError(input) {
   input.classList.add('error');
   input.addEventListener('input', () => input.classList.remove('error'), { once: true });
 }
+
 function clearErrors() {
   document.querySelectorAll('.auth-field input.error').forEach(i => i.classList.remove('error'));
 }
+
 function shakeModal() {
   modal.classList.remove('shake');
   void modal.offsetWidth;
   modal.classList.add('shake');
   modal.addEventListener('animationend', () => modal.classList.remove('shake'), { once: true });
 }
+
 function resetAuthForms() {
-  document.querySelectorAll('.auth-field input').forEach(i => { i.value = ''; i.classList.remove('error'); });
+  document.querySelectorAll('.auth-field input').forEach(i => {
+    i.value = '';
+    i.classList.remove('error');
+  });
+
   document.querySelectorAll('.auth-submit').forEach(b => {
     b.textContent = b.closest('#form-signup') ? 'Create free account' : 'Log in to Unfollow Finder';
     b.classList.remove('loading');
     b.disabled = false;
   });
+
   document.querySelectorAll('.social-btn').forEach(b => {
     b.disabled = false;
     b.innerHTML = b.classList.contains('google')
@@ -918,6 +885,7 @@ function togglePass(inputId, btn) {
   btn.style.color = isText ? '' : 'var(--pink)';
   btn.setAttribute('aria-label', isText ? 'Show password' : 'Hide password');
 }
+
 function demoStep(n) {
   document.querySelectorAll('.demo-step').forEach((el, i) => {
     el.classList.toggle('active', i === n);
@@ -928,23 +896,27 @@ function demoStep(n) {
 }
 
 
+/* ═════════════════════════════════════════════════
+   FEEDBACK WIDGET
+   ═════════════════════════════════════════════════ */
+(function () {
+  const btn      = document.getElementById('feedbackBtn');
+  const modalEl  = document.getElementById('feedbackModal');
+  if (!btn || !modalEl) return;
 
-(function() {
-  const btn = document.getElementById('feedbackBtn');
-  const modal = document.getElementById('feedbackModal');
-  const closeBtn = document.getElementById('feedbackClose');
-  const step1 = document.getElementById('feedbackStep1');
-  const step2 = document.getElementById('feedbackStep2');
-  const step3 = document.getElementById('feedbackStep3');
-  const prompt = document.getElementById('feedbackPrompt');
+  const closeBtn  = document.getElementById('feedbackClose');
+  const step1     = document.getElementById('feedbackStep1');
+  const step2     = document.getElementById('feedbackStep2');
+  const step3     = document.getElementById('feedbackStep3');
+  const prompt    = document.getElementById('feedbackPrompt');
   const submitBtn = document.getElementById('feedbackSubmit');
- 
+
   let selectedRating = 0;
- 
-  btn.onclick = () => { modal.classList.add('active'); resetSteps(); };
-  closeBtn.onclick = () => modal.classList.remove('active');
-  modal.onclick = (e) => { if (e.target === modal) modal.classList.remove('active'); };
- 
+
+  btn.onclick = () => { modalEl.classList.add('active'); resetSteps(); };
+  closeBtn.onclick = () => modalEl.classList.remove('active');
+  modalEl.onclick = (e) => { if (e.target === modalEl) modalEl.classList.remove('active'); };
+
   function resetSteps() {
     step1.style.display = 'block';
     step2.style.display = 'none';
@@ -953,7 +925,7 @@ function demoStep(n) {
     document.getElementById('feedbackText').value = '';
     document.getElementById('feedbackEmail').value = '';
   }
- 
+
   document.querySelectorAll('.emoji-btn').forEach(b => {
     b.onclick = () => {
       selectedRating = parseInt(b.dataset.rating);
@@ -964,60 +936,53 @@ function demoStep(n) {
         : 'What can we improve?';
     };
   });
- 
+
   submitBtn.onclick = async () => {
-    const text = document.getElementById('feedbackText').value.trim();
-    const email = document.getElementById('feedbackEmail').value.trim();
- 
     const feedback = {
       rating: selectedRating,
-      comment: text,
-      email: email,
+      comment: document.getElementById('feedbackText').value.trim(),
+      email: document.getElementById('feedbackEmail').value.trim(),
       page: window.location.pathname,
       timestamp: new Date().toISOString()
     };
- 
-    // Try to send to backend (optional — works even without it)
+
     try {
-      await fetch(API_URL + '/api/feedback', {
+      await fetch(`${API_URL}/api/feedback`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(feedback)
       });
     } catch (err) {
-      // Fallback: log to console if no backend
-      console.log('Feedback:', feedback);
+      console.log('Feedback failed:', err.message);
     }
- 
+
     step2.style.display = 'none';
     step3.style.display = 'block';
- 
-    setTimeout(() => modal.classList.remove('active'), 2500);
+
+    setTimeout(() => modalEl.classList.remove('active'), 2500);
   };
 })();
 
 
+/* ═════════════════════════════════════════════════
+   ONBOARD BANNER
+   ═════════════════════════════════════════════════ */
 function closeOnboard() {
   const banner = document.getElementById('onboardBanner');
   if (banner) banner.style.display = 'none';
   localStorage.setItem('onboardDismissed', 'true');
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const banner = document.getElementById('onboardBanner');
-  const closeBtn = document.getElementById('onboardClose');
   if (!banner) return;
 
+  const closeBtn = document.getElementById('onboardClose');
   const token = localStorage.getItem('token');
   const dismissed = localStorage.getItem('onboardDismissed');
 
-  if (token && !dismissed) {
-    banner.style.display = 'flex';
-  }
-
-  if (closeBtn) {
-    closeBtn.onclick = closeOnboard;
-  }
+  if (token && !dismissed) banner.style.display = 'flex';
+  if (closeBtn) closeBtn.onclick = closeOnboard;
 
   banner.onclick = (e) => {
     if (e.target === banner) closeOnboard();

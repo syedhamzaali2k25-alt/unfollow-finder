@@ -3,95 +3,238 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Analysis Dashboard</title>
-<link rel="stylesheet" href="dashboard.css" />
+<title>Dashboard – Unfollow Finder</title>
 
-<link rel="icon" type="image/png" sizes="32x32" href="image/UNFOLLOW FINDER-5.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="image/UNFOLLOW FINDER-5.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="image/UNFOLLOW FINDER-5.png" />
-<link rel="shortcut icon" href="image/UNFOLLOW FINDER-5.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="dashboard.css" />
+    <!-- ── FAVICON ────────────────────────────────── -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="/favicon/favicon.png" sizes="96x96" />
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+<link rel="manifest" href="/favicon/site.webmanifest" />
+<meta name="theme-color" content="#E1005E" />
+
 </head>
 <body>
 
-<div class="page-shell">
+<div class="app">
 
-  <!-- ── LOCK SCREEN: shown to FREE users ── -->
-  <div id="lock-screen">
-    <div class="lock-icon">🔒</div>
-    <div class="lock-title">Dashboard is a Pro feature</div>
-    <div class="lock-sub">Upgrade to Pro to unlock the full analytics dashboard charts, scan history, and unfollower insights.</div>
-    <button class="lock-btn" onclick="window.location.href='payment.html?plan=pro'">Upgrade to Pro →</button>
-  </div>
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="side" id="side">
+    <a href="/" class="side-brand">
+      <img src="image/unfollow-finder-logo.png" alt="Unfollow Finder" />
+    </a>
 
-  <!-- ── LOADER ── -->
-  <div id="loader-screen">
-    <div class="loader-ring"></div>
-    <p class="loader-text" id="loader-msg">Checking your plan…</p>
-    <div class="loader-steps">
-      <div class="loader-dot" id="dot-0"></div>
-      <div class="loader-dot" id="dot-1"></div>
-      <div class="loader-dot" id="dot-2"></div>
-      <div class="loader-dot" id="dot-3"></div>
+    <nav class="side-nav">
+      <a class="nav-item is-active" href="/dashboard">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="8" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="3" width="7" height="5" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="14" y="11" width="7" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.7"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a class="nav-item" href="/#tool">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.7"/><path d="m16.5 16.5 4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span>New scan</span>
+      </a>
+      <a class="nav-item" href="/pricing">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="2.5" y="5" width="19" height="14" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M2.5 10h19" stroke="currentColor" stroke-width="1.7"/></svg>
+        <span>Billing</span>
+      </a>
+      <a class="nav-item" href="/#faq">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.7-.9 1.3v.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="16.6" r="1" fill="currentColor"/></svg>
+        <span>Help</span>
+      </a>
+    </nav>
+
+    <div class="side-foot">
+      <div class="upsell" id="upsell">
+        <span class="upsell-chip" id="plan-chip">Pro</span>
+        <p class="upsell-txt">Tracking is on. Every scan is compared to your last.</p>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <!-- ── DASHBOARD: shown to PRO users only ── -->
-  <div id="dashboard">
-    <div class="dash-header">
-      <div class="dash-title">Unfollow <span>Finder</span> Dashboard</div>
-      <div class="dash-badge">Pro · Analysis complete</div>
+  <div class="side-veil" id="side-veil" onclick="toggleSide()"></div>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <header class="topbar" id="topbar">
+      <button class="burger" onclick="toggleSide()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="greet">
+        <h1 class="greet-title">Your audience <span class="wave">👀</span></h1>
+        <p class="greet-sub" id="greet-sub">Here's what changed since last time.</p>
+      </div>
+      <a href="/#tool" class="btn btn-primary btn-sm">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        New scan
+      </a>
+    </header>
+
+    <!-- LOCK -->
+    <section id="lock-screen">
+      <div class="lock-card">
+        <div class="lock-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="11" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <h2 class="lock-title">Unfollow tracking is a Pro feature</h2>
+        <p class="lock-sub">Pro compares every scan against your last one, so you see exactly who left and when.</p>
+        <button class="btn btn-primary" onclick="location.href='/payment?plan=pro'">Upgrade to Pro</button>
+      </div>
+    </section>
+
+    <!-- LOADER -->
+    <section id="loader-screen">
+      <div class="loader-ring"></div>
+      <p class="loader-text" id="loader-msg">Checking your plan</p>
+      <div class="loader-steps">
+        <span class="loader-dot" id="dot-0"></span><span class="loader-dot" id="dot-1"></span>
+        <span class="loader-dot" id="dot-2"></span><span class="loader-dot" id="dot-3"></span>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard">
+
+      <!-- Stat cards -->
+      <section class="cards">
+        <article class="card card--pink">
+          <span class="card-ico">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M16 19v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M17 8.5 19 10.5 23 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="card-body">
+            <p class="card-lbl">Left you</p>
+            <p class="card-num" id="hero-num">0</p>
+            <p class="card-foot" id="hero-note">since your last scan</p>
+          </div>
+        </article>
+
+        <article class="card card--green">
+          <span class="card-ico">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M16 19v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M20 6v6M17 9h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <div class="card-body">
+            <p class="card-lbl">Gained</p>
+            <p class="card-num" id="hero-new">0</p>
+            <p class="card-foot">new followers</p>
+          </div>
+        </article>
+
+        <article class="card card--violet">
+          <span class="card-ico">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3.4" stroke="currentColor" stroke-width="1.8"/><circle cx="16.5" cy="8" r="3.4" stroke="currentColor" stroke-width="1.8"/><path d="M3 19v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <div class="card-body">
+            <p class="card-lbl">Followers</p>
+            <p class="card-num" id="s-followers">0</p>
+            <p class="card-foot"><span id="s-mutual">0</span> mutual</p>
+          </div>
+        </article>
+
+        <article class="card card--amber">
+          <span class="card-ico">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 10l7-7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="card-body">
+            <p class="card-lbl">Following</p>
+            <p class="card-num" id="s-following">0</p>
+            <p class="card-foot"><span id="s-notback">0</span> don't follow back</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- Breakdown -->
+      <section class="pane pane--pad">
+        <div class="pane-head">
+          <h2 class="pane-title">Who's who</h2>
+          <span class="pane-sub">Everyone you follow, split three ways</span>
+        </div>
+        <div class="split-bar" id="split-bar"></div>
+        <div class="split-key" id="split-key"></div>
+        <p class="hidden"><span id="s-unf">0</span><span id="hero-scans">0</span><span id="insight-ratio">—</span><span id="hero-unit"></span></p>
+      </section>
+
+      <!-- List -->
+      <section class="pane">
+        <div class="pane-top">
+          <h2 class="pane-title">Accounts</h2>
+          <div class="pane-tools">
+            <div class="search">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m16.5 16.5 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <input type="text" id="search-input" placeholder="Search" oninput="filterList(this.value)" autocomplete="off">
+            </div>
+            <button class="btn btn-soft btn-sm" id="export-btn" onclick="exportCSV()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3v12M7 11l5 5 5-5M4 20h16" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span id="export-label">Export</span>
+            </button>
+          </div>
+        </div>
+
+        <nav class="tabs" role="tablist">
+          <button class="tab is-active" onclick="switchTab('unfollowed', this)" role="tab">
+            Left you <span class="tab-n" id="tab-count-unfollowed">0</span>
+          </button>
+          <button class="tab" onclick="switchTab('new', this)" role="tab">
+            Gained <span class="tab-n" id="tab-count-new">0</span>
+          </button>
+          <button class="tab" onclick="switchTab('notback', this)" role="tab">
+            Not following back <span class="tab-n" id="tab-count-notback">0</span>
+          </button>
+        </nav>
+
+        <div class="rows" id="user-list"></div>
+      </section>
+
+      <footer class="foot">
+        <button class="btn btn-quiet" onclick="deleteAllData()">Delete my data</button>
+      </footer>
+
     </div>
-
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-num" id="s-following">0</div><div class="stat-lbl">Following</div></div>
-      <div class="stat-card"><div class="stat-num" id="s-followers">0</div><div class="stat-lbl">Followers</div></div>
-      <div class="stat-card pink"><div class="stat-num" id="s-unf">0</div><div class="stat-lbl">Unfollowed you</div></div>
-      <div class="stat-card purple"><div class="stat-num" id="s-notback">0</div><div class="stat-lbl">Not following back</div></div>
-      <div class="stat-card green"><div class="stat-num" id="s-mutual">0</div><div class="stat-lbl">Mutuals</div></div>
-    </div>
-
-    <div class="charts-row">
-      <div class="chart-card">
-        <div class="chart-card-title">Audience breakdown</div>
-        <div class="donut-wrap">
-          <canvas id="donut-chart" width="100" height="100"></canvas>
-          <div class="donut-legend" id="donut-legend"></div>
+  </main>
+</div>
+ <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="a-logo">
+          <img src="/image/UNFOLLOW FINDER-2.png" alt="Unfollow Finder" class="f-logo-img" />
+        </a>
+        <p>The safest Instagram unfollow checker. Built for creators who care about privacy.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/#features">Features</a>
+          <a href="/pricing">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="/blogs/">Blogs</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/about-us">About Us</a>
+          <a href="/contact">Contact Us</a>
+          <a href="/privacy">Privacy policy</a>
         </div>
       </div>
-      <div class="chart-card">
-        <div class="chart-card-title">Follow ratio</div>
-        <div class="bar-chart" id="bar-chart"></div>
-      </div>
     </div>
-
-    <div class="recent-section">
-      <div class="recent-header">
-        <div class="recent-title">Recent unfollowers</div>
-        <div class="recent-count" id="recent-count"></div>
-      </div>
-      <div class="user-list" id="user-list"></div>
+    <div class="container footer-bottom">
+      <p>© 2026 Unfollow Finder. All rights reserved.</p>
+      <p>Not affiliated with Instagram or Meta.</p>
     </div>
-
-    <div class="bottom-row">
-      <div class="insight-card">
-        <div class="insight-label">Engagement ratio</div>
-        <div class="insight-val" id="insight-ratio"></div>
-        <div class="insight-sub">followers / following</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-label">Ghost followers</div>
-        <div class="insight-val" id="insight-ghost"></div>
-        <div class="insight-sub">following you but you don't follow back</div>
-      </div>
-    </div>
-
-    <button class="reset-btn" onclick="window.location.href='index.html#tool'">
-      ↻ Analyse another file
-    </button>
-  </div>
-
-</div>
+  </footer>
 
 <script src="dashboard.js"></script>
+<script>
+function toggleSide() {
+  document.getElementById('side').classList.toggle('is-open');
+  document.getElementById('side-veil').classList.toggle('is-on');
+}
+</script>
 </body>
 </html>

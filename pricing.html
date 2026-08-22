@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Pricing – Unfollow Finder</title>
+  <meta name="description" content="Free forever for finding who doesn't follow you back. Pro adds unfollow tracking from $4.17/month billed yearly. Cancel anytime." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://unfollowfinder.com/pricing" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://unfollowfinder.com/pricing" />
+  <meta property="og:title" content="Pricing – Unfollow Finder" />
+  <meta property="og:description" content="Free forever for non-followers. Pro adds unfollow tracking from $4.17/month." />
+  <meta property="og:image" content="https://unfollowfinder.com/image/og-image.png" />
+
+      <!-- ── FAVICON ────────────────────────────────── -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon/favicon.png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="theme-color" content="#E1005E" />
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/pricing.css" />
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="logo">
+        <img src="/image/unfollow-finder-logo.png" alt="Unfollow Finder Logo" class="logo-img" />
+      </a>
+      <nav class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#how">How it works</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/blogs/">Blogs</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#" class="btn-ghost" onclick="openAuth('login');return false;">Login</a>
+        <a href="#" class="btn-primary" onclick="openAuth('signup');return false;">Get started free</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/blogs/">Blogs</a>
+      <a href="#" class="btn-primary mobile-cta" onclick="openAuth('signup');return false;">Get started free</a>
+    </div>
+  </header>
+
+
+  <main class="pr">
+    <div class="container">
+
+      <header class="pr-head">
+        <span class="section-eyebrow">Pricing</span>
+        <h1>Free to find non-followers.<br>Pro to track who leaves.</h1>
+        <p>Everyone gets the core tool. Pro adds the part that needs memory comparing each scan to your last one.</p>
+      </header>
+
+      <!-- Billing toggle -->
+      <div class="pr-toggle-wrap">
+        <div class="pr-toggle" role="group" aria-label="Billing period">
+          <button type="button" class="pr-toggle-btn is-on" id="btn-monthly"
+                  onclick="setCycle('monthly')" aria-pressed="true">Monthly</button>
+          <button type="button" class="pr-toggle-btn" id="btn-yearly"
+                  onclick="setCycle('yearly')" aria-pressed="false">
+            Yearly <span class="pr-save">2 months free</span>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- Plans -->
+      <section class="pr-grid">
+
+        <!-- Free -->
+        <article class="pr-card">
+          <h2 class="pr-name">Free</h2>
+          <p class="pr-tagline">For a one-off clear-out</p>
+
+          <div class="pr-price">
+            <span class="pr-amount">$0</span>
+            <span class="pr-per">forever</span>
+          </div>
+          <p class="pr-billed">No card needed</p>
+
+          <a href="/#tool" class="btn-outline pr-cta">Start free</a>
+
+          <ul class="pr-feats">
+            <li class="yes">See who doesn't follow you back</li>
+            <li class="yes">Mutual followers list</li>
+            <li class="yes">Export to CSV</li>
+            <li class="yes">Files stay in your browser</li>
+            <li class="yes">3 scan per day</li>
+            <li class="no">Unfollow tracking over time</li>
+            <li class="no">Scan history</li>
+          </ul>
+        </article>
+
+        <!-- Pro -->
+        <article class="pr-card pr-card--top">
+          <span class="pr-flag">Most popular</span>
+          <h2 class="pr-name">Pro</h2>
+          <p class="pr-tagline">For anyone watching their growth</p>
+
+          <div class="pr-price">
+            <span class="pr-amount" data-monthly="$5" data-yearly="$4.17">$5</span>
+            <span class="pr-per">/month</span>
+          </div>
+          <p class="pr-billed" data-monthly="Billed monthly" data-yearly="$50 billed yearly">Billed monthly</p>
+
+          <a href="/payment?plan=pro" class="btn-primary pr-cta" id="cta-pro">Start 7-day trial</a>
+
+          <ul class="pr-feats">
+            <li class="yes"><strong>Everything in Free</strong></li>
+            <li class="yes"><strong>See exactly who unfollowed you</strong></li>
+            <li class="yes">New follower alerts</li>
+            <li class="yes">Unlimited scans</li>
+            <li class="yes">History of your last 10 scans</li>
+            <li class="yes">Full analytics dashboard</li>
+            <li class="yes">Priority support</li>
+          </ul>
+        </article>
+
+        <!-- Team -->
+        <article class="pr-card">
+          <h2 class="pr-name">Team</h2>
+          <p class="pr-tagline">For agencies and multiple accounts</p>
+
+          <div class="pr-price">
+            <span class="pr-amount" data-monthly="$12" data-yearly="$10">$12</span>
+            <span class="pr-per">/month</span>
+          </div>
+          <p class="pr-billed" data-monthly="Billed monthly" data-yearly="$120 billed yearly">Billed monthly</p>
+
+          <a href="/payment?plan=team" class="btn-outline pr-cta" id="cta-team">Get Team</a>
+
+          <ul class="pr-feats">
+            <li class="yes"><strong>Everything in Pro</strong></li>
+            <li class="yes">Up to 10 Instagram accounts</li>
+            <li class="yes">Team dashboard</li>
+            <li class="yes">Analytics reports</li>
+            <li class="yes">Dedicated support</li>
+          </ul>
+        </article>
+
+      </section>
+
+      <p class="pr-foot-note">
+        Secure payment processed via Whop. Cancel anytime with 1-click in your dashboard.
+      </p>
+
+
+      <!-- Comparison -->
+      <section class="pr-compare">
+        <h2 class="pr-h2">Compare in detail</h2>
+
+        <div class="pr-table-wrap">
+          <table class="pr-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Free</th>
+                <th class="is-hi">Pro</th>
+                <th>Team</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Who doesn't follow you back</td>
+                <td><i class="tick"></i></td>
+                <td class="is-hi"><i class="tick"></i></td>
+                <td><i class="tick"></i></td>
+              </tr>
+              <tr>
+                <td>Mutual followers</td>
+                <td><i class="tick"></i></td>
+                <td class="is-hi"><i class="tick"></i></td>
+                <td><i class="tick"></i></td>
+              </tr>
+              <tr>
+                <td>CSV export</td>
+                <td><i class="tick"></i></td>
+                <td class="is-hi"><i class="tick"></i></td>
+                <td><i class="tick"></i></td>
+              </tr>
+              <tr>
+                <td>Scans per day</td>
+                <td>3</td>
+                <td class="is-hi">Unlimited</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td><strong>Who unfollowed you</strong></td>
+                <td><i class="cross"></i></td>
+                <td class="is-hi"><i class="tick"></i></td>
+                <td><i class="tick"></i></td>
+              </tr>
+              <tr>
+                <td>New follower tracking</td>
+                <td><i class="cross"></i></td>
+                <td class="is-hi"><i class="tick"></i></td>
+                <td><i class="tick"></i></td>
+              </tr>
+              <tr>
+                <td>Scan history</td>
+                <td><i class="cross"></i></td>
+                <td class="is-hi">Last 10</td>
+                <td>Last 10</td>
+              </tr>
+              <tr>
+                <td>Analytics dashboard</td>
+                <td><i class="cross"></i></td>
+                <td class="is-hi"><i class="tick"></i></td>
+                <td><i class="tick"></i></td>
+              </tr>
+              <tr>
+                <td>Instagram accounts</td>
+                <td>1</td>
+                <td class="is-hi">1</td>
+                <td>Up to 10</td>
+              </tr>
+              <tr>
+                <td>Support</td>
+                <td>Email</td>
+                <td class="is-hi">Priority</td>
+                <td>Dedicated</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- FAQ -->
+      <section class="pr-faq">
+        <h2 class="pr-h2">Pricing questions</h2>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Why does unfollow tracking need a paid plan?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Finding non-followers happens entirely in your browser, so it costs us nothing to run. Detecting unfollows means storing your follower list between scans and comparing them that needs a database and a server, which we pay for monthly.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What happens after the 7-day trial?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Your card is charged on day 8 at the rate you picked. Cancel any time before then and nothing is taken. We don't hide the cancel button.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Can I switch between monthly and yearly?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Yes. Switch from your account settings and the change applies at your next renewal.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What happens to my data if I cancel?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">You keep access until the end of the period you paid for. After that your account drops to Free and tracking stops. You can delete every stored scan yourself at any time from the dashboard see our <a href="/privacy">privacy policy</a>.</div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Do I need to give you my Instagram password?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">No on any plan. We work from the data export Instagram gives you, so we never connect to your account.</div>
+          </div>
+        </div>
+      </section>
+
+
+      <div class="pr-cta-band">
+        <h2>Try the free tool first</h2>
+        <p>See who doesn't follow you back in about a minute. Upgrade only if you want to track changes over time.</p>
+        <a href="/#tool" class="btn-primary btn-lg">Run a free scan</a>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="a-logo">
+          <img src="/image/UNFOLLOW FINDER-2.png" alt="Unfollow Finder" class="f-logo-img" />
+        </a>
+        <p>The safest Instagram unfollow checker. Built for creators who care about privacy.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/#features">Features</a>
+          <a href="/pricing">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="/blogs/">Blogs</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/about-us">About Us</a>
+          <a href="/contact">Contact Us</a>
+          <a href="/privacy">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 Unfollow Finder. All rights reserved.</p>
+      <p>Not affiliated with Instagram or Meta.</p>
+    </div>
+  </footer>
+
+
+  <!-- ══ AUTH MODAL ══ -->
+  <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true">
+    <div class="auth-modal" id="auth-modal">
+      <button class="auth-close" id="auth-close" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <div class="auth-logo">
+        <img src="/image/unfollow-finder-logo.png" alt="Unfollow Finder" class="auth-logo-img" />
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Create account</button>
+        <button class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Login</button>
+      </div>
+
+      <div class="auth-socials">
+        <button class="social-btn google" onclick="authWithProvider('google')">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Continue with Google
+        </button>
+        <button class="social-btn apple" onclick="authWithProvider('apple')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Continue with Apple
+        </button>
+      </div>
+
+      <div class="auth-divider"><span>or</span></div>
+
+      <div class="auth-form" id="form-signup">
+        <div class="auth-field">
+          <label for="su-name">Full name</label>
+          <input type="text" id="su-name" placeholder="Your name" autocomplete="name">
+        </div>
+        <div class="auth-field">
+          <label for="su-email">Email address</label>
+          <input type="email" id="su-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="su-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="su-pass" placeholder="Create a password" autocomplete="new-password">
+            <button class="pass-toggle" onclick="togglePass('su-pass',this)" type="button" aria-label="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('signup')">Create free account</button>
+        <p class="auth-terms">By signing up you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
+      </div>
+
+      <div class="auth-form" id="form-login" style="display:none">
+        <div class="auth-field">
+          <label for="li-email">Email address</label>
+          <input type="email" id="li-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="li-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="li-pass" placeholder="Your password" autocomplete="current-password">
+            <button class="pass-toggle" onclick="togglePass('li-pass',this)" type="button" aria-label="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('login')">Log in to Unfollow Finder</button>
+      </div>
+
+      <p class="auth-switch" id="auth-switch-text">
+        Already have an account? <button onclick="switchAuthTab('login')">Login</button>
+      </p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/script.js"></script>
+  <script src="/pricing.js"></script>
+</body>
+</html>

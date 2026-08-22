@@ -38,16 +38,17 @@
   <meta name="twitter:description" content="Find out who unfollowed you on Instagram instantly. No login required, 100% private and free." />
   <meta name="twitter:image" content="https://unfollowfinder.com/image/og-image.png" />
  
-  <!-- ── FAVICON ────────────────────────────────── -->
-  <link rel="icon" type="image/png" sizes="32x32" href="image/UNFOLLOW FINDER-5.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="image/UNFOLLOW FINDER-5.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="image/UNFOLLOW FINDER-5.png" />
-  <link rel="shortcut icon" href="image/UNFOLLOW FINDER-5.png" />
+    <!-- ── FAVICON ────────────────────────────────── -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="/favicon/favicon.png" sizes="96x96" />
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+<link rel="manifest" href="/favicon/site.webmanifest" />
+<meta name="theme-color" content="#E1005E" />
  
   <!-- ── FONTS ──────────────────────────────────── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
  
   <!-- ── CSS ───────────────────────────────────── -->
   <link rel="stylesheet" href="style.css" />
@@ -91,12 +92,6 @@
       "100% browser-based data never leaves your device",
       "Export results to CSV"
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "1250",
-      "bestRating": "5"
-    },
     "publisher": {
       "@type": "Organization",
       "name": "Unfollow Finder",
@@ -128,7 +123,7 @@
         "name": "Does Unfollow Finder store my Instagram data?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. All processing happens inside your browser. Your files are never uploaded to our servers. We see nothing."
+          "text": "The free tool runs entirely in your browser those files are never uploaded. Pro accounts store usernames between scans so we can tell you who unfollowed you, and you can delete all of it in one click. Full detail in our."
         }
       },
       {
@@ -169,13 +164,13 @@
   <header class="navbar" id="navbar">
     <div class="container nav-inner">
       <a href="/" class="logo">
-  <img src="image/unfollow-finder-logo.png" alt="Unfollow Finder Logo" class="logo-img" />
+  <img src="/image/unfollow-finder-logo.png" alt="Unfollow Finder Logo" class="logo-img" />
 </a>
 
       <nav class="nav-links">
         <a href="#features">Features</a>
         <a href="#how">How it works</a>
-        <a href="#pricing">Pricing</a>
+        <a href="/pricing">Pricing</a>
         <a href="/blogs/">Blogs</a>
 
       </nav>
@@ -209,16 +204,10 @@
 
     <div class="container hero-inner">
       <div class="hero-text">
-        <span class="eyebrow">
-          <span class="dot"></span> Trusted by 25,000+ creators
-        </span>
-
-        <h1>
-          See exactly who <br />
-          <em>unfollowed you</em> on Instagram
-        </h1>
-
-        <p class="hero-sub">
+        <h1 class="hero-title">
+  <span class="line">See exactly who <em>unfollowed you</em></span>
+  <span class="line">on Instagram</span>
+</h1>        <p class="hero-sub">
            Upload your Instagram data export and instantly see unfollowers, non-followers, and mutual friends,no login, no risk, 100% private
         </p>
 
@@ -229,91 +218,18 @@
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
-
-        <div class="hero-stats">
-          <div class="stat">
-            <strong>250K+</strong>
-            <span>Active users</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <strong>98%</strong>
-            <span>Accuracy rate</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <strong>100%</strong>
-            <span>Private & secure</span>
-          </div>
-        </div>
       </div>
+    </div><!-- /hero-ctas -->
 
-      <div class="hero-visual">
-        <div class="app-card" id="app-card">
-          <div class="app-card-header">
-            <div class="app-dots">
-              <span></span><span></span><span></span>
-            </div>
-            <span class="app-card-title">Unfollow Finder</span>
-          </div>
-
-          <div class="app-stats-row">
-            <div class="app-stat">
-              <div class="app-stat-num">842</div>
-              <div class="app-stat-lbl">You follow</div>
-            </div>
-            <div class="app-stat">
-              <div class="app-stat-num">619</div>
-              <div class="app-stat-lbl">Follow you</div>
-            </div>
-            <div class="app-stat red">
-              <div class="app-stat-num">223</div>
-              <div class="app-stat-lbl">Unfollowed</div>
-            </div>
-          </div>
-
-          <div class="app-tabs">
-            <button class="app-tab active">Unfollowers</button>
-            <button class="app-tab">Not following</button>
-            <button class="app-tab">Mutual</button>
-          </div>
-
-          <div class="app-list">
-            <div class="app-row reveal">
-              <div class="app-avatar" style="background:#E1005E">ma</div>
-              <span class="app-uname">@maria.creates</span>
-              <span class="app-badge unf">Unfollowed</span>
-            </div>
-            <div class="app-row reveal delay-1">
-              <div class="app-avatar" style="background:#7c3aed">jk</div>
-              <span class="app-uname">@jake.lifestyle</span>
-              <span class="app-badge unf">Unfollowed</span>
-            </div>
-            <div class="app-row reveal delay-2">
-              <div class="app-avatar" style="background:#0891b2">so</div>
-              <span class="app-uname">@sofia.art</span>
-              <span class="app-badge unf">Unfollowed</span>
-            </div>
-            <div class="app-row reveal delay-3">
-              <div class="app-avatar" style="background:#059669">lu</div>
-              <span class="app-uname">@luca.films</span>
-              <span class="app-badge unf">Unfollowed</span>
-            </div>
+        <div class="hero-shot">
+          <div class="shot-frame">
+            <img src="image/dashboard-preview.jpg"
+                 alt="Unfollow Finder dashboard showing who unfollowed you"
+                 width="1920" height="1141" loading="eager">
           </div>
         </div>
 
-        <!-- floating badges -->
-        <div class="float-badge f1">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#E1005E" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#E1005E" stroke-width="1.5" stroke-linecap="round"/></svg>
-          No login required
-        </div>
-        <div class="float-badge f2">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="6" width="10" height="8" rx="1.5" stroke="#7c3aed" stroke-width="1.5"/><path d="M5 6V4.5a3 3 0 0 1 6 0V6" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/></svg>
-          100% private
-        </div>
-      </div>
-    </div>
-
+      
     <!-- Scroll hint -->
     <div class="scroll-hint">
       <div class="scroll-line"></div>
@@ -666,10 +582,10 @@
           <div class="price-amt">$0 <span>/mo</span></div>
           <p class="price-desc">Perfect for personal use</p>
           <ul class="price-features">
-            <li><span class="check">✓</span> Unfollow checker</li>
+            <li><span class="check">✓</span> See who doesn't follow you back</li>
             <li><span class="check">✓</span> Mutual followers list</li>
-            <li><span class="check">✓</span> 100% browser-based</li>
-            <li><span class="check muted">✓</span> Up to 1,000 accounts</li>
+            <li><span class="check">✓</span> Export to CSV</li>
+            <li><span class="check muted">✓</span> 3 scans per day</li>
           </ul>
           <a href="#" class="btn-outline" onclick="openAuth('signup');return false;">Get started free</a>
         </div>
@@ -677,13 +593,13 @@
 <div class="price-card featured">
   <div class="price-popular">Most popular</div>
   <div class="price-name">Pro</div>
-  <div class="price-amt">$9 <span>/mo</span></div>
+  <div class="price-amt">$5 <span>/mo</span></div>
   <p class="price-desc">For serious creators</p>
   <ul class="price-features">
     <li><span class="check">✓</span> Everything in Free</li>
-    <li><span class="check">✓</span> Unlimited accounts</li>
-    <li><span class="check">✓</span> Export to CSV</li>
-    <li><span class="check">✓</span> History tracking</li>
+    <li><span class="check">✓</span> See exactly who unfollowed you</li>
+    <li><span class="check">✓</span> Unlimited scans</li>
+    <li><span class="check">✓</span> Scan history</li>
     <li><span class="check">✓</span> Priority support</li>
   </ul>
   <a href="#" class="btn-primary" onclick="goToPayment('pro');return false;">
@@ -693,7 +609,7 @@
 
 <div class="price-card">
   <div class="price-name">Team</div>
-  <div class="price-amt">$29 <span>/mo</span></div>
+  <div class="price-amt">$12 <span>/mo</span></div>
   <p class="price-desc">For agencies & teams</p>
   <ul class="price-features">
     <li><span class="check">✓</span> Everything in Pro</li>
@@ -716,7 +632,7 @@
     <div class="container">
       <div class="section-head">
         <span class="section-eyebrow">What creators say</span>
-        <h2>Loved by 25,000+ creators</h2>
+        <h2>Loved by creators</h2>
       </div>
 
       <div class="testi-grid">
@@ -781,7 +697,7 @@
             Do you store my Instagram data?
             <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
-          <div class="faq-a">No. All processing happens inside your browser. Your files are never uploaded to our servers. We see nothing.</div>
+           <div class="faq-a">The free tool runs entirely in your browser those files are never uploaded. Pro accounts store usernames between scans so we can tell you who unfollowed you, and you can delete all of it in one click. Full detail in our <a href="/privacy" style="color:#E1005E;font-weight:600">privacy policy</a>.</div>
         </div>
 
         <div class="faq-item">
@@ -815,7 +731,6 @@
  <section class="cta-banner">
     <div class="container cta-inner">
       <h2>Ready to see who unfollowed you?</h2>
-      <p>Join 25,000+ creators. No account needed to start.</p>
       <a href="#" class="btn-primary btn-lg" onclick="openAuth('signup');return false;">Try Unfollow Finder free</a>
       <p class="hero-guide-link" style="margin-top:16px;font-size:14px;color:#6b6b85;text-align:center;">
         New here? Read our <a href="/blogs/how-to-see-who-unfollowed-you-on-instagram" style="color:#E1005E;font-weight:600">full guide to checking who unfollowed you</a>.
@@ -827,8 +742,8 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <a href="#" class="a-logo">
-            <img src="image/UNFOLLOW FINDER-2.png" alt="Unfollow finder" class="f-logo-img" />
+        <a href="/" class="a-logo">
+            <img src="/image/UNFOLLOW FINDER-2.png" alt="Unfollow finder" class="f-logo-img" />
 
         </a>
         <p>The safest Instagram unfollow checker. Built for creators who care about privacy.</p>
@@ -838,7 +753,7 @@
         <div class="footer-col">
            <h4>Product</h4>
           <a href="/#features">Features</a>
-          <a href="/#pricing">Pricing</a>
+          <a href="/pricing">Pricing</a>
         </div>
         <div class="footer-col">
           <h4>Resources</h4>
@@ -847,8 +762,11 @@
         </div>
         <div class="footer-col">
           <h4>Company</h4>
-          <a href="/about-us">About</a>
+          <a href="/about-us">About us</a>
+          <a href="/contact">Contact Us</a>
           <a href="/privacy">Privacy policy</a>
+
+
         </div>
       </div>
     </div>

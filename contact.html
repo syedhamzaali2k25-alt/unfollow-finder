@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Contact Us | Unfollow Finder</title>
+  <meta name="description" content="Get in touch with the Unfollow Finder team. Questions about your account, billing, or the tool we usually reply within one business day." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://unfollowfinder.com/contact" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://unfollowfinder.com/contact" />
+  <meta property="og:title" content="Contact Us | Unfollow Finder" />
+  <meta property="og:description" content="Questions about your account, billing, or the tool? Send us a message." />
+  <meta property="og:image" content="https://unfollowfinder.com/image/og-image.png" />
+    <!-- ── FAVICON ────────────────────────────────── -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon/favicon.png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="theme-color" content="#E1005E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/contact.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Unfollow Finder",
+    "url": "https://unfollowfinder.com/contact",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Unfollow Finder",
+      "url": "https://unfollowfinder.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "support@unfollowfinder.com",
+        "availableLanguage": ["English"]
+      }
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- ══ NAVBAR ══ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="logo">
+        <img src="image/unfollow-finder-logo.png" alt="Unfollow Finder" class="logo-img" />
+      </a>
+
+      <nav class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#how">How it works</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/blogs/">Blogs</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="/#tool" class="btn-primary">Try it free</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/blogs/">Blogs</a>
+      <a href="/#tool" class="btn-primary mobile-cta">Try it free</a>
+    </div>
+  </header>
+
+
+  <!-- ══ PAGE ══ -->
+  <main class="ct-page">
+    <div class="container">
+
+      <header class="ct-head">
+        <span class="section-eyebrow">Contact</span>
+        <h1>How can we help?</h1>
+        <p>Questions about a scan, your subscription, or your data send us a message and we'll get back to you within one business day.</p>
+      </header>
+
+      <div class="ct-grid">
+
+        <!-- Form -->
+        <section class="ct-form-panel">
+          <form id="contact-form" novalidate>
+
+            <div class="ct-row">
+              <div class="ct-field">
+                <label for="ct-name">Your name</label>
+                <input type="text" id="ct-name" name="name" placeholder="Jane Doe" autocomplete="name" required>
+                <span class="ct-error" id="err-name"></span>
+              </div>
+
+              <div class="ct-field">
+                <label for="ct-email">Email address</label>
+                <input type="email" id="ct-email" name="email" placeholder="you@email.com" autocomplete="email" required>
+                <span class="ct-error" id="err-email"></span>
+              </div>
+            </div>
+
+            <div class="ct-field">
+              <label for="ct-topic">What's this about?</label>
+              <div class="ct-select-wrap">
+                <select id="ct-topic" name="topic">
+                  <option value="support">Something isn't working</option>
+                  <option value="billing">Billing or subscription</option>
+                  <option value="data">My data or privacy</option>
+                  <option value="feature">Feature request</option>
+                  <option value="partnership">Partnership or press</option>
+                  <option value="other">Something else</option>
+                </select>
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+
+            <div class="ct-field">
+              <label for="ct-message">Message</label>
+              <textarea id="ct-message" name="message" rows="6"
+                placeholder="Tell us what happened. If something went wrong, the steps you took help us fix it faster." required></textarea>
+              <span class="ct-error" id="err-message"></span>
+              <span class="ct-count"><span id="ct-chars">0</span>/1500</span>
+            </div>
+
+            <!-- Honeypot: hidden from people, filled by bots -->
+            <input type="text" id="ct-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <button type="submit" class="ct-submit" id="ct-submit">
+              <span id="ct-submit-label">Send message</span>
+            </button>
+
+            <p class="ct-note">
+              We'll only use your email to reply. Read our
+              <a href="/privacy">privacy policy</a>.
+            </p>
+          </form>
+
+          <!-- Success -->
+          <div class="ct-sent" id="ct-sent">
+            <div class="ct-sent-mark">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M4 12.5 9.5 18 20 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h2>Message sent</h2>
+            <p>Thanks we've got it. You'll hear back at the email you gave us, usually within one business day.</p>
+            <a href="/" class="btn-primary">Back to home</a>
+          </div>
+        </section>
+
+        <!-- Aside -->
+        <aside class="ct-aside">
+
+          <div class="ct-card">
+            <span class="ct-ico ct-ico--pink">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="m3.5 7 8.5 6 8.5-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </span>
+            <h3>Email us directly</h3>
+            <p>Prefer your own inbox? Write to us and we'll pick it up.</p>
+            <a href="mailto:support@unfollowfinder.com" class="ct-link">support@unfollowfinder.com</a>
+          </div>
+
+          <div class="ct-card">
+            <span class="ct-ico ct-ico--violet">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>Response time</h3>
+            <p>Within one business day, Monday to Friday. Billing issues get priority.</p>
+          </div>
+
+          <div class="ct-card ct-card--tint">
+            <span class="ct-ico ct-ico--green">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.7-.9 1.3v.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="16.4" r="1" fill="currentColor"/></svg>
+            </span>
+            <h3>Check the FAQ first</h3>
+            <p>Most questions about JSON files, pricing and privacy are already answered there.</p>
+            <a href="/#faq" class="ct-link">Read the FAQ →</a>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="a-logo">
+          <img src="image/UNFOLLOW FINDER-2.png" alt="Unfollow Finder" class="f-logo-img" />
+        </a>
+        <p>The safest Instagram unfollow checker. Built for creators who care about privacy.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/#features">Features</a>
+          <a href="/pricing">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="/blogs/">Blogs</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/about-us">About Us</a>
+          <a href="/contact">Contact Us</a>
+          <a href="/privacy">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Unfollow Finder. All rights reserved.</p>
+      <p>Not affiliated with Instagram or Meta.</p>
+    </div>
+  </footer>
+
+  
+
+
+
+  <script src="/contact.js"></script>
+</body>
+</html>

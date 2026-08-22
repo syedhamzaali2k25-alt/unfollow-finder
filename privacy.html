@@ -3,34 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Privacy Policy – Unfollow Finder</title>
-  <link rel="icon" type="image/png" href="/image/UNFOLLOW FINDER-5.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/style.css" />
+  <meta name="description" content="Exactly what Unfollow Finder stores and what it doesn't. The free tool runs entirely in your browser. Pro accounts store usernames so we can track unfollows and you can delete it all in one click." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://unfollowfinder.com/privacy" />
-  <meta name="description" content="Unfollow Finder's privacy policy: we never collect, store, or see your Instagram followers or following data. Everything is processed locally in your browser." />
 
+      <!-- ── FAVICON ────────────────────────────────── -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/favicon/favicon.png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="theme-color" content="#E1005E" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
 
-  <style>
-    .legal-page { max-width: 780px; margin: 0 auto; padding: 80px 24px; }
-    .legal-page h1 { font-family: 'Syne', sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 800; margin-bottom: 12px; }
-    .legal-page .last-updated { color: #6b6b85; font-size: 14px; margin-bottom: 48px; }
-    .legal-page h2 { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; margin: 40px 0 12px; }
-    .legal-page p { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 16px; }
-    .legal-page ul { padding-left: 20px; margin-bottom: 16px; }
-    .legal-page ul li { font-size: 16px; line-height: 1.8; color: #444; margin-bottom: 8px; }
-    .legal-page a { color: #E1005E; text-decoration: none; }
-    .legal-page a:hover { text-decoration: underline; }
-    .highlight-box { background: #fff0f5; border-left: 4px solid #E1005E; border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
-    .highlight-box p { margin: 0; font-weight: 600; color: #0f0f12; }
-  </style>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/legal.css" />
 </head>
 <body>
 
+  <!-- ══ NAVBAR ══ -->
   <header class="navbar" id="navbar">
     <div class="container nav-inner">
       <a href="/" class="logo">
@@ -39,7 +34,7 @@
       <nav class="nav-links">
         <a href="/#features">Features</a>
         <a href="/#how">How it works</a>
-        <a href="/#pricing">Pricing</a>
+        <a href="/pricing">Pricing</a>
         <a href="/blogs/">Blogs</a>
       </nav>
       <div class="nav-actions">
@@ -53,57 +48,199 @@
     <div class="mobile-menu" id="mobile-menu">
       <a href="/#features">Features</a>
       <a href="/#how">How it works</a>
-      <a href="/#pricing">Pricing</a>
+      <a href="/pricing">Pricing</a>
       <a href="/blogs/">Blogs</a>
       <a href="#" class="btn-primary mobile-cta" onclick="openAuth('signup');return false;">Get started free</a>
     </div>
   </header>
 
-  <div class="legal-page">
-    <h1>Privacy Policy</h1>
-    <p class="last-updated">Last updated: July 2, 2026</p>
 
-    <div class="highlight-box">
-      <p>🔒 TL;DR Your Instagram data never leaves your device. We process everything locally in your browser. We never see your followers or following list.</p>
+  <main class="legal">
+    <div class="legal-wrap">
+
+      <header class="legal-head">
+        <span class="section-eyebrow">Legal</span>
+        <h1>Privacy Policy</h1>
+        <p class="legal-date">Last updated 22 August 2026</p>
+      </header>
+
+      <!-- Summary -->
+      <div class="legal-summary">
+        <h2 class="legal-summary-title">The short version</h2>
+        <div class="legal-split">
+          <div class="legal-split-col">
+            <span class="legal-tag legal-tag--green">Free tool</span>
+            <p>Your files are read in your browser and never uploaded. Nothing about who follows you reaches our servers.</p>
+          </div>
+          <div class="legal-split-col">
+            <span class="legal-tag legal-tag--pink">Pro accounts</span>
+            <p>To tell you who unfollowed you, we save the usernames from each scan so the next one can be compared. You can delete all of it in one click.</p>
+          </div>
+        </div>
+        <p class="legal-summary-foot">We never ask for your Instagram password and never connect to your account.</p>
+      </div>
+
+      <!-- TOC -->
+      <nav class="legal-toc" aria-label="Sections">
+        <a href="#who">Who we are</a>
+        <a href="#free">The free tool</a>
+        <a href="#pro">Pro accounts</a>
+        <a href="#never">What we never collect</a>
+        <a href="#use">How we use data</a>
+        <a href="#third">Third parties</a>
+        <a href="#retention">How long we keep it</a>
+        <a href="#rights">Your rights</a>
+        <a href="#cookies">Cookies</a>
+        <a href="#children">Children</a>
+        <a href="#changes">Changes</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+
+      <section class="legal-body">
+
+        <h2 id="who">1. Who we are</h2>
+        <p>Unfollow Finder is an Instagram unfollow tracker at <a href="https://unfollowfinder.com">unfollowfinder.com</a>. It works from the data export Instagram gives you, so we never need your password and never connect to your account. <a href="/blogs/is-it-safe-to-use-instagram-unfollower-apps">Here's why that matters.</a></p>
+        <p>This policy explains exactly what we hold and what we don't. Where the answer differs between the free tool and a Pro account, we say so.</p>
+
+
+        <h2 id="free">2. The free tool</h2>
+        <p>When you upload <code>followers_1.json</code> and <code>following.json</code> on the homepage, your browser reads both files and compares them on your own device. The files are not uploaded, not transmitted, and not stored. Close the tab and the results are gone.</p>
+        <div class="legal-note legal-note--green">
+          <p>Nothing about who follows you leaves your device when you use the free tool.</p>
+        </div>
+        <p>We do record that a scan happened a count and a date tied to your account so we can apply the daily limit. That record contains no usernames.</p>
+
+
+        <h2 id="pro">3. Pro accounts and unfollow tracking</h2>
+        <p>Unfollow detection only works by comparison. To tell you that someone left, we have to know they were there before. That means storing something between scans.</p>
+        <p>When you run a scan on a Pro account, we store:</p>
+        <ul>
+          <li>The usernames in your followers and following lists at that moment</li>
+          <li>The date of the scan and the totals</li>
+          <li>Which usernames appeared or disappeared since your previous scan</li>
+        </ul>
+        <p>We keep your ten most recent scans. Older ones are deleted automatically as new scans replace them.</p>
+        <div class="legal-note legal-note--pink">
+          <p>You can erase every scan, snapshot and tracked change at any time from your dashboard <strong>Delete my data</strong>. It removes the records immediately and tracking starts fresh from your next scan.</p>
+        </div>
+        <p>We store usernames only. No profile photos, bios, posts, messages, follower counts of other people, or anything else from their accounts.</p>
+
+
+        <h2 id="never">4. What we never collect</h2>
+        <ul>
+          <li>Your Instagram password or any login credentials</li>
+          <li>Access to your Instagram account, via API or otherwise</li>
+          <li>Your card or bank details those go straight to our payment provider</li>
+          <li>Your direct messages, photos, posts or comments</li>
+          <li>Location data or contacts</li>
+        </ul>
+        <p>We only ever ask for two files. <a href="/blogs/why-we-only-ask-for-two-files">Here's why those two are enough.</a></p>
+
+
+        <h2 id="use">5. How we use what we hold</h2>
+        <ul>
+          <li><strong>Running the service</strong> : comparing scans, showing your dashboard, exporting your CSV</li>
+          <li><strong>Your account</strong> : signing you in, applying your plan's limits</li>
+          <li><strong>Billing</strong> : confirming your subscription is active</li>
+          <li><strong>Support</strong> : replying when you contact us</li>
+          <li><strong>Security</strong> : spotting abuse and rate-limiting</li>
+        </ul>
+        <p>We do not sell your data. We do not share it with advertisers. We do not use your followers list to build any kind of profile of you or of the people who follow you.</p>
+
+
+        <h2 id="third">6. Third parties we rely on</h2>
+        <div class="legal-table-wrap">
+          <table class="legal-table">
+            <thead>
+              <tr><th>Service</th><th>What it does</th><th>What it can see</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Supabase</td>
+                <td>Database hosting</td>
+                <td>Your account record and stored scans</td>
+              </tr>
+              <tr>
+                <td>Whop</td>
+                <td>Payments and subscriptions</td>
+                <td>Your email and billing details. We never see your card.</td>
+              </tr>
+              <tr>
+                <td>Google AdSense</td>
+                <td>Advertising</td>
+                <td>Standard ad cookies. No scan data is ever passed to it.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Each of these has its own privacy policy governing what it does with the data it handles.</p>
+
+
+        <h2 id="retention">7. How long we keep things</h2>
+        <ul>
+          <li><strong>Scan snapshots</strong> : your ten most recent scans; older ones are deleted automatically</li>
+          <li><strong>Account details</strong> : until you ask us to close your account</li>
+          <li><strong>Support messages</strong> : up to 12 months</li>
+          <li><strong>Billing records</strong> : as long as tax and accounting rules require</li>
+        </ul>
+
+
+        <h2 id="rights">8. Your rights</h2>
+        <p>Wherever you live, you can:</p>
+        <ul>
+          <li><strong>See what we hold</strong> : ask and we'll send it</li>
+          <li><strong>Delete your scan data</strong> : one click in the dashboard, no request needed</li>
+          <li><strong>Close your account</strong> : email us and we'll remove your record</li>
+          <li><strong>Correct your details</strong> : from your account settings</li>
+          <li><strong>Take your data with you</strong> : export any list as CSV, any time</li>
+        </ul>
+        <p>If you're in the UK or EU, the GDPR gives you these rights formally, and you may complain to your national data protection authority. In California, the CCPA gives you comparable rights. Write to <a href="mailto:privacy@unfollowfinder.com">privacy@unfollowfinder.com</a> and we'll respond within 30 days.</p>
+
+
+        <h2 id="cookies">9. Cookies</h2>
+        <p>We use a small number:</p>
+        <ul>
+          <li><strong>Essential</strong> : keeping you signed in. The site can't work without these.</li>
+          <li><strong>Advertising</strong> : Google AdSense sets cookies to serve ads. You can opt out through <a href="https://adssettings.google.com" rel="noopener" target="_blank">Google's ad settings</a>.</li>
+        </ul>
+        <p>Your browser settings can block cookies, though signing in won't work without the essential ones.</p>
+
+
+        <h2 id="children">10. Children</h2>
+        <p>Unfollow Finder isn't intended for anyone under 13. We don't knowingly collect data from children. If you believe a child has created an account, tell us and we'll remove it.</p>
+
+
+        <h2 id="security">11. Security</h2>
+        <p>Data is held in Supabase (PostgreSQL) and encrypted in transit over TLS. Passwords are hashed with bcrypt and are never recoverable in plain text not even by us.</p>
+        <p>No system is perfectly secure. If a breach ever affected your data, we would tell you.</p>
+
+
+        <h2 id="changes">12. Changes to this policy</h2>
+        <p>When we change how we handle data, we update this page and the date at the top. For anything significant, we'll email you. The most common reason for a change is a new feature as happened when unfollow tracking was added, which is why section 3 exists.</p>
+
+
+        <h2 id="contact">13. Contact</h2>
+        <p>Questions about anything here:</p>
+        <ul>
+          <li>Privacy: <a href="mailto:privacy@unfollowfinder.com">privacy@unfollowfinder.com</a></li>
+          <li>Everything else: <a href="/contact">our contact page</a></li>
+        </ul>
+
+      </section>
+
+
+      <div class="legal-cta">
+        <h2>Want your data gone?</h2>
+        <p>Everything we've stored for you can be deleted from your dashboard. No form, no waiting.</p>
+        <a href="/dashboard" class="btn-primary btn-lg">Open dashboard</a>
+      </div>
+
     </div>
+  </main>
 
-     <h2>1. Who We Are</h2>
-    <p>Unfollow Finder is a privacy-first Instagram unfollow tracker available at <a href="https://unfollowfinder.com">unfollowfinder.com</a>. We are committed to protecting your privacy and being transparent about how we handle your data. Unlike login-based tools, we never touch your account <a href="/blogs/is-it-safe-to-use-instagram-unfollower-apps">see why this approach is safer</a>.</p>
-    <h2>2. What Data We Collect</h2>
-    <ul>
-      <li><strong>Account information:</strong> Your name and email address when you create an account</li>
-      <li><strong>Usage data:</strong> Number of scans performed (not the content of scans)</li>
-      <li><strong>Payment information:</strong> Handled entirely by LemonSqueezy we never see your card details</li>
-      <li><strong>Analytics:</strong> Basic page view data via Google Analytics</li>
-    </ul>
 
-    <h2>3. What Data We Do NOT Collect</h2>
-    <div class="highlight-box">
-      <p>❌ We never collect, store, or transmit your Instagram followers or following list. All JSON file processing happens locally in your browser.</p>
-    </div>
-    <ul>
-      <li>Your Instagram password</li>
-      <li>Your Instagram followers list</li>
-      <li>Your Instagram following list</li>
-      <li>Any Instagram account credentials</li>
-    </ul>
-    <p>We only ever ask for two files, and nothing else <a href="/blogs/why-we-only-ask-for-two-files">read why we only need two files</a>.</p>
-
-    <h2>4. How We Use Your Data</h2>
-    <ul>
-      <li>Provide and improve our service</li>
-      <li>Send important account notifications</li>
-      <li>Process payments via LemonSqueezy</li>
-      <li>Respond to customer support requests</li>
-    </ul>
-
-    <h2>5. Data Storage & Security</h2>
-    <p>Your account data is stored securely in Supabase (PostgreSQL) with industry-standard encryption. We use SSL/TLS encryption for all data in transit.</p>
-
-    <h2>6. Contact Us</h2>
-    <p>Questions? Email us at: <a href="mailto:privacy@unfollowfinder.com">privacy@unfollowfinder.com</a></p>
-  </div>
-
+  <!-- ══ FOOTER ══ -->
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
@@ -116,7 +253,7 @@
         <div class="footer-col">
           <h4>Product</h4>
           <a href="/#features">Features</a>
-          <a href="/#pricing">Pricing</a>
+          <a href="/pricing">Pricing</a>
         </div>
         <div class="footer-col">
           <h4>Resources</h4>
@@ -125,7 +262,8 @@
         </div>
         <div class="footer-col">
           <h4>Company</h4>
-          <a href="/about-us">About</a>
+          <a href="/about-us">About Us</a>
+          <a href="/contact">Contact Us</a>
           <a href="/privacy">Privacy policy</a>
         </div>
       </div>
@@ -136,6 +274,8 @@
     </div>
   </footer>
 
+
+  <!-- ══ AUTH MODAL ══ -->
   <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true">
     <div class="auth-modal" id="auth-modal">
       <button class="auth-close" id="auth-close" aria-label="Close">
@@ -145,29 +285,24 @@
         <img src="/image/unfollow-finder-logo.png" alt="Unfollow Finder" class="auth-logo-img" />
       </div>
 
-      <!-- Tab switcher -->
       <div class="auth-tabs">
         <button class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Create account</button>
         <button class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Login</button>
       </div>
 
-      <!-- Social buttons -->
       <div class="auth-socials">
         <button class="social-btn google" onclick="authWithProvider('google')">
           <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
           Continue with Google
         </button>
-
         <button class="social-btn apple" onclick="authWithProvider('apple')">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           Continue with Apple
         </button>
       </div>
 
-      <!-- Divider -->
       <div class="auth-divider"><span>or</span></div>
 
-      <!-- Email form — Signup -->
       <div class="auth-form" id="form-signup">
         <div class="auth-field">
           <label for="su-name">Full name</label>
@@ -187,10 +322,9 @@
           </div>
         </div>
         <button class="auth-submit" onclick="submitAuth('signup')">Create free account</button>
-        <p class="auth-terms">By signing up you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+        <p class="auth-terms">By signing up you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
       </div>
 
-      <!-- Email form — Login -->
       <div class="auth-form" id="form-login" style="display:none">
         <div class="auth-field">
           <label for="li-email">Email address</label>
@@ -209,56 +343,53 @@
         <button class="auth-submit" onclick="submitAuth('login')">Log in to Unfollow Finder</button>
       </div>
 
-      <!-- Switch text -->
       <p class="auth-switch" id="auth-switch-text">
         Already have an account? <button onclick="switchAuthTab('login')">Login</button>
       </p>
-
     </div>
   </div>
+
+
+  <!-- ══ FEEDBACK ══ -->
   <button id="feedbackBtn" class="feedback-btn" aria-label="Give feedback">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  <span>Feedback</span>
-</button>
- 
-<!-- Feedback Modal -->
-<div id="feedbackModal" class="feedback-overlay">
-  <div class="feedback-modal">
-    <button id="feedbackClose" class="feedback-close" aria-label="Close">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-    </button>
- 
-    <!-- Step 1: Rating -->
-    <div id="feedbackStep1" class="feedback-step">
-      <h3>How's your experience?</h3>
-      <p>Your feedback helps us improve 🙏</p>
-      <div class="emoji-row">
-        <button class="emoji-btn" data-rating="1">😞<span>Bad</span></button>
-        <button class="emoji-btn" data-rating="2">😐<span>Okay</span></button>
-        <button class="emoji-btn" data-rating="3">🙂<span>Good</span></button>
-        <button class="emoji-btn" data-rating="4">😍<span>Love it</span></button>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>Feedback</span>
+  </button>
+
+  <div id="feedbackModal" class="feedback-overlay">
+    <div class="feedback-modal">
+      <button id="feedbackClose" class="feedback-close" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+
+      <div id="feedbackStep1" class="feedback-step">
+        <h3>How's your experience?</h3>
+        <p>Your feedback helps us improve 🙏</p>
+        <div class="emoji-row">
+          <button class="emoji-btn" data-rating="1">😞<span>Bad</span></button>
+          <button class="emoji-btn" data-rating="2">😐<span>Okay</span></button>
+          <button class="emoji-btn" data-rating="3">🙂<span>Good</span></button>
+          <button class="emoji-btn" data-rating="4">😍<span>Love it</span></button>
+        </div>
+      </div>
+
+      <div id="feedbackStep2" class="feedback-step" style="display:none">
+        <h3>Tell us more</h3>
+        <p id="feedbackPrompt">What can we improve?</p>
+        <textarea id="feedbackText" placeholder="Type your feedback here..." rows="4"></textarea>
+        <input type="email" id="feedbackEmail" placeholder="Your email (optional)" />
+        <button id="feedbackSubmit" class="feedback-submit">Send feedback</button>
+      </div>
+
+      <div id="feedbackStep3" class="feedback-step" style="display:none">
+        <div class="feedback-success">🎉</div>
+        <h3>Thank you!</h3>
+        <p>We really appreciate your feedback.</p>
       </div>
     </div>
- 
-    <!-- Step 2: Comment -->
-    <div id="feedbackStep2" class="feedback-step" style="display:none">
-      <h3>Tell us more</h3>
-      <p id="feedbackPrompt">What can we improve?</p>
-      <textarea id="feedbackText" placeholder="Type your feedback here..." rows="4"></textarea>
-      <input type="email" id="feedbackEmail" placeholder="Your email (optional)" />
-      <button id="feedbackSubmit" class="feedback-submit">Send feedback</button>
-    </div>
- 
-    <!-- Step 3: Thank you -->
-    <div id="feedbackStep3" class="feedback-step" style="display:none">
-      <div class="feedback-success">🎉</div>
-      <h3>Thank you!</h3>
-      <p>We really appreciate your feedback.</p>
-    </div>
   </div>
-</div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="/script.js"></script>

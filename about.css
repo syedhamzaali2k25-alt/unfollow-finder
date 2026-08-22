@@ -1,0 +1,149 @@
+/* ============================================================
+   Unfollow Finder — About page
+   Loads after style.css and legal.css
+   ============================================================ */
+
+/* ── HERO ───────────────────────────────────── */
+.ab-hero {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+.ab-hero h1 {
+  font-family: var(--display);
+  font-size: clamp(31px, 5vw, 50px);
+  font-weight: 900;
+  letter-spacing: -.042em;
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+.ab-hero p {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+
+/* ── APPROACH ───────────────────────────────── */
+.ab-approach {
+  background: var(--card);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  margin: 44px 0;
+}
+.ab-approach-title {
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: -.03em;
+  margin-bottom: 24px;
+}
+
+.ab-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ab-steps li {
+  display: flex;
+  gap: 16px;
+  padding: 18px;
+  border-radius: var(--r);
+  background: var(--bg);
+}
+
+.ab-step-n {
+  width: 30px; height: 30px;
+  border-radius: 9px;
+  background: var(--pink);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13.5px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ab-steps h3 {
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+.ab-steps p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+.ab-steps a { color: var(--pink); font-weight: 550; }
+.ab-steps a:hover { text-decoration: underline; }
+.ab-steps code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 12.5px;
+  background: var(--card);
+  color: var(--ink);
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+
+/* ── VALUES ─────────────────────────────────── */
+.ab-values-wrap { margin: 48px 0; }
+
+.ab-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.ab-value {
+  background: var(--card);
+  border-radius: var(--r-lg);
+  padding: 26px 24px;
+}
+
+.ab-ico {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.ab-ico svg { width: 21px; height: 21px; }
+.ab-ico--pink   { background: var(--pink-wash);   color: var(--pink); }
+.ab-ico--violet { background: var(--violet-wash); color: var(--violet); }
+.ab-ico--green  { background: var(--green-wash);  color: var(--green); }
+.ab-ico--amber  { background: var(--amber-wash);  color: var(--amber); }
+
+.ab-value h3 {
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  margin-bottom: 7px;
+}
+.ab-value p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 680px) {
+  .ab-hero { margin-bottom: 38px; }
+  .ab-hero h1 br { display: none; }
+  .ab-hero p { font-size: 15.5px; }
+
+  .ab-approach { padding: 24px 20px; margin: 34px 0; }
+  .ab-steps li { padding: 16px; gap: 13px; }
+
+  .ab-values { grid-template-columns: 1fr; }
+  .ab-values-wrap { margin: 36px 0; }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Unfollow Finder",
+  "short_name": "Unfollow Finder",
+  "description": "See exactly who unfollowed you on Instagram. No login, no password.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F5F9",
+  "theme_color": "#E1005E",
+  "icons": [
+    {
+      "src": "/favicon/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
