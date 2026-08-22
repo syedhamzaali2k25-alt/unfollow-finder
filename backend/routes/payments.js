@@ -6,7 +6,7 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 
 // ✅ Whop Webhook — Standard Webhooks spec
-router.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+router.post('/webhook', async (req, res) => {
   try {
     const secret = process.env.WHOP_WEBHOOK_SECRET;
 
@@ -60,12 +60,17 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
     const eventName = rawEvent.replace(/_/g, '.');
 
     const meta  = payload.data?.metadata || {};
-    const email = payload.data?.user_email || payload.data?.email;
-
+    // Whop nests the email differently depending on the event type
+const email = payload.data?.user?.email
+           || payload.data?.user_email
+           || payload.data?.email
+           || payload.data?.membership?.user?.email;
     console.log('Whop webhook:', eventName, 'User:', meta.user_id, 'Email:', email);
 
     // ── Payment successful → upgrade ──
-    if (eventName === 'payment.succeeded' || eventName === 'membership.activated') {
+    if (eventName === 'payment.succeeded'
+     || eventName === 'membership.activated'
+     || eventName === 'member.created') {
       const plan = meta.plan === 'team' ? 'team' : 'pro';
 
       if (meta.user_id) {
