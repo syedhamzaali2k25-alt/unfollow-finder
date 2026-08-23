@@ -24,16 +24,19 @@ router.post('/webhook', async (req, res) => {
        // Pass only the webhook headers. req.headers also contains
     // host, connection and content-length, which the Fetch spec
     // forbids — undici drops the whole set when it sees them.
+    const headers = new Headers();
+    headers.set('webhook-id',        req.headers['webhook-id'] || '');
+    headers.set('webhook-timestamp', req.headers['webhook-timestamp'] || '');
+    headers.set('webhook-signature', req.headers['webhook-signature'] || '');
+    headers.set('content-type',      'application/json');
+
     const request = new Request('https://unfollowfinder.com/api/payments/webhook', {
       method: 'POST',
-      headers: {
-        'webhook-id':        req.headers['webhook-id'],
-        'webhook-timestamp': req.headers['webhook-timestamp'],
-        'webhook-signature': req.headers['webhook-signature'],
-        'content-type':      'application/json'
-      },
+      headers,
       body: req.body
     });
+
+    console.log('sig on request:', request.headers.get('webhook-signature'));
 
     webhook = await validateWebhook(request);
 
