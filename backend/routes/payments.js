@@ -7,13 +7,18 @@ const router = express.Router();
 
 
 /* ──────────────────────────────────────────────────
-   Whop signature verification (Standard Webhooks)
+   Whop signature verification
 
-   We verify by hand instead of using @whop/api's
-   makeWebhookValidator. The installed package version
-   looks for a differently-named signature header than
-   the one Whop actually sends, so it always threw
+   Verified by hand rather than with @whop/api's
+   makeWebhookValidator — the installed version looks
+   for a differently named signature header than the
+   one Whop sends, so it always threw
    "Missing header containing signature".
+
+   Key = the secret exactly as it appears in the Whop
+   dashboard, ws_ prefix included, as utf8 bytes.
+   Digest = base64. Confirmed by testing every
+   combination against a real delivery.
    ────────────────────────────────────────────────── */
 function verifyWhop(req) {
   const id  = req.headers['webhook-id'];
@@ -22,6 +27,7 @@ function verifyWhop(req) {
 
   if (!id || !ts || !sig) throw new Error('missing headers');
 
+  // Reject replays: anything outside a 5 minute window
   if (Math.abs(Date.now() / 1000 - Number(ts)) > 300) {
     throw new Error('timestamp too old');
   }
@@ -33,12 +39,12 @@ function verifyWhop(req) {
   const body   = Buffer.isBuffer(req.body) ? req.body : Buffer.from(String(req.body));
   const signed = `${id}.${ts}.${body.toString('utf8')}`;
 
-  // Key = secret as-is, ws_ prefix samet, utf8 bytes
   const expected = crypto
     .createHmac('sha256', Buffer.from(process.env.WHOP_WEBHOOK_SECRET, 'utf8'))
     .update(signed)
     .digest('base64');
 
+  // Header format: "v1,<sig>" — may hold several space-separated versions
   const ok = sig.split(' ').some((part) => {
     const value = part.split(',')[1];
     if (!value || value.length !== expected.length) return false;
@@ -49,6 +55,31 @@ function verifyWhop(req) {
 
   return JSON.parse(body.toString('utf8'));
 }
+
+
+/* Checkout metadata does not sit at data.metadata. Whop nests
+   it differently per event — under checkout_session, membership
+   or plan — so walk the payload and take the first object that
+   carries a user_id. */
+function findMeta(obj, depth = 0) {
+  if (!obj || typeof obj !== 'object' || depth > 4) return {};
+
+  if (obj.user_id) return obj;
+
+  if (obj.metadata && typeof obj.metadata === 'object' && obj.metadata.user_id) {
+    return obj.metadata;
+  }
+
+  for (const value of Object.values(obj)) {
+    if (value && typeof value === 'object') {
+      const found = findMeta(value, depth + 1);
+      if (found.user_id) return found;
+    }
+  }
+
+  return {};
+}
+
 
 // ── Whop Webhook ──
 router.post('/webhook', async (req, res) => {
@@ -78,7 +109,7 @@ async function handleWebhook(webhook) {
   const event = raw.replace(/_/g, '.');
   const data  = webhook.data || {};
 
-  const meta = data.metadata || {};
+  const meta = findMeta(data);
 
   // Whop nests the email differently per event type
   const email = data.user?.email
