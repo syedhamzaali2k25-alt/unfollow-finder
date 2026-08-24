@@ -1,16 +1,58 @@
 const express = require('express');
+const crypto = require('crypto');
 const pool = require('../config/database');
 const auth = require('../middleware/auth');
-const { makeWebhookValidator } = require('@whop/api');
 
 const router = express.Router();
 
-/* Whop's own validator. It handles the ws_/whsec_ prefix,
-   the base64 decoding and the timestamp window itself —
-   all the things that are easy to get wrong by hand. */
-const validateWebhook = makeWebhookValidator({
-  webhookSecret: process.env.WHOP_WEBHOOK_SECRET
-});
+
+/* ──────────────────────────────────────────────────
+   Whop signature verification (Standard Webhooks)
+
+   We verify by hand instead of using @whop/api's
+   makeWebhookValidator. The installed package version
+   looks for a differently-named signature header than
+   the one Whop actually sends, so it always threw
+   "Missing header containing signature".
+   ────────────────────────────────────────────────── */
+function verifyWhop(req) {
+  const id  = req.headers['webhook-id'];
+  const ts  = req.headers['webhook-timestamp'];
+  const sig = req.headers['webhook-signature'];
+
+  if (!id || !ts || !sig) throw new Error('missing headers');
+
+  // Reject replays: anything outside a 5 minute window
+  if (Math.abs(Date.now() / 1000 - Number(ts)) > 300) {
+    throw new Error('timestamp too old');
+  }
+
+  if (!process.env.WHOP_WEBHOOK_SECRET) {
+    throw new Error('WHOP_WEBHOOK_SECRET is not set');
+  }
+
+  // The secret is base64 after stripping its prefix
+  const secret = process.env.WHOP_WEBHOOK_SECRET.replace(/^(ws_|whsec_)/, '');
+  const key = Buffer.from(secret, 'base64');
+
+  const body = Buffer.isBuffer(req.body)
+    ? req.body
+    : Buffer.from(String(req.body));
+
+  const signed   = `${id}.${ts}.${body.toString('utf8')}`;
+  const expected = crypto.createHmac('sha256', key).update(signed).digest('base64');
+
+  // Header format: "v1,<sig>" — may hold several space-separated versions
+  const ok = sig.split(' ').some((part) => {
+    const value = part.split(',')[1];
+    if (!value || value.length !== expected.length) return false;
+    return crypto.timingSafeEqual(Buffer.from(value), Buffer.from(expected));
+  });
+
+  if (!ok) throw new Error('signature mismatch');
+
+  return JSON.parse(body.toString('utf8'));
+}
 
 
 // ── Whop Webhook ──
@@ -18,28 +60,7 @@ router.post('/webhook', async (req, res) => {
   let webhook;
 
   try {
-    console.log('Headers:', JSON.stringify(req.headers, null, 2));
-    // The validator expects a Fetch Request. req.body is the raw
-    // Buffer because server.js mounts express.raw() on this path.
-       // Pass only the webhook headers. req.headers also contains
-    // host, connection and content-length, which the Fetch spec
-    // forbids — undici drops the whole set when it sees them.
-    const headers = new Headers();
-    headers.set('webhook-id',        req.headers['webhook-id'] || '');
-    headers.set('webhook-timestamp', req.headers['webhook-timestamp'] || '');
-    headers.set('webhook-signature', req.headers['webhook-signature'] || '');
-    headers.set('content-type',      'application/json');
-
-    const request = new Request('https://unfollowfinder.com/api/payments/webhook', {
-      method: 'POST',
-      headers,
-      body: req.body
-    });
-
-    console.log('sig on request:', request.headers.get('webhook-signature'));
-
-    webhook = await validateWebhook(request);
-
+    webhook = verifyWhop(req);
   } catch (err) {
     console.warn('❌ Whop webhook rejected:', err.message);
     return res.status(401).json({ error: 'Invalid signature' });
