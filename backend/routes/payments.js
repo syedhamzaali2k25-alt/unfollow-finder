@@ -104,6 +104,7 @@ router.post('/webhook', async (req, res) => {
 
 
 async function handleWebhook(webhook) {
+  console.log('PAYLOAD:', JSON.stringify(webhook, null, 2));
   // Newer payloads use `action`, older ones use `event`/`type`
   const raw   = webhook.action || webhook.event || webhook.type || '';
   const event = raw.replace(/_/g, '.');
