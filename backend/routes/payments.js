@@ -21,44 +21,33 @@ function verifyWhop(req) {
   const sig = req.headers['webhook-signature'];
 
   if (!id || !ts || !sig) throw new Error('missing headers');
+
   if (Math.abs(Date.now() / 1000 - Number(ts)) > 300) {
     throw new Error('timestamp too old');
   }
 
-  const full    = process.env.WHOP_WEBHOOK_SECRET;
-  const trimmed = full.replace(/^(ws_|whsec_)/, '');
+  if (!process.env.WHOP_WEBHOOK_SECRET) {
+    throw new Error('WHOP_WEBHOOK_SECRET is not set');
+  }
 
   const body   = Buffer.isBuffer(req.body) ? req.body : Buffer.from(String(req.body));
   const signed = `${id}.${ts}.${body.toString('utf8')}`;
 
-  // Har mumkin key format try karein
-  const keys = {
-    'utf8-trimmed': Buffer.from(trimmed, 'utf8'),
-    'utf8-full':    Buffer.from(full, 'utf8'),
-    'hex':          /^[0-9a-f]+$/i.test(trimmed) ? Buffer.from(trimmed, 'hex') : null,
-    'base64':       Buffer.from(trimmed, 'base64')
-  };
+  // Key = secret as-is, ws_ prefix samet, utf8 bytes
+  const expected = crypto
+    .createHmac('sha256', Buffer.from(process.env.WHOP_WEBHOOK_SECRET, 'utf8'))
+    .update(signed)
+    .digest('base64');
 
-  const given = sig.split(' ').map(p => p.split(',')[1]).filter(Boolean);
+  const ok = sig.split(' ').some((part) => {
+    const value = part.split(',')[1];
+    if (!value || value.length !== expected.length) return false;
+    return crypto.timingSafeEqual(Buffer.from(value), Buffer.from(expected));
+  });
 
-  for (const [name, key] of Object.entries(keys)) {
-    if (!key || !key.length) continue;
-    const b64 = crypto.createHmac('sha256', key).update(signed).digest('base64');
-    const hex = crypto.createHmac('sha256', key).update(signed).digest('hex');
+  if (!ok) throw new Error('signature mismatch');
 
-    if (given.includes(b64)) {
-      console.log(`🔑 MATCH → key=${name} digest=base64`);
-      return JSON.parse(body.toString('utf8'));
-    }
-    if (given.includes(hex)) {
-      console.log(`🔑 MATCH → key=${name} digest=hex`);
-      return JSON.parse(body.toString('utf8'));
-    }
-    console.log(`   try ${name}: b64=${b64.slice(0, 12)} hex=${hex.slice(0, 12)}`);
-  }
-
-  console.log('   given sig:', given.join(' | '));
-  throw new Error('signature mismatch');
+  return JSON.parse(body.toString('utf8'));
 }
 
 // ── Whop Webhook ──
