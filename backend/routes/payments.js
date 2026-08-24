@@ -21,39 +21,45 @@ function verifyWhop(req) {
   const sig = req.headers['webhook-signature'];
 
   if (!id || !ts || !sig) throw new Error('missing headers');
-
-  // Reject replays: anything outside a 5 minute window
   if (Math.abs(Date.now() / 1000 - Number(ts)) > 300) {
     throw new Error('timestamp too old');
   }
 
-  if (!process.env.WHOP_WEBHOOK_SECRET) {
-    throw new Error('WHOP_WEBHOOK_SECRET is not set');
+  const full    = process.env.WHOP_WEBHOOK_SECRET;
+  const trimmed = full.replace(/^(ws_|whsec_)/, '');
+
+  const body   = Buffer.isBuffer(req.body) ? req.body : Buffer.from(String(req.body));
+  const signed = `${id}.${ts}.${body.toString('utf8')}`;
+
+  // Har mumkin key format try karein
+  const keys = {
+    'utf8-trimmed': Buffer.from(trimmed, 'utf8'),
+    'utf8-full':    Buffer.from(full, 'utf8'),
+    'hex':          /^[0-9a-f]+$/i.test(trimmed) ? Buffer.from(trimmed, 'hex') : null,
+    'base64':       Buffer.from(trimmed, 'base64')
+  };
+
+  const given = sig.split(' ').map(p => p.split(',')[1]).filter(Boolean);
+
+  for (const [name, key] of Object.entries(keys)) {
+    if (!key || !key.length) continue;
+    const b64 = crypto.createHmac('sha256', key).update(signed).digest('base64');
+    const hex = crypto.createHmac('sha256', key).update(signed).digest('hex');
+
+    if (given.includes(b64)) {
+      console.log(`🔑 MATCH → key=${name} digest=base64`);
+      return JSON.parse(body.toString('utf8'));
+    }
+    if (given.includes(hex)) {
+      console.log(`🔑 MATCH → key=${name} digest=hex`);
+      return JSON.parse(body.toString('utf8'));
+    }
+    console.log(`   try ${name}: b64=${b64.slice(0, 12)} hex=${hex.slice(0, 12)}`);
   }
 
-  // The secret is base64 after stripping its prefix
-  const secret = process.env.WHOP_WEBHOOK_SECRET.replace(/^(ws_|whsec_)/, '');
-  const key = Buffer.from(secret, 'base64');
-
-  const body = Buffer.isBuffer(req.body)
-    ? req.body
-    : Buffer.from(String(req.body));
-
-  const signed   = `${id}.${ts}.${body.toString('utf8')}`;
-  const expected = crypto.createHmac('sha256', key).update(signed).digest('base64');
-
-  // Header format: "v1,<sig>" — may hold several space-separated versions
-  const ok = sig.split(' ').some((part) => {
-    const value = part.split(',')[1];
-    if (!value || value.length !== expected.length) return false;
-    return crypto.timingSafeEqual(Buffer.from(value), Buffer.from(expected));
-  });
-
-  if (!ok) throw new Error('signature mismatch');
-
-  return JSON.parse(body.toString('utf8'));
+  console.log('   given sig:', given.join(' | '));
+  throw new Error('signature mismatch');
 }
-
 
 // ── Whop Webhook ──
 router.post('/webhook', async (req, res) => {
