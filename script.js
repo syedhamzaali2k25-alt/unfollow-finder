@@ -1007,10 +1007,10 @@ async function initOneTap() {
     'SHA-256',
     new TextEncoder().encode(raw)
   );
-  const hashed = btoa(String.fromCharCode(...new Uint8Array(digest)))
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/, '');
+  // Supabase compares against a hex digest, not base64
+  const hashed = [...new Uint8Array(digest)]
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
 
   google.accounts.id.initialize({
     client_id: GOOGLE_CLIENT_ID,
