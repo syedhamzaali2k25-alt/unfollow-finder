@@ -1424,7 +1424,7 @@ button, input, textarea { font-family: inherit; color: inherit; }
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 20px 24px;
+  padding: 8px 24px;
   text-align: center;
   overflow: hidden;
 }
@@ -1432,10 +1432,12 @@ button, input, textarea { font-family: inherit; color: inherit; }
 .ad-slot--top {
   max-width: 100%;
   background: var(--bg);
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .ad-slot--native {
-  padding: 44px 24px;
+  padding: 32px 24px;
   background: var(--bg);
 }
 
@@ -1446,10 +1448,9 @@ button, input, textarea { font-family: inherit; color: inherit; }
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--faint);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
-/* Reserve the space so the page doesn't jump when the ad loads */
 .ad-inner {
   min-height: 90px;
   display: flex;
@@ -1457,10 +1458,27 @@ button, input, textarea { font-family: inherit; color: inherit; }
   justify-content: center;
 }
 
-@media (max-width: 780px) {
-  .ad-slot { padding-left: 12px; padding-right: 12px; }
-  .ad-inner { min-height: 0; transform: scale(.86); }
+.hero {
+  padding-top: 12px !important;
 }
 
-.hero { padding-top: 24px !important; }
-.ad-slot--top { padding-bottom: 12px; }
+@media (max-width: 780px) {
+  .ad-slot {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .ad-slot--top {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .ad-inner {
+    min-height: 60px;
+    transform: none;
+  }
+
+  .hero {
+    padding-top: 8px !important;
+  }
+}
