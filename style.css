@@ -1420,3 +1420,38 @@ button, input, textarea { font-family: inherit; color: inherit; }
   .shot-frame { animation: none; }
 }
 /* ══ AD SLOTS ═════════════════════════════════ */
+/* TOP AD */
+/* ══ AD SLOTS ═════════════════════════════════ */
+/* TOP AD */
+.ad-slot--top {
+  background: linear-gradient(120deg, var(--card) 0%, var(--card) 55%, var(--pink-wash) 100%);
+  padding: 14px 24px 20px;
+  margin-top: var(--nav-h);
+  text-align: center;
+}
+
+.ad-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 10px;
+}
+
+.ad-inner {
+  max-width: 970px;
+  margin: 0 auto;
+  min-height: 90px;
+  background-color: var(--card);   /* ad box khud clean white card jaisa rahega */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+@media (max-width: 780px) {
+  .ad-slot--top { padding: 10px 12px 14px; }
+  .ad-inner { min-height: 60px; max-width: 100%; }
+}
