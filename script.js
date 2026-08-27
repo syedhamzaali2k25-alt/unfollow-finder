@@ -66,6 +66,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   updateAuthUI();
+  setTimeout(initOneTap, 800);
 
 
   /* ── 1. NAVBAR ── */
@@ -993,21 +994,39 @@ document.addEventListener('DOMContentLoaded', function () {
 /* ═════════════════════════════════════════════════
    GOOGLE ONE TAP
    ═════════════════════════════════════════════════ */
-async function handleGoogleOneTap(response) {
-  try {
-    // Supabase verifies the token server-side. Never decode
-    // it in the browser and trust what's inside.
-    const { data, error } = await supabaseClient.auth.signInWithIdToken({
-      provider: 'google',
-      token: response.credential
-    });
+const GOOGLE_CLIENT_ID = '632029210426-qetuta1k6qakvf1kl8iu0jusju39qk8i.apps.googleusercontent.com';
 
-    if (error) throw error;
+async function initOneTap() {
+  if (authState.isLoggedIn) return;
+  if (typeof google === 'undefined' || !google.accounts) return;
 
-    // onAuthStateChange picks it up from here
-    console.log('One Tap signed in:', data.user.email);
+  // Google puts a SHA-256 hash of the nonce inside the token,
+  // so Supabase needs the raw value and Google the hashed one.
+  const raw = crypto.randomUUID();
+  const digest = await crypto.subtle.digest(
+    'SHA-256',
+    new TextEncoder().encode(raw)
+  );
+  const hashed = btoa(String.fromCharCode(...new Uint8Array(digest)))
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
 
-  } catch (err) {
-    console.error('One Tap failed:', err.message);
-  }
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    nonce: hashed,
+    auto_select: false,
+    cancel_on_tap_outside: true,
+    callback: async (response) => {
+      const { error } = await supabaseClient.auth.signInWithIdToken({
+        provider: 'google',
+        token: response.credential,
+        nonce: raw
+      });
+
+      if (error) console.error('One Tap failed:', error.message);
+    }
+  });
+
+  google.accounts.id.prompt();
 }
