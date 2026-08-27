@@ -137,6 +137,10 @@ app.get(['/contact', '/contact-us'], (req, res) => {
   res.sendFile(path.join(ROOT, 'contact.html'));
 });
 
+app.get('/terms', (req, res) => {
+  res.sendFile(path.join(ROOT, 'terms.html'));
+});
+
 
 /* ══════════════════════════════════════════════════
    8. Fallbacks
