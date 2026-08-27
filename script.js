@@ -988,3 +988,26 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.target === banner) closeOnboard();
   };
 });
+
+
+/* ═════════════════════════════════════════════════
+   GOOGLE ONE TAP
+   ═════════════════════════════════════════════════ */
+async function handleGoogleOneTap(response) {
+  try {
+    // Supabase verifies the token server-side. Never decode
+    // it in the browser and trust what's inside.
+    const { data, error } = await supabaseClient.auth.signInWithIdToken({
+      provider: 'google',
+      token: response.credential
+    });
+
+    if (error) throw error;
+
+    // onAuthStateChange picks it up from here
+    console.log('One Tap signed in:', data.user.email);
+
+  } catch (err) {
+    console.error('One Tap failed:', err.message);
+  }
+}
