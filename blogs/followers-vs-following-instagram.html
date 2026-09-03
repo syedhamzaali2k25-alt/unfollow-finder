@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Followers vs Following on Instagram (Explained Simply) | Unfollow Finder</title>
+       <!-- ── FAVICON ────────────────────────────────── -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="/favicon/favicon.png" sizes="96x96" />
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+<link rel="manifest" href="/favicon/site.webmanifest" />
+<meta name="theme-color" content="#E1005E" />
+
+
+  <meta name="description" content="Followers follow you. Following is who you follow. Here's what each number means, how the ratio affects your account, and how to follow someone." />
+  <meta name="keywords" content="followers vs following instagram, follow and follow back instagram, how to follow someone on instagram, difference between followers and following, instagram following meaning" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="blog.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://unfollowfinder.com/blogs/followers-vs-following-instagram" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Followers vs Following on Instagram (Explained Simply)" />
+  <meta property="og:description" content="The two numbers on your profile, what they actually mean, and why the ratio matters." />
+  <meta property="og:url" content="https://unfollowfinder.com/blogs/followers-vs-following-instagram" />
+  <meta property="og:site_name" content="Unfollow Finder" />
+  <meta property="article:published_time" content="2026-08-31" />
+  <meta property="article:section" content="Basics" />
+  <meta name="robots" content="index, follow" />
+
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Followers vs Following on Instagram (Explained Simply)" />
+  <meta name="twitter:description" content="Two numbers, side by side, and most people have them backwards." />
+
+  <!-- Article structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Followers vs Following on Instagram: What's the Difference?",
+    "description": "Followers follow you. Following is who you follow. Here's what each number means, how the ratio affects your account, and how to follow someone.",
+    "author": { "@type": "Organization", "name": "Unfollow Finder" },
+    "publisher": { "@type": "Organization", "name": "Unfollow Finder" },
+    "datePublished": "2026-08-31",
+    "dateModified": "2026-08-31",
+    "mainEntityOfPage": "https://unfollowfinder.com/blogs/followers-vs-following-instagram"
+  }
+  </script>
+
+  <!-- FAQ structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What's the difference between followers and following on Instagram?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Followers are people who follow you and see your posts. Following is people you follow, whose posts you see. Followers are inbound, following is outbound."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does following someone mean they follow me?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Following is one-directional. They only follow you back if they choose to, and Instagram doesn't do it automatically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I see who follows me but I don't follow back?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not in the app. You need to compare your exported followers and following data. Unfollow Finder does that comparison for you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's a good follower-to-following ratio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "There's no official number, but having more followers than following is generally read as healthy. Following far more than follow you tends to look like follow-for-follow activity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does unfollowing someone remove them from my followers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Unfollowing only affects your following list. If they follow you, they remain a follower until they unfollow you themselves."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did my following count change when I didn't unfollow anyone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Usually because an account you followed was deleted, deactivated, or removed by Instagram. Your following count drops automatically when that happens."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+<header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="logo">
+  <img src="/image/unfollow-finder-logo.png" alt="Unfollow Finder Logo" class="logo-img" />
+</a>
+
+     <nav class="nav-links">
+  <a href="/#features">Features</a>
+  <a href="/#how">How it works</a>
+  <a href="/pricing">Pricing</a>
+  <a href="/blogs/">Blogs</a>
+
+
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#" class="btn-ghost" onclick="openAuth('login');return false;">Log in</a>
+        <a href="#" class="btn-primary" onclick="openAuth('signup');return false;">Get started free</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/blogs/">Blogs</a>
+
+      <a href="#" class="btn-primary mobile-cta" onclick="openAuth('signup');return false;">Get started free</a>
+    </div>
+  </header>
+
+
+  <!-- ── ARTICLE HERO ───────────────────────────── -->
+  <section class="article-hero">
+    <div class="container">
+      <a href="/blogs/" class="article-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to blog
+      </a>
+      <span class="article-tag">Basics</span>
+      <h1>Followers vs Following on Instagram: What's the Difference?</h1>
+      <div class="article-meta">
+        <span>Unfollow Finder Team</span>
+        <span class="dot-sep"></span>
+        <span>5 min read</span>
+        <span class="dot-sep"></span>
+        <span>Updated August 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ARTICLE BODY ───────────────────────────── -->
+  <section class="article-body">
+    <div class="container">
+      <div class="article-content">
+
+        <img src="/image/blogs_18.jpg" alt="Instagram profile showing follower and following counts side by side" loading="lazy" class="article-img" />
+
+        <p><strong>Followers are people who follow you, and following is people you follow.</strong></p>
+
+        <p>Two numbers sit side by side at the top of every Instagram profile, and a surprising number of people have them backwards. Here's the clean version, plus what the relationship between them actually signals.</p>
+
+        <h2>The one-line answer</h2>
+        <ul>
+          <li><strong>Followers</strong> = people who follow you. They see your posts in their feed.</li>
+          <li><strong>Following</strong> = people you follow. You see their posts in your feed.</li>
+        </ul>
+
+        <p>Followers is inbound. Following is outbound. If someone follows you, their name appears in your followers list, not your following list, and nothing happens to your following count.</p>
+
+        <h2>Why people mix them up</h2>
+        <p>Because Instagram shows them next to each other in the same font at the same length, and because "following" is grammatically ambiguous in English. "I follow 400 people" and "four hundred people follow me" are each shortened to something that feels like "following 400".</p>
+
+        <div class="article-callout">
+          <strong>A trick that sticks</strong>
+          <p>Your Following list is a list of choices you've made every account on it is there because you pushed a button. Your follower list is a list of choices made by other people.</p>
+        </div>
+
+        <h2>What each number tells someone looking at your profile</h2>
+        <p>A high follower count indicates how many people liked your content.</p>
+
+        <p>A high following count signals a lack of selectivity. Following 5,000 accounts suggests you are following people indiscriminately, which is what follow-for-follow behaviour looks like.</p>
+
+        <p>This is why the ratio carries more weight than either number on its own. An account with 3,000 followers and 200 following looks like someone people want to listen to. An account with 3,000 followers and 4,000 following looks like someone who traded follows to get there. Same follower count, very different impression.</p>
+
+        <p>There is no magic number; the useful heuristic is simply that followers should exceed following once your account is established.</p>
+
+        <h2>What "follow back" means</h2>
+        <p>A follow back is when you follow someone and they follow you in return. When both accounts follow each other, you're mutual, you each appear on the other's list, and you both see each other's posts and Stories.</p>
+
+        <p>Three states are possible between any two accounts:</p>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>State</th>
+              <th>You see their posts</th>
+              <th>They see your posts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="method-name">You follow them only</span></td>
+              <td>Yes</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td><span class="method-name">They follow you only</span></td>
+              <td>No</td>
+              <td>Yes</td>
+            </tr>
+            <tr class="highlight">
+              <td><span class="method-name">Mutual follow</span></td>
+              <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>That middle row is the one that catches people out. Someone can follow you without you following them, you won't see their content at all, and they'll see everything you post.</p>
+
+        <h2>How to follow someone on Instagram</h2>
+        <ol>
+          <li>Search their username, or tap their name on a post</li>
+          <li>On their profile, tap the blue Follow button</li>
+          <li>If their account is public, you're following immediately</li>
+          <li>If it's private, the button becomes Requested, and you see nothing until they approve</li>
+        </ol>
+
+        <p>To unfollow, tap the same button (now reading Following) and confirm. No notification is sent either way see <a href="/blogs/does-instagram-notify-unfollow">does Instagram notify you when you unfollow someone</a>.</p>
+
+        <article-inline-cta></article-inline-cta>
+
+        <h2>The gap between the two numbers</h2>
+        <p>Here's what makes this more than a definitions question: your following list and your followers list overlap, but never completely.</p>
+
+        <p>If you follow 800 accounts and have 600 followers, that does not mean 600 of the accounts you follow follow you back. The two groups are made of different people. You might follow 800 and have only 300 mutuals, the other 500 you follow don't follow you, and the other 300 of your followers are people you don't follow.</p>
+
+        <p>Instagram never shows you that breakdown. There's no view in the app for "accounts I follow who don't follow me back", which is why the third-party category exists at all.</p>
+
+        <p>To see it, you need your own data:</p>
+
+        <ol>
+          <li>Request your Instagram data export in JSON format (<a href="/blogs/how-to-download-instagram-data">guide</a>)</li>
+          <li>Upload <code>followers_1.json</code> and <code>following.json</code> to <a href="/">Unfollow Finder</a></li>
+          <li>You get three lists: mutuals, people who don't follow you back, and people who unfollowed you</li>
+        </ol>
+
+        <p>It runs entirely in your browser, so there's no login and no password involved.</p>
+
+        <h2>When the numbers move on their own</h2>
+        <p>Both counts shift without you doing anything, and it's usually not personal:</p>
+        <ul>
+          <li>Instagram removes bot and spam accounts in periodic purges, which drops your follower count overnight</li>
+          <li>People deactivate or delete their accounts</li>
+          <li>Accounts get banned, and disappear from your followers</li>
+          <li>Someone blocks you, which removes the follow in both directions silently</li>
+        </ul>
+
+        <p>That last one is worth knowing: if a mutual vanishes from both lists at once, a block is the likeliest explanation. More detail in <a href="/blogs/why-is-my-instagram-follower-count-dropping">why is my Instagram follower count dropping</a>.</p>
+
+        <h2>Frequently asked questions</h2>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What's the difference between followers and following on Instagram?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Followers are people who follow you and see your posts. Following is people you follow, whose posts you see. Followers are inbound, following is outbound.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Does following someone mean they follow me?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">No. Following is one-directional. They only follow you back if they choose to, and Instagram doesn't do it automatically.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Can I see who follows me but I don't follow back?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Not in the app. You need to compare your exported followers and following data <a href="/">Unfollow Finder</a> does that comparison for you.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              What's a good follower-to-following ratio?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">There's no official number, but having more followers than following is generally read as healthy. Following far more than follow you tends to look like follow-for-follow activity.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Does unfollowing someone remove them from my followers?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">No. Unfollowing only affects your following list. If they follow you, they remain a follower until they unfollow you themselves.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Why did my following count change when I didn't unfollow anyone?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Usually because an account you followed was deleted, deactivated, or removed by Instagram. Your following count drops automatically when that happens.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="a-logo">
+            <img src="/image/UNFOLLOW FINDER-2.png" alt="Unfollow Finder" class="f-logo-img" />
+        </a>
+        <p>The safest Instagram unfollow checker. Built for creators who care about privacy.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/#features">Features</a>
+          <a href="/pricing">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="/blogs/">Blogs</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/about-us">About Us</a>
+          <a href="/contact">Contact Us</a>
+          <a href="/privacy">Privacy policy</a>
+          <a href="/terms">Terms of service</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Unfollow Finder. All rights reserved.</p>
+      <p>Not affiliated with Instagram or Meta.</p>
+    </div>
+  </footer>
+
+    <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+
+    <div class="auth-modal" id="auth-modal">
+
+      <!-- Close -->
+      <button class="auth-close" id="auth-close" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+
+      <!-- Logo -->
+      <div class="auth-logo">
+  <img src="/image/unfollow-finder-logo.png" alt="Unfollow Finder" class="auth-logo-img" />
+</div>
+
+
+      <!-- Tab switcher -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Create account</button>
+        <button class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Log in</button>
+      </div>
+
+      <!-- Social buttons -->
+      <div class="auth-socials">
+        <button class="social-btn google" onclick="authWithProvider('google')">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Continue with Google
+        </button>
+
+        <button class="social-btn apple" onclick="authWithProvider('apple')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Continue with Apple
+        </button>
+      </div>
+
+      <!-- Divider -->
+      <div class="auth-divider"><span>or</span></div>
+
+      <!-- Email form — Signup -->
+      <div class="auth-form" id="form-signup">
+        <div class="auth-field">
+          <label for="su-name">Full name</label>
+          <input type="text" id="su-name" placeholder="Your name" autocomplete="name">
+        </div>
+        <div class="auth-field">
+          <label for="su-email">Email address</label>
+          <input type="email" id="su-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="su-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="su-pass" placeholder="Create a password" autocomplete="new-password">
+            <button class="pass-toggle" onclick="togglePass('su-pass',this)" type="button" aria-label="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('signup')">Create free account</button>
+         <p class="auth-terms">By signing up you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
+      </div>
+
+      <!-- Email form — Login -->
+      <div class="auth-form" id="form-login" style="display:none">
+        <div class="auth-field">
+          <label for="li-email">Email address</label>
+          <input type="email" id="li-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="li-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="li-pass" placeholder="Your password" autocomplete="current-password">
+            <button class="pass-toggle" onclick="togglePass('li-pass',this)" type="button" aria-label="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('login')">Log in to Unfollow Finder</button>
+      </div>
+
+      <!-- Switch text -->
+      <p class="auth-switch" id="auth-switch-text">
+        Already have an account? <button onclick="switchAuthTab('login')">Log in</button>
+      </p>
+
+    </div>
+  </div>
+
+  <button id="feedbackBtn" class="feedback-btn" aria-label="Give feedback">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>Feedback</span>
+</button>
+ 
+<!-- Feedback Modal -->
+<div id="feedbackModal" class="feedback-overlay">
+  <div class="feedback-modal">
+    <button id="feedbackClose" class="feedback-close" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+ 
+    <!-- Step 1: Rating -->
+    <div id="feedbackStep1" class="feedback-step">
+      <h3>How's your experience?</h3>
+      <p>Your feedback helps us improve 🙏</p>
+      <div class="emoji-row">
+        <button class="emoji-btn" data-rating="1">😞<span>Bad</span></button>
+        <button class="emoji-btn" data-rating="2">😐<span>Okay</span></button>
+        <button class="emoji-btn" data-rating="3">🙂<span>Good</span></button>
+        <button class="emoji-btn" data-rating="4">😍<span>Love it</span></button>
+      </div>
+    </div>
+ 
+    <!-- Step 2: Comment -->
+    <div id="feedbackStep2" class="feedback-step" style="display:none">
+      <h3>Tell us more</h3>
+      <p id="feedbackPrompt">What can we improve?</p>
+      <textarea id="feedbackText" placeholder="Type your feedback here..." rows="4"></textarea>
+      <input type="email" id="feedbackEmail" placeholder="Your email (optional)" />
+      <button id="feedbackSubmit" class="feedback-submit">Send feedback</button>
+    </div>
+ 
+    <!-- Step 3: Thank you -->
+    <div id="feedbackStep3" class="feedback-step" style="display:none">
+      <div class="feedback-success">🎉</div>
+      <h3>Thank you!</h3>
+      <p>We really appreciate your feedback.</p>
+    </div>
+  </div>
+</div>
+
+  <script>
+
+    document.querySelector('article-inline-cta').outerHTML = `
+      <div class="article-inline-cta">
+        <div>
+          <h3>See how many actually follow you back</h3>
+          <p>Upload your data export and get the full breakdown in seconds.</p>
+        </div>
+        <a href="/#tool" class="btn-primary">Try Unfollow Finder free </a>
+      </div>
+    `;
+  </script>
+  <script src="../script.js"></script>
+
+</body>
+</html>

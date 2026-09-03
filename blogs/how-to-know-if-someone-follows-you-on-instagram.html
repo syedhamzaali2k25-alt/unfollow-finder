@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Know if Someone Follows You on Instagram (2026) | Unfollow Finder</title>
+       <!-- ── FAVICON ────────────────────────────────── -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" href="/favicon/favicon.png" sizes="96x96" />
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+<link rel="manifest" href="/favicon/site.webmanifest" />
+<meta name="theme-color" content="#E1005E" />
+
+
+  <meta name="description" content="Four ways to check whether someone follows you on Instagram, including how to check hundreds of accounts at once, free and without logging in." />
+  <meta name="keywords" content="how do you know if someone follows you on instagram, how to know if someone on instagram follows you, how to tell if someone is following you on instagram, who doesn't follow me back on instagram online free, check if someone follows you instagram" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="blog.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://unfollowfinder.com/blogs/how-to-know-if-someone-follows-you-on-instagram" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to Know if Someone Follows You on Instagram (2026)" />
+  <meta property="og:description" content="Four ways to check whether someone follows you back, from one account to a thousand." />
+  <meta property="og:url" content="https://unfollowfinder.com/blogs/how-to-know-if-someone-follows-you-on-instagram" />
+  <meta property="og:site_name" content="Unfollow Finder" />
+  <meta property="article:published_time" content="2026-08-31" />
+  <meta property="article:section" content="Basics" />
+  <meta name="robots" content="index, follow" />
+
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="How to Know if Someone Follows You on Instagram (2026)" />
+  <meta name="twitter:description" content="Four ways to check, from a single profile to your entire following list." />
+
+  <!-- Article structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Know if Someone Follows You on Instagram",
+    "description": "Four ways to check whether someone follows you on Instagram, including how to check hundreds of accounts at once, free and without logging in.",
+    "author": { "@type": "Organization", "name": "Unfollow Finder" },
+    "publisher": { "@type": "Organization", "name": "Unfollow Finder" },
+    "datePublished": "2026-08-31",
+    "dateModified": "2026-08-31",
+    "mainEntityOfPage": "https://unfollowfinder.com/blogs/how-to-know-if-someone-follows-you-on-instagram"
+  }
+  </script>
+
+  <!-- FAQ structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I know if someone follows me on Instagram?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open their profile. If a Follows you label appears under their username, they follow you. If it isn't there, they don't."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I check if someone follows me without visiting their profile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes search their username in your own followers list. If they show up, they follow you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I see everyone who doesn't follow me back?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Instagram has no built-in view for this. Export your data as JSON and compare followers_1.json with following.json. Unfollow Finder does it in your browser for free."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a free way to check who doesn't follow me back without logging in?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Tools that work from your own Instagram data export never need your credentials you upload two files you downloaded yourself. Any tool asking for your Instagram password is doing something different, and riskier."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Instagram notify someone when I check their profile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Viewing a profile is completely invisible to the other person, no matter how many times you do it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why doesn't the Follows you label show on some profiles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It only appears on accounts that follow you. If the profile is still loading, or you're viewing it through a link preview rather than the app, the label may not have rendered yet open the full profile to be sure."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+<header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="logo">
+  <img src="/image/unfollow-finder-logo.png" alt="Unfollow Finder Logo" class="logo-img" />
+</a>
+
+     <nav class="nav-links">
+  <a href="/#features">Features</a>
+  <a href="/#how">How it works</a>
+  <a href="/pricing">Pricing</a>
+  <a href="/blogs/">Blogs</a>
+
+
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#" class="btn-ghost" onclick="openAuth('login');return false;">Log in</a>
+        <a href="#" class="btn-primary" onclick="openAuth('signup');return false;">Get started free</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="/#features">Features</a>
+      <a href="/#how">How it works</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/blogs/">Blogs</a>
+
+      <a href="#" class="btn-primary mobile-cta" onclick="openAuth('signup');return false;">Get started free</a>
+    </div>
+  </header>
+
+
+  <!-- ── ARTICLE HERO ───────────────────────────── -->
+  <section class="article-hero">
+    <div class="container">
+      <a href="/blogs/" class="article-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to blog
+      </a>
+      <span class="article-tag">Basics</span>
+      <h1>How to Know if Someone Follows You on Instagram</h1>
+      <div class="article-meta">
+        <span>Unfollow Finder Team</span>
+        <span class="dot-sep"></span>
+        <span>6 min read</span>
+        <span class="dot-sep"></span>
+        <span>Updated August 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ARTICLE BODY ───────────────────────────── -->
+  <section class="article-body">
+    <div class="container">
+      <div class="article-content">
+
+        <img src="/image/blogs_17.png" alt="Instagram profile showing the Follows you label under a username" loading="lazy" class="article-img" />
+
+        <p>Checking whether one person follows you takes about two seconds. Checking a hundred is nearly impossible. Here are the four methods, roughly in order of how many accounts you're trying to verify.</p>
+
+        <h2>Method 1: Check the Following button on their profile</h2>
+        <p>The quickest check for a single account, and the one most people miss.</p>
+
+        <p>Open their profile and look at the buttons. If the account follows you, Instagram displays a Follows you label directly under their username, a small grey tag next to the bio. That label is definitive. If it's there, they follow you.</p>
+
+        <p>If it's absent, they don't follow you. That's it: one look, no scrolling.</p>
+
+        <p>One caveat: the label sometimes takes a moment to load on slow connections, so if the profile is still rendering, give it a second before concluding anything.</p>
+
+        <h2>Method 2: Search your own followers list</h2>
+        <p>Useful when you want to confirm rather than glance.</p>
+
+        <ol>
+          <li>Go to your profile and tap your Followers count</li>
+          <li>Tap the search bar at the top</li>
+          <li>Type their username</li>
+        </ol>
+
+        <p>If they appear, they follow you. If the list comes back empty, they don't. Searching the list is far more reliable than scrolling it; Instagram's follower list ordering is not alphabetical and not chronological in any way you can predict.</p>
+
+        <h2>Method 3: Check whether they appear in your Stories viewer list</h2>
+        <p>Indirect, but sometimes informative. If your account is private and someone's viewing your Stories, they must be an approved follower. On a public account this proves nothing anyone can view a public Story without following you.</p>
+
+        <p>Treat this as a hint, not an answer.</p>
+
+        <h2>Method 4: Compare your full lists at once</h2>
+        <p>Everything above works for one or two accounts. It doesn't scale. If you follow 900 people and want to know which of them follow you back, tapping through 900 profiles isn't a plan.</p>
+
+        <p>Instagram deliberately doesn't offer this view. No screen in the app shows "accounts I follow who don't follow me back", and there never has been.</p>
+
+        <p>But you can get it from your own data:</p>
+
+        <ol>
+          <li><strong>Request your Instagram data export.</strong> Settings → Your Activity → Download Your Information → Request a download. Choose JSON format. Instagram emails a link within a few hours. Full walkthrough: <a href="/blogs/how-to-download-instagram-data">how to download your Instagram data</a>.</li>
+          <li><strong>Find the two files you need.</strong> Unzip the download and open the <code>followers_and_following</code> folder. You want <code>followers_1.json</code> and <code>following.json</code>, nothing else. If you're curious what's inside them, we broke it down in <a href="/blogs/followers-1-json-following-json-explained">followers_1.json and following.json explained</a>.</li>
+          <li><strong>Upload them in Unfollow Finder.</strong> Drop both files into <a href="/">Unfollow Finder</a>, and it compares them instantly.</li>
+        </ol>
+
+        <p>You get three lists:</p>
+
+        <ul>
+          <li><strong>Mutuals</strong> : you follow each other</li>
+          <li><strong>Not following back</strong> : you follow them, they don't follow you</li>
+          <li><strong>Unfollowers</strong> : people who followed you and don't anymore</li>
+        </ul>
+
+        <p>The comparison runs in your browser. The files never upload anywhere, there's no account to create, and you never type an Instagram password.</p>
+
+        <article-inline-cta></article-inline-cta>
+
+        <h2>Why "who doesn't follow me back" tools ask for a login (and why they shouldn't)</h2>
+        <p>If you've searched this before, you've seen a lot of sites offering to check who doesn't follow you back "online, free" right after asking you to sign in with Instagram.</p>
+
+        <p>They ask because logging in as you is the only way to read your lists off Instagram's servers. Once they have those credentials, the account is as much theirs as yours, and the risk doesn't end when you close the tab. Instagram also treats third-party login-and-scrape as a terms violation, so the downside can include an action block or restriction on your own account.</p>
+
+        <p>The alternative is the one above: Instagram already gives you a legal copy of your own data. Comparing two files you downloaded yourself requires no login, no permission, and no trust. We wrote about how to tell the two categories apart in <a href="/blogs/is-it-safe-to-use-instagram-unfollower-apps">is it safe to use Instagram unfollower apps</a>.</p>
+
+        <div class="article-callout">
+          <strong>The asymmetry nobody mentions</strong>
+          <p>Instagram tells you about the gains and stays silent on the losses. That's the whole reason unfollow trackers exist.</p>
+        </div>
+
+        <h2>Does Instagram tell you when someone follows you?</h2>
+        <p>Yes, if notifications are on. New follows appear in your Activity feed under Follows, and as a push notification if you've enabled them.</p>
+
+        <p>It does not notify you when someone unfollows. To see the losses, you need a before-and-after comparison of your own data, which is what an <a href="/blogs/instagram-unfollow-detector">unfollow detector</a> does.</p>
+
+        <h2>Frequently asked questions</h2>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              How do I know if someone follows me on Instagram?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Open their profile. If a <strong>Follows you</strong> label appears under their username, they follow you. If it isn't there, they don't.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Can I check if someone follows me without visiting their profile?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Yes search their username in your own followers list. If they show up, they follow you.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              How do I see everyone who doesn't follow me back?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Instagram has no built-in view for this. Export your data as JSON and compare <code>followers_1.json</code> with <code>following.json</code>. <a href="/">Unfollow Finder</a> does it in your browser for free.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Is there a free way to check who doesn't follow me back without logging in?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">Yes. Tools that work from your own Instagram data export never need your credentials you upload two files you downloaded yourself. Any tool asking for your Instagram password is doing something different, and riskier.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Does Instagram notify someone when I check their profile?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">No. Viewing a profile is completely invisible to the other person, no matter how many times you do it.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">
+              Why doesn't the "Follows you" label show on some profiles?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a">It only appears on accounts that follow you. If the profile is still loading, or you're viewing it through a link preview rather than the app, the label may not have rendered yet open the full profile to be sure.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="a-logo">
+            <img src="/image/UNFOLLOW FINDER-2.png" alt="Unfollow Finder" class="f-logo-img" />
+        </a>
+        <p>The safest Instagram unfollow checker. Built for creators who care about privacy.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/#features">Features</a>
+          <a href="/pricing">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="/blogs/">Blogs</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/about-us">About Us</a>
+          <a href="/contact">Contact Us</a>
+          <a href="/privacy">Privacy policy</a>
+          <a href="/terms">Terms of service</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Unfollow Finder. All rights reserved.</p>
+      <p>Not affiliated with Instagram or Meta.</p>
+    </div>
+  </footer>
+
+    <div class="auth-overlay" id="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+
+    <div class="auth-modal" id="auth-modal">
+
+      <!-- Close -->
+      <button class="auth-close" id="auth-close" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+
+      <!-- Logo -->
+      <div class="auth-logo">
+  <img src="/image/unfollow-finder-logo.png" alt="Unfollow Finder" class="auth-logo-img" />
+</div>
+
+
+      <!-- Tab switcher -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Create account</button>
+        <button class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Log in</button>
+      </div>
+
+      <!-- Social buttons -->
+      <div class="auth-socials">
+        <button class="social-btn google" onclick="authWithProvider('google')">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Continue with Google
+        </button>
+
+        <button class="social-btn apple" onclick="authWithProvider('apple')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Continue with Apple
+        </button>
+      </div>
+
+      <!-- Divider -->
+      <div class="auth-divider"><span>or</span></div>
+
+      <!-- Email form — Signup -->
+      <div class="auth-form" id="form-signup">
+        <div class="auth-field">
+          <label for="su-name">Full name</label>
+          <input type="text" id="su-name" placeholder="Your name" autocomplete="name">
+        </div>
+        <div class="auth-field">
+          <label for="su-email">Email address</label>
+          <input type="email" id="su-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="su-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="su-pass" placeholder="Create a password" autocomplete="new-password">
+            <button class="pass-toggle" onclick="togglePass('su-pass',this)" type="button" aria-label="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('signup')">Create free account</button>
+         <p class="auth-terms">By signing up you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
+      </div>
+
+      <!-- Email form — Login -->
+      <div class="auth-form" id="form-login" style="display:none">
+        <div class="auth-field">
+          <label for="li-email">Email address</label>
+          <input type="email" id="li-email" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label for="li-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="li-pass" placeholder="Your password" autocomplete="current-password">
+            <button class="pass-toggle" onclick="togglePass('li-pass',this)" type="button" aria-label="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+        <button class="auth-submit" onclick="submitAuth('login')">Log in to Unfollow Finder</button>
+      </div>
+
+      <!-- Switch text -->
+      <p class="auth-switch" id="auth-switch-text">
+        Already have an account? <button onclick="switchAuthTab('login')">Log in</button>
+      </p>
+
+    </div>
+  </div>
+
+  <button id="feedbackBtn" class="feedback-btn" aria-label="Give feedback">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>Feedback</span>
+</button>
+ 
+<!-- Feedback Modal -->
+<div id="feedbackModal" class="feedback-overlay">
+  <div class="feedback-modal">
+    <button id="feedbackClose" class="feedback-close" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+ 
+    <!-- Step 1: Rating -->
+    <div id="feedbackStep1" class="feedback-step">
+      <h3>How's your experience?</h3>
+      <p>Your feedback helps us improve 🙏</p>
+      <div class="emoji-row">
+        <button class="emoji-btn" data-rating="1">😞<span>Bad</span></button>
+        <button class="emoji-btn" data-rating="2">😐<span>Okay</span></button>
+        <button class="emoji-btn" data-rating="3">🙂<span>Good</span></button>
+        <button class="emoji-btn" data-rating="4">😍<span>Love it</span></button>
+      </div>
+    </div>
+ 
+    <!-- Step 2: Comment -->
+    <div id="feedbackStep2" class="feedback-step" style="display:none">
+      <h3>Tell us more</h3>
+      <p id="feedbackPrompt">What can we improve?</p>
+      <textarea id="feedbackText" placeholder="Type your feedback here..." rows="4"></textarea>
+      <input type="email" id="feedbackEmail" placeholder="Your email (optional)" />
+      <button id="feedbackSubmit" class="feedback-submit">Send feedback</button>
+    </div>
+ 
+    <!-- Step 3: Thank you -->
+    <div id="feedbackStep3" class="feedback-step" style="display:none">
+      <div class="feedback-success">🎉</div>
+      <h3>Thank you!</h3>
+      <p>We really appreciate your feedback.</p>
+    </div>
+  </div>
+</div>
+
+  <script>
+
+    document.querySelector('article-inline-cta').outerHTML = `
+      <div class="article-inline-cta">
+        <div>
+          <h3>Checking one profile at a time doesn't scale</h3>
+          <p>Compare your entire followers and following lists in seconds.</p>
+        </div>
+        <a href="/#tool" class="btn-primary">Try Unfollow Finder free </a>
+      </div>
+    `;
+  </script>
+  <script src="../script.js"></script>
+
+</body>
+</html>
