@@ -11,16 +11,26 @@ const API_URL = location.hostname === 'localhost'
    Link aisa hoga: https://whop.com/checkout/plan_AbC123XyZ
    Us link se sirf "plan_AbC123XyZ" wala hissa copy karke yahan paste karo. */
 const WHOP_PLANS = {
-  pro:  'plan_GWnZ5AOeOgQ8H',
-  team: 'plan_AKFe0ujyPP067',
+  pro:  'plan_AKFe0ujyPP067',
+  team: 'plan_GWnZ5AOeOgQ8H',
   pro_yearly:  'plan_bL7g30cZZ2hjK',
   team_yearly: 'plan_KkLhTCyD3EiXq'
 };
 
 const planData = {
-  pro:  { label: 'Pro Plan',  price: '$5.00',  total: '$0.00', note: '7-day free trial' },
-  team: { label: 'Team Plan', price: '$12.00', total: '$0.00', note: '7-day free trial' }
+  pro:         { label: 'Pro Plan',  price: '$5.00/mo',   total: '$0.00',   note: '7-day free trial' },
+  team:        { label: 'Team Plan', price: '$12.00/mo',  total: '$0.00',   note: '7-day free trial' },
+  pro_yearly:  { label: 'Pro Plan',  price: '$50.00/yr',  total: '$50.00',  note: 'Billed yearly' },
+  team_yearly: { label: 'Team Plan', price: '$120.00/yr', total: '$120.00', note: 'Billed yearly' }
 };
+
+function updateSummary(plan) {
+  const billing = new URLSearchParams(location.search).get('billing') === 'yearly' ? '_yearly' : '';
+  const d = planData[plan + billing];
+  document.getElementById('summary-plan').textContent  = d.label;
+  document.getElementById('summary-price').textContent = d.price;
+  document.getElementById('summary-total').textContent = d.total;
+}
 
 let selectedPlan = 'pro';
 let currentUser  = null;
@@ -86,12 +96,7 @@ function selectPlan(plan, card) {
   mountCheckout();
 }
 
-function updateSummary(plan) {
-  const d = planData[plan];
-  document.getElementById('summary-plan').textContent  = d.label;
-  document.getElementById('summary-price').textContent = d.price + '/mo';
-  document.getElementById('summary-total').textContent = d.total;
-}
+
 
 
 /* ── WHOP EMBEDDED CHECKOUT ───────────────────── */
