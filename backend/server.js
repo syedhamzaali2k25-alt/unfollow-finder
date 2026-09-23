@@ -124,6 +124,10 @@ app.get('/privacy', (req, res) => {
   res.sendFile(path.join(ROOT, 'privacy.html'));
 });
 
+// /about was only reachable via the old catch-all and got indexed as a
+// homepage duplicate. Redirect so its ranking signal is not discarded.
+app.get('/about', (req, res) => res.redirect(301, '/about-us'));
+
 app.get('/about-us', (req, res) => {
   res.sendFile(path.join(ROOT, 'about-us.html'));
 });
@@ -160,7 +164,11 @@ app.get(/\.(ico|png|jpg|jpeg|svg|gif|css|js|json|webmanifest|txt|xml)$/, (req, r
 
 // Everything else → index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(ROOT, 'index.html'));
+  // Previously served index.html with a 200 for every unknown URL — a
+  // soft 404 that got /about indexed as a homepage duplicate.
+  res.status(404).sendFile(path.join(ROOT, '404.html'), (err) => {
+    if (err) res.status(404).type('html').send('<h1>404 — page not found</h1><p><a href="/">Go home</a></p>');
+  });
 });
 
 

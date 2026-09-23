@@ -238,7 +238,8 @@
 }
 
 .article-img { margin: 32px 0; }
-.article-img img {
+.article-img img,
+img.article-img {
   width: 100%;
   height: auto;
   border-radius: var(--r-lg);
