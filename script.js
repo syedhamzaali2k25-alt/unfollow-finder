@@ -1,5 +1,10 @@
 /* ── Unfollow Finder – script.js ─────────────────────── */
 
+/* ── Analytics events (safe if GA is blocked) ── */
+function track(name, params) {
+  try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
+}
+
 const SUPABASE_URL = 'https://uqfaqhphzomnxpnqrpls.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVxZmFxaHBoem9tbnhwbnFycGxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MDQ0MjAsImV4cCI6MjA5NzM4MDQyMH0.KEfbxJB_GMTqUjeRATAdzpCWfdYeYXNhCb2Nb_pUBZs';
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -48,6 +53,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   supabaseClient.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_IN' && session) {
+      // Analytics: count a Google sign-up once, only for brand-new accounts
+      try {
+        const u = session.user;
+        const isGoogle = u && u.app_metadata && u.app_metadata.provider === 'google';
+        const isNew = u && u.created_at && u.last_sign_in_at &&
+          Math.abs(new Date(u.last_sign_in_at) - new Date(u.created_at)) < 60000;
+        const flag = 'ga_signup_' + (u && u.id);
+        if (isGoogle && isNew && !localStorage.getItem(flag)) {
+          localStorage.setItem(flag, '1');
+          track('sign_up', { method: 'google' });
+        }
+      } catch (e) {}
       localStorage.setItem('token', session.access_token);
       localStorage.setItem('userEmail', session.user.email);
       authState.isLoggedIn = true;
@@ -192,6 +209,7 @@ function handleFile(input, type) {
 }
 
 function processFile(file, type) {
+  track('file_upload', { file_type: type });
   const reader = new FileReader();
 
   reader.onload = (e) => {
@@ -689,6 +707,7 @@ async function submitAuth(type) {
         return;
       }
 
+      track('sign_up', { method: 'email' });
       localStorage.setItem('token', data.token);
       localStorage.setItem('userEmail', data.user.email);
       showAuthSuccess(data.user.email);

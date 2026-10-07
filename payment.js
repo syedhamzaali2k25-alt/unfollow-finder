@@ -150,6 +150,7 @@ window.addEventListener('message', (event) => {
 
   const type = event.data?.event || event.data?.type;
   if (type === 'checkout_complete' || type === 'payment_success') {
+    try { if (typeof gtag === 'function') gtag('event', 'checkout_complete'); } catch (e) {}
     verifyPlanWithServer();
   }
 });

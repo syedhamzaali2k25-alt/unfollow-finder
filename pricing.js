@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (wanted === 'yearly') setCycle('yearly');
 
   initFaq();
+
+  // Analytics: count clicks on the paid plan buttons
+  [['cta-pro','pro'],['cta-team','team']].forEach(([id, plan]) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', () => {
+      try { if (typeof gtag === 'function') gtag('event', 'upgrade_click', { plan, billing: cycle }); } catch (e) {}
+    });
+  });
 });
 
 
