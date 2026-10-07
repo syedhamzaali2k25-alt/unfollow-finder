@@ -679,6 +679,48 @@
     </div>
   </section>
 
+  <!-- ── INSTAGRAM VIDEO ────────────────────────── -->
+  <section class="ig-section" id="instagram" aria-label="Unfollow Finder on Instagram">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">On Instagram</span>
+        <h2>Watch it in action</h2>
+        <p>See how Unfollow Finder works, straight from our Instagram.</p>
+      </div>
+      <div class="ig-grid" id="ig-embed">
+        <div class="ig-embed">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DeFNLiXiZYx/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14">
+            <a href="https://www.instagram.com/p/DeFNLiXiZYx/" target="_blank" rel="noopener">Watch this video on Instagram</a>
+          </blockquote>
+        </div>
+        <div class="ig-embed">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DeKAqyECxgA/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14">
+            <a href="https://www.instagram.com/p/DeKAqyECxgA/" target="_blank" rel="noopener">Watch this video on Instagram</a>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    /* Load Instagram's embed script only when this section is about to be seen */
+    (function () {
+      var box = document.getElementById('ig-embed');
+      if (!box) return;
+      function load() {
+        if (window.instgrm) { window.instgrm.Embeds.process(); return; }
+        var s = document.createElement('script');
+        s.async = true; s.src = 'https://www.instagram.com/embed.js';
+        document.body.appendChild(s);
+      }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (e) {
+          if (e[0].isIntersecting) { io.disconnect(); load(); }
+        }, { rootMargin: '400px 0px' });
+        io.observe(box);
+      } else { load(); }
+    })();
+  </script>
+
   <!-- ── TESTIMONIALS ───────────────────────────── -->
   <section class="testimonials">
     <div class="container">

@@ -1553,3 +1553,15 @@ button, input, textarea { font-family: inherit; color: inherit; }
 
 /* guide video: keep the card compact on desktop */
 .guide-video .yt-video{max-width:220px;margin:12px auto 4px}
+
+/* ── INSTAGRAM VIDEO SECTION ── */
+.ig-section { padding: 92px 0; }
+.ig-embed { max-width: 540px; margin: 0 auto; min-height: 420px; display: flex; justify-content: center; }
+.ig-embed .instagram-media { margin: 0 auto !important; width: 100% !important; min-width: 0 !important; max-width: 540px !important; }
+.ig-embed > blockquote > a { display: block; padding: 40px 20px; text-align: center; color: var(--pink); font-weight: 600; }
+@media (max-width: 600px) { .ig-section { padding: 64px 0; } .ig-embed { min-height: 360px; } }
+
+/* Two Instagram videos side by side on desktop, stacked on mobile */
+.ig-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; max-width: 920px; margin: 0 auto; align-items: start; }
+.ig-grid .ig-embed { margin: 0; max-width: none; }
+@media (max-width: 800px) { .ig-grid { grid-template-columns: 1fr; max-width: 540px; } }
