@@ -340,3 +340,7 @@ td.is-hi .tick { background-color: rgba(225,0,94,.15); }
   .pr-cta-band { padding: 36px 24px; }
   .pr-cta-band h2 { font-size: 22px; }
 }
+/* 3D emoji */
+.pr-name{display:flex;align-items:center;gap:10px}
+.pr-emoji{width:34px;height:34px;flex:none;filter:drop-shadow(0 4px 6px rgba(212,42,107,.2))}
+.pr-h-emoji{display:inline-block;width:.9em;height:.9em;vertical-align:-.1em;margin-left:4px}

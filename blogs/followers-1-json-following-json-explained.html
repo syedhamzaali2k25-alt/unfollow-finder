@@ -139,6 +139,16 @@
 
         <p>If you've requested your Instagram data export and started digging through the unzipped folder, you've probably landed on two files with slightly odd names: <code>followers_1.json</code> and <code>following.json</code>. They're not labeled in a way that immediately explains what they contain, so here's exactly what's inside each one, why they're named the way they are, and what you can actually do with them.</p>
 
+        <figure class="yt-video">
+  <div class="yt-frame">
+    <button type="button" class="yt-play" aria-label="Play video: How to download your Instagram data" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/FN8hpC4aMtY?autoplay=1&rel=0&playsinline=1';f.title='How to Download Instagram Data (2026)';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;this.replaceWith(f)">
+      <img src="https://i.ytimg.com/vi/FN8hpC4aMtY/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+      <span class="yt-btn" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+    </button>
+  </div>
+  <figcaption>Watch: how to download your Instagram data (30 sec).</figcaption>
+</figure>
+
         <h2>What's inside followers_1.json</h2>
         <p>This file contains the complete list of accounts that currently follow you. Each entry includes the username of a follower and a timestamp of when they started following you. It's a straightforward list no extra commentary, no engagement metrics, just who's following your account right now, according to Instagram's own records.</p>
 
@@ -165,6 +175,11 @@
 
         <h2>Can you open these files manually?</h2>
         <p>Yes, technically they're plain JSON text files, so any text editor will open them. But for anything beyond casual curiosity, this isn't practical. A moderately active account can have thousands of entries in <code>followers_1.json</code> alone, and manually comparing two large lists by eye isn't realistic. This is exactly the kind of task a comparison tool handles in seconds that would take considerable manual effort otherwise.</p>
+
+        <div class="article-callout">
+          <strong>Free vs Pro</strong>
+          <p>Free shows who doesn't follow you back and your mutuals. Pro ($5/mo) adds the full list of who unfollowed you, unlimited scans and scan history. <a href="/pricing">See the plans</a>.</p>
+        </div>
 
         <article-inline-cta></article-inline-cta>
 
@@ -378,9 +393,10 @@
     if (ctaEl) {
       ctaEl.outerHTML = `
         <div class="article-inline-cta">
+          <img class="cta-emoji" src="/image/emoji/detective.webp" alt="" width="64" height="64" loading="lazy">
           <div>
             <h3>Already have your files? Check them instantly</h3>
-            <p>Upload followers_1.json and following.json and see your unfollowers, non-followers, and mutuals in seconds free, no login.</p>
+            <p>Upload followers_1.json and following.json and see who doesn't follow you back and your mutuals in seconds, free, with no Instagram login. The unfollowers list is part of Pro.</p>
           </div>
           <a href="/#tool" class="btn-primary">Try Unfollow Finder free </a>
         </div>

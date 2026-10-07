@@ -20,13 +20,13 @@
 
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Instagram Follower Tracker: See Your Growth & Changes" />
-  <meta property="og:description" content="Track your Instagram followers, see who unfollowed you, and export your data — no login required." />
+  <meta property="og:description" content="Track your Instagram followers, see who unfollowed you, and export your data — no Instagram login required." />
   <meta property="og:url" content="https://unfollowfinder.com/blogs/instagram-follower-tracker" />
   <meta property="og:site_name" content="Unfollow Finder" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Instagram Follower Tracker: See Your Growth & Changes" />
-  <meta name="twitter:description" content="Track your Instagram followers and see what's changed — no login required." />
+  <meta name="twitter:description" content="Track your Instagram followers and see what's changed — no Instagram login required." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -59,7 +59,7 @@
       { "@type": "Question", "name": "What's the difference between a follower tracker and Instagram's own followers list?", "acceptedAnswer": { "@type": "Answer", "text": "Instagram's followers list only shows your current followers, no history and no way to see who's left. A follower tracker compares two points in time to show you actual changes — unfollowers, new followers, and non-followers — which Instagram's native interface doesn't do." } },
       { "@type": "Question", "name": "Is it safe to use an Instagram follower tracker?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on the method. Trackers that require your Instagram login carry real account risk. Trackers that work from your own official data export, without requiring login, are the safer approach." } },
       { "@type": "Question", "name": "Can a follower tracker show me who unfollowed me in real time?", "acceptedAnswer": { "@type": "Answer", "text": "No tracker can show real-time unfollow events, since Instagram doesn't provide that data to any third party. Every tracker works by comparing snapshots taken at different points in time." } },
-      { "@type": "Question", "name": "Do I need to pay to track my followers?", "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily. Some trackers, including Unfollow Finder, provide complete results on a free tier. Others gate full results behind a subscription." } },
+      { "@type": "Question", "name": "Do I need to pay to track my followers?", "acceptedAnswer": { "@type": "Answer", "text": "Not for the basics. Unfollow Finder's free tier shows who doesn't follow you back and your mutuals. The full unfollowers list and scan history are part of the $5/month Pro plan." } },
       { "@type": "Question", "name": "Can I track followers for a business or multiple accounts?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, though it depends on the tool. Some trackers are built for a single account only; others offer multi-account dashboards specifically for managing several accounts." } }
     ]
   }
@@ -157,7 +157,7 @@
         <p>Some tools ask for your Instagram username and password directly, then connect to your account through unofficial means to pull follower data. This violates Instagram's Terms of Service, since sharing your credentials with unauthorized third-party apps isn't permitted, and it puts your account at real risk of restriction if Instagram's systems flag the unusual access pattern. We break this down further in <a href="/blogs/is-it-safe-to-use-instagram-unfollower-apps">is it safe to use Instagram unfollower apps</a>.</p>
 
         <h3>The safe method: your own data export</h3>
-        <p>Instagram lets you download your own followers and following lists directly, through <strong>Settings → Your Activity → Download Your Information</strong>, in JSON format. A tracker built around this method reads the files you've already downloaded yourself, no login, no password, no third-party access to your account at any point.</p>
+        <p>Instagram lets you download your own followers and following lists directly, through <strong>Settings → Your Activity → Download Your Information</strong>, in JSON format. A tracker built around this method reads the files you've already downloaded yourself, no Instagram login, no password, no third-party access to your account at any point.</p>
         <p><a href="/">Unfollow Finder</a> works this way. Upload your <code>followers_1.json</code> and <code>following.json</code> files, and it compares them directly in your browser, showing you unfollowers, non-followers, and mutuals in seconds. Here's the <a href="/blogs/how-to-download-instagram-data">step-by-step guide to downloading your Instagram data</a>.</p>
 
         <h2>Using a follower export tool</h2>
@@ -178,8 +178,13 @@
           <li><strong>Accurate, up-to-date counts</strong>, reflecting your data at the exact moment you uploaded it, not a cached or delayed number</li>
           <li><strong>Clear separation</strong> between unfollowers, non-followers, and mutuals, not just a single combined list</li>
           <li><strong>Search and filter options</strong>, useful once your account has more than a handful of followers to review</li>
-          <li><strong>No paywall on basic results</strong>, some trackers show you a locked or partial list until you subscribe, worth checking before assuming a "free" tool actually gives you free results</li>
+          <li><strong>Clear free vs paid limits</strong>, many trackers lock part of the list until you subscribe, so check what the free version actually includes before you start</li>
         </ul>
+
+        <div class="article-callout">
+          <strong>Free vs Pro</strong>
+          <p>Free shows who doesn't follow you back and your mutuals. Pro ($5/mo) adds the full list of who unfollowed you, unlimited scans and scan history. <a href="/pricing">See the plans</a>.</p>
+        </div>
 
         <article-inline-cta></article-inline-cta>
 
@@ -212,7 +217,7 @@
               Do I need to pay to track my followers?
               <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             </button>
-            <div class="faq-a">Not necessarily. Some trackers, including Unfollow Finder, provide complete results on a free tier. Others gate full results behind a subscription, worth checking a tool's actual free-tier limitations before assuming you'll need to pay.</div>
+            <div class="faq-a">Not for the basics. Unfollow Finder's free tier shows who doesn't follow you back and your mutuals. The full unfollowers list and scan history are part of the $5/month Pro plan, so check any tool's free-tier limits before you start.</div>
           </div>
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
@@ -397,9 +402,10 @@
     if (ctaEl) {
       ctaEl.outerHTML = `
         <div class="article-inline-cta">
+          <img class="cta-emoji" src="/image/emoji/detective.webp" alt="" width="64" height="64" loading="lazy">
           <div>
-            <h3>Track your followers, free and without the risk</h3>
-            <p>Unfollow Finder reads your own Instagram data export in your browser unfollowers, non-followers, and mutuals in seconds, no login required.</p>
+            <h3>Track your followers without the risk</h3>
+            <p>Unfollow Finder reads your own Instagram data export in your browser, no Instagram login required. Free shows non-followers and mutuals; Pro ($5/mo) adds unfollowers and scan history.</p>
           </div>
           <a href="/#tool" class="btn-primary">Try Unfollow Finder free </a>
         </div>

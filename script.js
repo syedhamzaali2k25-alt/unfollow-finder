@@ -562,6 +562,19 @@ const closeBtn = document.getElementById('auth-close');
 
 function openAuth(tab = 'signup') {
   if (!overlay) return;
+
+  /* Already signed in: "Start free" / "Get started free" buttons should take
+     the user to the tool instead of showing the signup/login popup again. */
+  if (authState.isLoggedIn && localStorage.getItem('token')) {
+    const toolSection = document.getElementById('tool');
+    if (toolSection) {
+      toolSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.location.href = '/#tool';
+    }
+    return;
+  }
+
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
   switchAuthTab(tab);

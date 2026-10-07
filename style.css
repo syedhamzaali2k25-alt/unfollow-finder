@@ -1419,3 +1419,137 @@ button, input, textarea { font-family: inherit; color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   .shot-frame { animation: none; }
 }
+
+
+/* ══ FREE TOOL — refreshed design (mascot + card) ══════════ */
+.tool-section { background: #FDF5F8; }
+.tool-head { margin-bottom: 170px; }
+.tool-section .section-eyebrow { background: #FFE8F1; color: #B8235C; border-radius: 999px; padding: 6px 14px; font-weight: 800; letter-spacing: .06em; }
+.tool-section .section-head h2 { color: #24141B; }
+.tool-section .section-head p { color: #735F69; font-weight: 500; }
+
+.uc-stage { position: relative; overflow: visible; }
+.uc-mascot {
+  position: absolute; left: calc(50% - 100px); top: -88px;
+  width: 200px; height: 200px; z-index: 0; pointer-events: none;
+  transition: transform .55s cubic-bezier(.34,1.56,.64,1);
+  filter: drop-shadow(0 14px 18px rgba(240,80,140,.28));
+}
+.uc-mascot svg { overflow: visible; display: block; }
+.uc-stage:hover .uc-mascot { transform: translateY(-80px); }
+.uc-stage:hover .uc-mascot svg { animation: g-float 1.8s ease-in-out .8s infinite; }
+@keyframes g-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.g-arm-l, .g-arm-r { transform-box: view-box; transition: transform .4s cubic-bezier(.34,1.56,.64,1) .25s; }
+.g-arm-l { transform-origin: 44px 126px; }
+.g-arm-r { transform-origin: 156px 126px; }
+.uc-stage:hover .g-arm-l { transform: rotate(125deg); }
+.uc-stage:hover .g-arm-r { transform: rotate(-125deg); }
+.g-pup { transition: transform .3s ease .15s; }
+.uc-stage:hover .g-pup { transform: translateY(-8px); }
+.g-calm { transition: opacity .2s ease .2s; }
+.uc-stage:hover .g-calm { opacity: 0; }
+.g-boo { opacity: 0; transition: opacity .2s ease .2s; }
+.uc-stage:hover .g-boo { opacity: 1; }
+.g-bubble { opacity: 0; transform-box: fill-box; transform-origin: 0% 100%; transform: scale(.4); transition: opacity .2s ease .45s, transform .35s cubic-bezier(.34,1.56,.64,1) .45s; }
+.uc-stage:hover .g-bubble { opacity: 1; transform: scale(1); }
+@media (prefers-reduced-motion: reduce) {
+  .uc-mascot, .g-arm-l, .g-arm-r, .g-pup, .g-calm, .g-boo, .g-bubble { transition: none; }
+  .uc-stage:hover .uc-mascot svg { animation: none; }
+}
+
+#tool .tool-wrapper { max-width: 760px; }
+#tool .tool-panel {
+  position: relative; z-index: 1;
+  background: #fff; border: 1px solid #F3E2EA; border-radius: 20px;
+  padding: 32px; box-shadow: 0 24px 48px -28px rgba(22,22,26,.22);
+}
+#tool #tool-upload { display: flex; flex-direction: column; gap: 24px; }
+
+#tool .tool-guide {
+  display: flex; flex-direction: column; align-items: stretch; gap: 14px;
+  background: #FDF5F8; border-radius: 14px; padding: 20px; margin: 0;
+  color: #54434B; font-size: 14px;
+}
+#tool .guide-title { font-size: 12px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: #24141B; }
+#tool .guide-steps { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+#tool .guide-steps li { display: flex; align-items: flex-start; gap: 12px; line-height: 1.5; }
+#tool .guide-num {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 999px;
+  background: #FFE8F1; color: #B8235C; font-size: 12px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+#tool .tool-guide code { background: #FFE8F1; color: #B8235C; padding: 2px 6px; border-radius: 5px; font-size: 13px; }
+
+#tool .upload-slots { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 0; align-items: stretch; }
+#tool .upload-arrow { display: none; }
+#tool .upload-slot {
+  border: 2px dashed #EDC6D6; border-radius: 14px; background: #FFFAFC;
+  padding: 28px 16px; display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+#tool .upload-slot:hover { border-color: #D42A6B; background: #FFF0F6; }
+#tool .upload-slot.loaded { border-style: solid; border-color: #1A9E5C; background: #F1FBF5; }
+#tool .slot-icon { background: transparent; width: auto; height: auto; margin: 0 auto 6px; color: #A08A95; }
+#tool .upload-slot:hover .slot-icon { color: #D42A6B; }
+#tool .upload-slot.loaded .slot-icon { color: #1A9E5C; }
+#tool .slot-label { color: #24141B; }
+#tool .slot-hint { color: #937D88; font-size: 13px; }
+#tool .slot-filename { color: #2F7A4E; }
+
+#tool .tool-check-btn {
+  height: auto; padding: 16px 24px; border-radius: 12px; font-size: 16px; font-weight: 800;
+  background: #D42A6B; color: #fff; box-shadow: 0 16px 28px -14px rgba(212,42,107,.5);
+}
+#tool .tool-check-btn:hover:not(:disabled) { background: #B8235C; }
+#tool .tool-check-btn:disabled { background: #F3E4EB; color: #AE939F; box-shadow: none; cursor: not-allowed; }
+
+.tool-trust { display: flex; gap: 28px; margin-top: 28px; flex-wrap: wrap; justify-content: center; }
+.tool-trust span { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #735F69; }
+
+@media (max-width: 768px) {
+  .tool-head { margin-bottom: 150px; }
+}
+@media (max-width: 640px) {
+  #tool .tool-panel { padding: 22px; }
+  #tool .upload-slots { grid-template-columns: 1fr; gap: 12px; }
+  .tool-trust { gap: 14px 22px; }
+}
+
+/* ── VIDEO (click-to-play, loads YouTube only on click) ── */
+.yt-video{margin:28px auto;max-width:280px;text-align:center}
+.yt-frame{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#1a1a1a;box-shadow:0 10px 30px rgba(212,42,107,.18)}
+.yt-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt-play{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:none;cursor:pointer}
+.yt-play img{width:100%;height:100%;object-fit:cover;display:block}
+.yt-btn{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:#D42A6B;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.35);transition:transform .2s}
+.yt-play:hover .yt-btn,.yt-play:focus-visible .yt-btn{transform:scale(1.1)}
+.yt-play:focus-visible{outline:3px solid #D42A6B;outline-offset:-3px}
+.yt-video figcaption{margin-top:10px;font-size:13px;color:#6b6b76;line-height:1.5}
+.guide-video{margin-top:14px;text-align:center}
+.guide-video summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;font-weight:700;color:#D42A6B;list-style:none;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid #F3C9DA}
+.guide-video summary::-webkit-details-marker{display:none}
+.guide-video summary:hover{background:#FDF5F8}
+.guide-video[open] summary{margin-bottom:6px}
+
+/* ── 3D EMOJI (Microsoft Fluent Emoji 3D, MIT) ── */
+.feat-icon.feat-emoji{background:none!important;width:56px;height:56px;padding:0;display:flex;align-items:center;justify-content:center}
+.feat-emoji img{width:56px;height:56px;display:block;filter:drop-shadow(0 6px 8px rgba(212,42,107,.18));transition:transform .25s}
+.feat-card:hover .feat-emoji img{transform:translateY(-3px) rotate(-5deg) scale(1.06)}
+.section-head h2 .h-emoji{display:inline-block;width:.95em;height:.95em;vertical-align:-.12em;margin:0 0 0 6px}
+.vibes{padding:80px 0;background:#FDF5F8}
+.vibes .section-head{margin-bottom:34px}
+.vibe-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:1020px;margin:0 auto}
+.vibe-chip{display:inline-flex;align-items:center;gap:10px;padding:8px 18px 8px 10px;background:#fff;border:1px solid #F3DCE6;border-radius:999px;font-size:14.5px;font-weight:600;color:#24141B;box-shadow:0 4px 14px rgba(212,42,107,.07);transition:transform .2s,box-shadow .2s}
+.vibe-chip img{width:36px;height:36px;display:block}
+.vibe-chip:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(212,42,107,.14)}
+@media(max-width:640px){.vibes{padding:56px 0}.vibe-chip{font-size:13.5px;padding:6px 14px 6px 8px}.vibe-chip img{width:30px;height:30px}}
+@media(prefers-reduced-motion:reduce){.feat-emoji img,.vibe-chip{transition:none}.feat-card:hover .feat-emoji img,.vibe-chip:hover{transform:none}}
+
+/* ── 3D emoji: how-it-works + hero ── */
+.step{position:relative}
+.step-emoji{display:block;width:52px;height:52px;margin:0 0 14px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35));transition:transform .25s}
+.step:hover .step-emoji{transform:translateY(-3px) rotate(-6deg) scale(1.08)}
+.inline-emoji{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.25em;margin:0 2px}
+@media(prefers-reduced-motion:reduce){.step-emoji{transition:none}.step:hover .step-emoji{transform:none}}
+
+/* guide video: keep the card compact on desktop */
+.guide-video .yt-video{max-width:220px;margin:12px auto 4px}

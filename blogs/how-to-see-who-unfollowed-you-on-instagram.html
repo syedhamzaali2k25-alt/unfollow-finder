@@ -129,6 +129,16 @@
 
         <p>That silence is exactly what's created an entire category of sketchy third-party apps promising to reveal your "secret unfollowers" in exchange for your Instagram password. This guide covers how to actually find out who unfollowed you safely, without handing your login over to anyone.</p>
 
+        <figure class="yt-video">
+  <div class="yt-frame">
+    <button type="button" class="yt-play" aria-label="Play video: How to download your Instagram data" onclick="var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/FN8hpC4aMtY?autoplay=1&rel=0&playsinline=1';f.title='How to Download Instagram Data (2026)';f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;this.replaceWith(f)">
+      <img src="https://i.ytimg.com/vi/FN8hpC4aMtY/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+      <span class="yt-btn" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+    </button>
+  </div>
+  <figcaption>Watch: how to download your Instagram data (30 sec).</figcaption>
+</figure>
+
         <h2>Why Instagram doesn't show this by default</h2>
         <p>Meta has been explicit that surfacing unfollow activity isn't a feature they want to build, partly because it tends to encourage exactly the kind of social comparison and anxiety they've been trying to design away from. Useful for the platform's wellbeing goals less useful if you're a creator trying to understand why your reach dropped this month.</p>
 
@@ -160,6 +170,11 @@
 
         <h2>Comparing the lists without losing your mind</h2>
         <p>You could technically open both JSON files and compare them by hand, but with a few hundred or thousand accounts, that's not realistic. This is where a tool that runs entirely in your browser reading the files locally without uploading them anywhere makes the process take seconds instead of hours.</p>
+
+        <div class="article-callout">
+          <strong>Free vs Pro</strong>
+          <p>Free shows who doesn't follow you back and your mutuals. Pro ($5/mo) adds the full list of who unfollowed you, unlimited scans and scan history. <a href="/pricing">See the plans</a>.</p>
+        </div>
 
         <article-inline-cta></article-inline-cta>
 
@@ -356,9 +371,10 @@
     // Render the inline CTA (kept as a placeholder tag above for readability)
     document.querySelector('article-inline-cta').outerHTML = `
       <div class="article-inline-cta">
+          <img class="cta-emoji" src="/image/emoji/detective.webp" alt="" width="64" height="64" loading="lazy">
         <div>
-          <h3>See your own unfollowers now</h3>
-          <p>Upload your two files and get results in seconds. 100% free, no account needed.</p>
+          <h3>See your own unfollowers</h3>
+          <p>Upload your two files. The free tool shows who doesn't follow you back and your mutuals; Pro ($5/mo) shows the full list of who unfollowed you.</p>
         </div>
         <a href="/#tool" class="btn-primary">Try Unfollow Finder free </a>
       </div>

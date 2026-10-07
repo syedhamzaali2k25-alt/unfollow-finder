@@ -87,7 +87,7 @@
     "mainEntity": [
       { "@type": "Question", "name": "Are FANS, Unfollr, and UnfollowTool.com actually safe to use?", "acceptedAnswer": { "@type": "Answer", "text": "Based on their own published descriptions, all three use Instagram's official data export rather than requiring your login credentials, which is the safer approach. As with any third-party tool, verify current privacy practices directly before uploading your data." } },
       { "@type": "Question", "name": "Do any of these let you check someone else's unfollowers, not just your own?", "acceptedAnswer": { "@type": "Answer", "text": "No. Since these tools work from your own official Instagram data export, they can only analyze your own account's data, not another person's." } },
-      { "@type": "Question", "name": "Is a paid Instagram unfollow tracker worth it over a free one?", "acceptedAnswer": { "@type": "Answer", "text": "It depends what you need. A free tool with full results covers a one-time check. Paid tiers generally add CSV export, history tracking, or multi-account support." } },
+      { "@type": "Question", "name": "Is a paid Instagram unfollow tracker worth it over a free one?", "acceptedAnswer": { "@type": "Answer", "text": "It depends what you need. A free tool can cover a one-time check of who doesn't follow you back. Paid tiers generally add the full unfollowers list, history tracking, or multi-account support." } },
       { "@type": "Question", "name": "Why do so many of these tools describe themselves as the safest or the only safe option?", "acceptedAnswer": { "@type": "Answer", "text": "It's a common marketing framing, but the underlying safe method using Instagram's data export instead of a login is shared across multiple tools, not exclusive to any single one." } }
     ]
   }
@@ -170,9 +170,9 @@
 
         <h2>Unfollow Finder</h2>
         <p><strong>Format:</strong> Browser-based, no download required<br>
-        <strong>Cost:</strong> Free tier includes unfollowers, non-followers, and mutuals for up to 1,000 accounts, with no paywall on the core results<br>
-        <strong>Extras:</strong> CSV export and history tracking on the Pro tier ($9/mo); Team plan for agencies tracking multiple accounts<br>
-        <strong>Notable:</strong> Full results are visible on the free tier you're not shown a locked or partial list before being asked to pay</p>
+        <strong>Cost:</strong> The free tier shows who doesn't follow you back and your mutuals (3 scans a day, CSV export included). The full "who unfollowed you" list is part of Pro ($5/mo)<br>
+        <strong>Extras:</strong> Pro adds the unfollowers list, unlimited scans and your last 10 scans of history; the Team plan ($12/mo) covers up to 10 accounts for agencies<br>
+        <strong>Notable:</strong> You always see what the free tier covers before you pay, and nothing is hidden behind a login or a password</p>
 
         <h2>FANS</h2>
         <p><strong>Format:</strong> iOS app<br>
@@ -198,7 +198,7 @@
             <tr>
               <th>Tool</th>
               <th>Format</th>
-              <th>Free full results?</th>
+              <th>Free results</th>
               <th>Multi-account</th>
             </tr>
           </thead>
@@ -206,7 +206,7 @@
             <tr class="highlight">
               <td>Unfollow Finder</td>
               <td>Browser</td>
-              <td>Yes</td>
+              <td>Non-followers + mutuals (unfollowers list is Pro)</td>
               <td>Yes (Team)</td>
             </tr>
             <tr>
@@ -235,12 +235,17 @@
         <ul>
           <li><strong>Want it in a browser with no app download?</strong> Unfollow Finder, Unfollr, or UnfollowTool.com not FANS.</li>
           <li><strong>Want to track changes over multiple snapshots, not just a single check?</strong> Unfollr or Unfollow Finder's Pro history tracking.</li>
-          <li><strong>Want the full list without hitting a paywall first?</strong> Check FANS's current pricing carefully several tools, Unfollow Finder included, show complete results on the free tier.</li>
+          <li><strong>Want to know exactly what's free before you start?</strong> Unfollow Finder's free tier covers non-followers and mutuals; the unfollowers list is Pro. Check each tool's current pricing, including FANS, before committing.</li>
           <li><strong>Managing more than one account, like for a brand or agency?</strong> Unfollow Finder's Team plan is built specifically for that; the others are generally single-account tools.</li>
         </ul>
 
         <h2>A word on trusting any of these claims</h2>
         <p>Since every tool in this space says roughly the same thing about safety, it's worth knowing what actually makes the "no login" approach safe in the first place, rather than taking any single company's word for it: the safety comes from using Instagram's own official data export, which Instagram provides to you directly and lets you control entirely. Any tool doing that is working with the same underlying safety guarantee it's Instagram's export process doing the protecting, not any particular company's promise.</p>
+
+        <div class="article-callout">
+          <strong>Free vs Pro</strong>
+          <p>Free shows who doesn't follow you back and your mutuals. Pro ($5/mo) adds the full list of who unfollowed you, unlimited scans and scan history. <a href="/pricing">See the plans</a>.</p>
+        </div>
 
         <article-inline-cta></article-inline-cta>
 
@@ -266,7 +271,7 @@
               Is a paid Instagram unfollow tracker worth it over a free one?
               <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             </button>
-            <div class="faq-a">It depends what you need. If you just want a one-time list of who unfollowed you, a free tool with full results (not gated behind a paywall) covers that. Paid tiers generally add things like CSV export, history tracking over time, or multi-account support useful if you manage more than one account or want ongoing tracking rather than a single check.</div>
+            <div class="faq-a">It depends what you need. If you just want to know who doesn't follow you back, a free tool covers that. Paid tiers generally add things like the full unfollowers list, history tracking over time, or multi-account support useful if you manage more than one account or want ongoing tracking rather than a single check.</div>
           </div>
           <div class="faq-item">
             <button class="faq-q" aria-expanded="false">
@@ -449,9 +454,10 @@
     if (ctaEl) {
       ctaEl.outerHTML = `
         <div class="article-inline-cta">
+          <img class="cta-emoji" src="/image/emoji/detective.webp" alt="" width="64" height="64" loading="lazy">
           <div>
             <h3>Try the free, browser-based option</h3>
-            <p>Unfollow Finder shows your complete unfollowers list on the free tier no app download, no subscription needed.</p>
+            <p>Free: see who doesn't follow you back and your mutuals, no app download. Pro ($5/mo): the full list of who unfollowed you.</p>
           </div>
           <a href="/#tool" class="btn-primary">Try Unfollow Finder free </a>
         </div>
