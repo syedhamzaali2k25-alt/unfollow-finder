@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const wanted = new URLSearchParams(location.search).get('billing');
   if (wanted === 'yearly') setCycle('yearly');
 
-  initFaq();
+  // FAQ accordion is handled globally in script.js
+  if (typeof initFaq === 'function') initFaq();
 
   // Analytics: count clicks on the paid plan buttons
   [['cta-pro','pro'],['cta-team','team']].forEach(([id, plan]) => {
