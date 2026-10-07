@@ -92,6 +92,18 @@ app.get(/\.html$/, (req, res) => {
 /* ══════════════════════════════════════════════════
    6. Static files
    ══════════════════════════════════════════════════ */
+/* Never serve source code, backups or config from the project root.
+   express.static(ROOT) would otherwise expose backend/*.js, *.bak, etc. */
+const PRIVATE_PATH = /^\/(backend|node_modules|\.pre-fix-backup|\.git)(\/|$)|\.(bak|orig|env|log|md|map)$|^\/(package(-lock)?\.json|\.gitignore)$/i;
+app.use((req, res, next) => {
+  let p = req.path;
+  try { p = decodeURIComponent(p); } catch (e) { return res.status(400).end(); }
+  if (PRIVATE_PATH.test(p)) {
+    return res.status(404).sendFile(path.join(ROOT, '404.html'));
+  }
+  next();
+});
+
 app.use(express.static(ROOT));
 
 
