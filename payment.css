@@ -253,3 +253,6 @@ body {
     grid-row: 3;
   }
 }
+
+/* Logo: keep aspect ratio (HTML width/height attrs were stretching it) */
+.nav-logo img { height: 32px; width: auto; max-width: none; }
